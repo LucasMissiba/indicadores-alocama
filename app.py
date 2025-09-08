@@ -1089,7 +1089,11 @@ def main() -> None:
             t = str(text)
             return re.sub(r"^\s*\(?\s*compl\.?\s*\)?\s*", "", t, flags=re.IGNORECASE)
 
-        df_detail = df_result_sorted.copy()
+        # Mostrar detalhamento de categorias considerando apenas o último mês disponível
+        if 'last_month_str' in locals() and last_month_str:
+            df_detail = df_result_sorted[df_result_sorted["Pasta"] == last_month_str].copy()
+        else:
+            df_detail = df_result_sorted.copy()
         df_detail["ItemLimpo"] = df_detail["Item"].apply(_strip_compl_prefix)
         df_detail["Categoria"] = df_detail["ItemLimpo"].map(categorize_item_name)
         categorias_alvo = ["CAMA", "CADEIRA HIGIÊNICA", "CADEIRA DE RODAS"]
