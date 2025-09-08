@@ -869,6 +869,9 @@ def main() -> None:
             df_result["Item"].astype(str).str.strip().str.upper() == "DOMMUS"
         ) | (df_result["Quantidade"] > 0)].reset_index(drop=True)
 
+        # Unificar variações de "CAMA ELÉTRICA 2 MOVIMENTOS" (ex.: com tamanhos/sufixos)
+        df_result["Item"] = df_result["Item"].map(canonicalize_electric_bed_two_movements)
+
         df_totais = (
             df_result.groupby("Item", as_index=False)["Quantidade"].sum().sort_values("Quantidade", ascending=False)
         )
