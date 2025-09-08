@@ -1670,6 +1670,24 @@ def main() -> None:
                 st.plotly_chart(fig_pn_rev, width="stretch")
                 st.markdown('</div>', unsafe_allow_html=True)
 
+                # Faturamento geral (soma dos itens) por mês - valores informados
+                st.subheader("Faturamento geral (PRONEP) – Junho/Julho/Agosto")
+                df_total_manual = pd.DataFrame({
+                    "Mês": ["Junho", "Julho", "Agosto"],
+                    "Faturamento": [55664.48, 56251.60, 54204.32],
+                })
+                fig_total = px.bar(
+                    df_total_manual,
+                    x="Mês",
+                    y="Faturamento",
+                    text="Faturamento",
+                    title="Faturamento geral por mês (valores fornecidos)",
+                )
+                fig_total.update_traces(texttemplate="R$ %{y:,.2f}", textposition="outside")
+                fig_total.update_layout(yaxis_title="Faturamento (R$)")
+                fig_total.update_yaxes(tickprefix="R$ ", tickformat=",.2f")
+                st.plotly_chart(fig_total, use_container_width=True)
+
         if empresas_presentes_viz and all(e in {"HOSPITALAR", "SOLAR", "DOMMUS"} for e in empresas_presentes_viz):
             st.subheader("Vidas ativas no Home Care – Grupo Solar (últimos 3 meses)")
             month_sets = {"Junho": set(), "Julho": set(), "Agosto": set()}
