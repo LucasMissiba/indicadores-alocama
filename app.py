@@ -1684,8 +1684,9 @@ def main() -> None:
                     title="Faturamento geral por mês (valores fornecidos)",
                 )
                 fig_total.update_traces(texttemplate="R$ %{y:,.2f}", textposition="outside")
-                fig_total.update_layout(yaxis_title="Faturamento (R$)")
-                fig_total.update_yaxes(tickprefix="R$ ", tickformat=",.2f")
+                ymax = float(df_total_manual["Faturamento"].max())
+                fig_total.update_yaxes(tickprefix="R$ ", tickformat=",.2f", range=[0, ymax * 1.15])
+                fig_total.update_layout(yaxis_title="Faturamento (R$)", margin=dict(l=20, r=20, t=80, b=60))
                 st.plotly_chart(fig_total, use_container_width=True)
 
         if empresas_presentes_viz and all(e in {"HOSPITALAR", "SOLAR", "DOMMUS"} for e in empresas_presentes_viz):
