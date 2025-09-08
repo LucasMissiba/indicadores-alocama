@@ -260,6 +260,26 @@ def canonicalize_wheelchair_obese_60(name: str) -> str:
         return "CADEIRA DE RODAS OBESO SIMPLES 60"
     return name
 
+
+def canonicalize_wheelchair_50(name: str) -> str:
+    """Normaliza cadeiras de rodas 50/50,5 → 'CADEIRA DE RODAS 50'."""
+    t = normalize_text_for_match(name)
+    if not ("cadeira" in t and ("rod" in t or re.search(r"\brodas?\b", t))):
+        return name
+    # detecta 50 ou 50,5 / 50.5
+    m = re.search(r"\b50([\.,]5)?\b", t)
+    if m:
+        return "CADEIRA DE RODAS 50"
+    return name
+
+
+def canonicalize_walker(name: str) -> str:
+    """Agrupa quaisquer variações de andadores como 'ANDADOR'."""
+    t = normalize_text_for_match(name)
+    if "andador" in t:
+        return "ANDADOR"
+    return name
+
 def infer_group_for_label(label: str, candidates: List[str]) -> str:
     """Inferência robusta do grupo a partir do caminho (aceita \ ou / e variações)."""
     parts = re.split(r"[\\/]+", str(label))
@@ -907,6 +927,8 @@ def main() -> None:
         df_result["Item"] = df_result["Item"].map(canonicalize_electric_bed_two_movements)
         df_result["Item"] = df_result["Item"].map(canonicalize_wheelchair_group)
         df_result["Item"] = df_result["Item"].map(canonicalize_wheelchair_obese_60)
+        df_result["Item"] = df_result["Item"].map(canonicalize_wheelchair_50)
+        df_result["Item"] = df_result["Item"].map(canonicalize_walker)
 
         df_totais = (
             df_result.groupby("Item", as_index=False)["Quantidade"].sum().sort_values("Quantidade", ascending=False)
