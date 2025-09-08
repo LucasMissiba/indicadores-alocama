@@ -1127,6 +1127,9 @@ def main() -> None:
                             # Regra adicional: "mod antigo" também é estofada
                             if "mod antigo" in norm and pd.isna(size):
                                 size = "44"
+                            # Nova regra: tamanho 40 deve somar em 44
+                            if pd.notna(size) and str(size) == "40":
+                                size = "44"
                             if pd.notna(size) and has_estofada:
                                 return f"CADEIRA HIGIÊNICA ESTOFADA {size}"
                             if has_dobravel:
