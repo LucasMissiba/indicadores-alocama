@@ -1534,6 +1534,25 @@ def main() -> None:
                 st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
                 st.plotly_chart(fig_rev, width="stretch")
                 st.markdown('</div>', unsafe_allow_html=True)
+
+                # Faturamento geral (AXX CARE) – valores informados
+                st.subheader("Faturamento geral (AXX CARE) – Junho/Julho/Agosto")
+                df_total_axx = pd.DataFrame({
+                    "Mês": ["Junho", "Julho", "Agosto"],
+                    "Faturamento": [77499.87, 81856.05, 82609.95],
+                })
+                fig_total_axx = px.bar(
+                    df_total_axx,
+                    x="Mês",
+                    y="Faturamento",
+                    text="Faturamento",
+                    title="Faturamento geral por mês (valores fornecidos)",
+                )
+                fig_total_axx.update_traces(texttemplate="R$ %{y:,.2f}", textposition="outside")
+                ymax_axx = float(df_total_axx["Faturamento"].max())
+                fig_total_axx.update_yaxes(tickprefix="R$ ", tickformat=",.2f", range=[0, ymax_axx * 1.15])
+                fig_total_axx.update_layout(yaxis_title="Faturamento (R$)", margin=dict(l=20, r=20, t=80, b=60))
+                st.plotly_chart(fig_total_axx, use_container_width=True)
         elif all(e in {"HOSPITALAR", "SOLAR", "DOMMUS"} for e in empresas_presentes_fat):
             st.subheader("Faturamento Grupo Solar – Top Itens (Junho/Julho/Agosto)")
             price_map_solar = {
