@@ -1604,6 +1604,24 @@ def main() -> None:
                 st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
                 st.plotly_chart(fig_gs, width="stretch")
                 st.markdown('</div>', unsafe_allow_html=True)
+                # Faturamento geral (Grupo Solar) – valores informados
+                st.subheader("Faturamento geral (Grupo Solar) – Junho/Julho/Agosto")
+                df_total_gs = pd.DataFrame({
+                    "Mês": ["Junho", "Julho", "Agosto"],
+                    "Faturamento": [287981.61, 309546.25, 312029.51],
+                })
+                fig_total_gs = px.bar(
+                    df_total_gs,
+                    x="Mês",
+                    y="Faturamento",
+                    text="Faturamento",
+                    title="Faturamento geral por mês (valores fornecidos)",
+                )
+                fig_total_gs.update_traces(texttemplate="R$ %{y:,.2f}", textposition="outside")
+                ymax_gs = float(df_total_gs["Faturamento"].max())
+                fig_total_gs.update_yaxes(tickprefix="R$ ", tickformat=",.2f", range=[0, ymax_gs * 1.15])
+                fig_total_gs.update_layout(yaxis_title="Faturamento (R$)", margin=dict(l=20, r=20, t=80, b=60))
+                st.plotly_chart(fig_total_gs, use_container_width=True)
                 df_rev_sum = df_gs_sum
 
             st.subheader("Faturamento por empresa (Junho/Julho/Agosto)")
