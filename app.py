@@ -215,6 +215,17 @@ def canonicalize_trio_item(name: str) -> str:
     return name
 
 
+def canonicalize_electric_bed_two_movements(name: str) -> str:
+    """
+    Unifica variações de "CAMA ELÉTRICA 2 MOVIMENTOS" (ex.: tamanhos/sufixos como 2,10Mts).
+    Mantém demais itens inalterados.
+    """
+    t = normalize_text_for_match(name)
+    if ("cama" in t and ("eletric" in t or "eletrica" in t) and ("2" in t or "ii" in t) and ("mov" in t or "movimento" in t)):
+        return "CAMA ELÉTRICA 2 MOVIMENTOS"
+    return name
+
+
 def infer_group_for_label(label: str, candidates: List[str]) -> str:
     """Inferência robusta do grupo a partir do caminho (aceita \ ou / e variações)."""
     parts = re.split(r"[\\/]+", str(label))
@@ -923,17 +934,18 @@ def main() -> None:
         df_viz["Mês"] = df_viz["Pasta"].map(month_map).fillna(df_viz["Pasta"])
         month_order = [month_map[m] for m in ["6", "7", "8"]]
 
-        top10_items = df_totais.head(10)["Item"].tolist()
-        df_viz_top = df_viz[df_viz["Item"].isin(top10_items)]
-        df_viz_top = (
-            df_viz_top.groupby(["Item", "Mês"], as_index=False)["Quantidade"].sum()
+        # 1) Gráfico original (sem alterações) – Top 10 por Item
+        top10_items_orig = df_totais.head(10)["Item"].tolist()
+        df_viz_top_orig = df_viz[df_viz["Item"].isin(top10_items_orig)]
+        df_viz_top_orig = (
+            df_viz_top_orig.groupby(["Item", "Mês"], as_index=False)["Quantidade"].sum()
         )
-        top10_after_agg = (
-            df_viz_top.groupby("Item", as_index=False)["Quantidade"].sum()
+        top10_after_agg_orig = (
+            df_viz_top_orig.groupby("Item", as_index=False)["Quantidade"].sum()
             .sort_values("Quantidade", ascending=False)
             .head(10)["Item"].tolist()
         )
-        df_viz_top = df_viz_top[df_viz_top["Item"].isin(top10_after_agg)]
+        df_viz_top_orig = df_viz_top_orig[df_viz_top_orig["Item"].isin(top10_after_agg_orig)]
         components.html(
             """
             <style>
@@ -959,12 +971,12 @@ def main() -> None:
 
         st.markdown('<div class="fade-in-on-scroll" style="margin-top:0;">', unsafe_allow_html=True)
         fig = px.bar(
-            df_viz_top,
+            df_viz_top_orig,
             x="Item",
             y="Quantidade",
             color="Mês",
             barmode="group",
-            category_orders={"Mês": month_order, "Item": top10_after_agg},
+            category_orders={"Mês": month_order, "Item": top10_after_agg_orig},
             title="Top 10 - Comparação de Itens entre Junho/Julho/Agosto",
             hover_data={"Mês": True, "Quantidade": ":,", "Item": True},
         )
@@ -986,14 +998,27 @@ def main() -> None:
         st.plotly_chart(fig, width="stretch")
         st.markdown('</div>', unsafe_allow_html=True)
 
+        # Auditoria removida a pedido
+
         month_map_hdr = {"6": "Junho", "7": "Julho", "8": "Agosto"}
         last_month_hdr = df_emp_last["Pasta"].iloc[0] if not df_emp_last.empty else None
         last_month_label = month_map_hdr.get(str(last_month_hdr), str(last_month_hdr) if last_month_hdr else "-")
-        st.subheader(f"Consolidado geral do último mês ({last_month_label})")
-        df_consolidado_display = df_consolidado_geral.copy()
-        df_consolidado_display.index = range(1, len(df_consolidado_display) + 1)
-        df_consolidado_display.index.name = "Posição"
-        st.dataframe(df_consolidado_display, use_container_width=True)
+        with st.expander(f"Consolidado geral do último mês ({last_month_label})", expanded=False):
+            def _strip_compl_prefix(text: str) -> str:
+                t = str(text)
+                return re.sub(r"^\s*\(?\s*compl\.?\s*\)?\s*", "", t, flags=re.IGNORECASE)
+
+            # Recalcula consolidado limpando prefixos (COMPL.) e semelhantes
+            tmp = df_emp_last.assign(ItemLimpo=df_emp_last["Item"].apply(_strip_compl_prefix))
+            tmp["ItemCanon2"] = tmp["ItemLimpo"].map(canonicalize_electric_bed_two_movements)
+            df_consol_limpo = (
+                tmp.groupby("ItemCanon2", as_index=False)["Quantidade"].sum()
+                .sort_values("Quantidade", ascending=False)
+                .rename(columns={"ItemCanon2": "Item"})
+            )
+            df_consol_limpo.index = range(1, len(df_consol_limpo) + 1)
+            df_consol_limpo.index.name = "Posição"
+            st.dataframe(df_consol_limpo, use_container_width=True)
         df_peak_item = (
             df_result.sort_values(["Item", "Quantidade"], ascending=[True, False])
             .drop_duplicates(["Item"], keep="first")
@@ -1004,6 +1029,92 @@ def main() -> None:
             df_peak_item_display.index = range(1, len(df_peak_item_display) + 1)
             df_peak_item_display.index.name = "Posição"
             st.dataframe(df_peak_item_display, use_container_width=True)
+
+        # Detalhamento por categoria (com limpeza de prefixo (COMPL.))
+        def _strip_compl_prefix(text: str) -> str:
+            t = str(text)
+            return re.sub(r"^\s*\(?\s*compl\.?\s*\)?\s*", "", t, flags=re.IGNORECASE)
+
+        df_detail = df_result_sorted.copy()
+        df_detail["ItemLimpo"] = df_detail["Item"].apply(_strip_compl_prefix)
+        df_detail["Categoria"] = df_detail["ItemLimpo"].map(categorize_item_name)
+        categorias_alvo = ["CAMA", "CADEIRA HIGIÊNICA", "CADEIRA DE RODAS"]
+        for cat in categorias_alvo:
+            with st.expander(cat, expanded=False):
+                sub = df_detail[df_detail["Categoria"] == cat]
+                if sub.empty:
+                    st.info(f"Sem itens em {cat}")
+                else:
+                    # Para CADEIRA HIGIÊNICA, agrupar por tamanho (número) quando existir
+                    if cat == "CADEIRA HIGIÊNICA":
+                        sub = sub.copy()
+                        # Extrai primeiro número (tamanho) quando existir no texto
+                        sub["Tamanho"] = sub["ItemLimpo"].str.extract(r"(\d+)")
+                        # Normalização para testes de palavras-chave (sem acentos)
+                        sub["_norm"] = sub["ItemLimpo"].apply(normalize_text_for_match)
+                        def _group_row(r):
+                            size = r["Tamanho"]
+                            norm = r["_norm"] or ""
+                            has_estofada = "estofad" in norm
+                            has_dobravel = "dobrav" in norm or "dobravel" in norm
+                            # Regra adicional: "mod antigo" também é estofada
+                            if "mod antigo" in norm and pd.isna(size):
+                                size = "44"
+                            if pd.notna(size) and has_estofada:
+                                return f"CADEIRA HIGIÊNICA ESTOFADA {size}"
+                            if has_dobravel:
+                                # Regra solicitada: somar DOBRÁVEL dentro da 44
+                                return "CADEIRA HIGIÊNICA 44"
+                            if pd.notna(size):
+                                return f"CADEIRA HIGIÊNICA {size}"
+                            return r["ItemLimpo"]
+                        sub["Grupo"] = sub.apply(_group_row, axis=1)
+                        tabela = (
+                            sub.groupby("Grupo", as_index=False)["Quantidade"].sum()
+                            .sort_values("Quantidade", ascending=False)
+                        )
+                        tabela.rename(columns={"Grupo": "Item"}, inplace=True)
+                    else:
+                        # Para CAMA: consolidar em "CAMA 2 MANIVELAS" e "CAMA 3 MANIVELAS" quando aplicável
+                        if cat == "CAMA":
+                            sub = sub.copy()
+                            sub["_norm"] = sub["ItemLimpo"].apply(normalize_text_for_match)
+                            def _map_cama(lbl, nrm):
+                                if ("2" in nrm and "manivel" in nrm) or ("duas" in nrm and "manivel" in nrm):
+                                    return "CAMA 2 MANIVELAS"
+                                if ("3" in nrm and "manivel" in nrm) or ("tres" in nrm and "manivel" in nrm):
+                                    return "CAMA 3 MANIVELAS"
+                                return lbl
+                            sub["Grupo"] = [ _map_cama(lbl, nrm) for lbl, nrm in zip(sub["ItemLimpo"], sub["_norm"]) ]
+                            tabela = (
+                                sub.groupby("Grupo", as_index=False)["Quantidade"].sum()
+                                .sort_values("Quantidade", ascending=False)
+                            )
+                            tabela.rename(columns={"Grupo": "Item"}, inplace=True)
+                        # Para CADEIRA DE RODAS: consolidar por tamanho quando houver número
+                        elif cat == "CADEIRA DE RODAS":
+                            sub = sub.copy()
+                            # Extrai tamanho evitando capturar códigos como "C1"; pega números com 2+ dígitos (ex.: 40, 44, 46, 48, 50, 40,5)
+                            # Usa o número do final do texto como tamanho (ex.: 40, 44, 46, 48, 50, 40,5)
+                            sub["Tamanho"] = sub["ItemLimpo"].str.extract(r"(\d{2,}(?:[\.,]\d{1,2})?)\s*$")
+                            def _map_rodas(lbl, size):
+                                return f"CADEIRA DE RODAS {size}" if pd.notna(size) else lbl
+                            sub["Grupo"] = [ _map_rodas(lbl, size) for lbl, size in zip(sub["ItemLimpo"], sub["Tamanho"]) ]
+                            tabela = (
+                                sub.groupby("Grupo", as_index=False)["Quantidade"].sum()
+                                .sort_values("Quantidade", ascending=False)
+                            )
+                            tabela.rename(columns={"Grupo": "Item"}, inplace=True)
+                        else:
+                            tabela = (
+                                sub.groupby("ItemLimpo", as_index=False)["Quantidade"].sum()
+                                .sort_values("Quantidade", ascending=False)
+                            )
+                            tabela.rename(columns={"ItemLimpo": "Item"}, inplace=True)
+
+                    tabela.index = range(1, len(tabela) + 1)
+                    tabela.index.name = "Posição"
+                    st.dataframe(tabela, use_container_width=True)
 
         st.subheader("Top 3 itens por empresa (Junho/Julho/Agosto)")
         empresas_presentes = sorted(df_top3_empresa["Empresa"].unique().tolist())
@@ -1037,53 +1148,30 @@ def main() -> None:
 
         empresas_presentes_viz = sorted(df_emp_viz["Empresa"].unique().tolist())
         if empresas_presentes_viz == ["AXX CARE"]:
-            st.subheader("Evolução AXX CARE (Junho/Julho/Agosto)")
+            st.subheader("Resumo por categorias – AXX CARE")
             df_e = df_emp_viz[df_emp_viz["Empresa"] == "AXX CARE"]
             if df_e.empty:
                 st.info("Sem dados para AXX CARE nos meses 6/7/8")
             else:
-                top10_e = (
-                    df_e.groupby("Item", as_index=False)["Quantidade"].sum()
-                    .sort_values("Quantidade", ascending=False)["Item"].head(10).tolist()
+                # Categorias desejadas
+                df_e_cat = df_e.copy()
+                df_e_cat["Categoria"] = df_e_cat["Item"].map(categorize_item_name)
+                alvo = ["CAMA", "CADEIRA HIGIÊNICA", "CADEIRA DE RODAS", "SUPORTE DE SORO"]
+                df_cat_sum = (
+                    df_e_cat[df_e_cat["Categoria"].isin(alvo)]
+                    .groupby(["Categoria"], as_index=False)["Quantidade"].sum()
+                    .sort_values("Quantidade", ascending=False)
                 )
-                df_e_top = df_e[df_e["Item"].isin(top10_e)]
-                fig_e_bar = px.bar(
-                    df_e_top,
-                    x="Item",
+                fig_cat = px.bar(
+                    df_cat_sum,
+                    x="Categoria",
                     y="Quantidade",
-                    color="Mês",
-                    category_orders={"Mês": month_order, "Item": top10_e},
-                    barmode="group",
-                    title="Top 10 itens – AXX CARE",
-                    hover_data={"Mês": True, "Quantidade": ":,", "Item": True},
+                    title="Quantidade por categoria (Camas, Cadeira Higiene, Cadeira de Rodas, Suporte de Soro)",
                 )
-                fig_e_bar.update_layout(
-                    xaxis_title="Itens (Junho / Julho / Agosto)",
-                    yaxis_title="Quantidade",
-                    margin=dict(l=20, r=20, t=60, b=150),
-                    showlegend=False,
-                )
-                fig_e_bar.update_xaxes(tickangle=-60)
-                st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
-                st.plotly_chart(fig_e_bar, width="stretch")
-                st.markdown('</div>', unsafe_allow_html=True)
+                fig_cat.update_layout(margin=dict(l=20, r=20, t=60, b=80))
+                st.plotly_chart(fig_cat, use_container_width=True)
 
-                df_e_tot = (
-                    df_e.groupby("Mês", as_index=False)["Quantidade"].sum()
-                    .set_index("Mês").reindex(month_order).reset_index().fillna(0)
-                )
-                fig_e_line = px.line(
-                    df_e_tot,
-                    x="Mês",
-                    y="Quantidade",
-                    markers=True,
-                    title="Evolução mensal – AXX CARE",
-                )
-                fig_e_line.update_layout(yaxis_title="Quantidade", xaxis_title="Mês")
-                st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
-                st.plotly_chart(fig_e_line, width="stretch")
-                st.markdown('</div>', unsafe_allow_html=True)
-
+                # Determina último mês disponível para os gráficos subsequentes
                 meses_ordem = {"Junho": 6, "Julho": 7, "Agosto": 8}
                 ultimo_mes = df_e["Mês"].map(meses_ordem).max()
                 mes_label = [k for k, v in meses_ordem.items() if v == ultimo_mes]
@@ -1137,6 +1225,10 @@ def main() -> None:
             if df_pn.empty:
                 st.info("Sem dados para PRONEP nos meses 6/7/8")
             else:
+                # Dataset consolidado apenas para auditoria (sem gráfico adicional)
+                df_pn_aux = df_pn.copy()
+                df_pn_aux["ItemCanon2"] = df_pn_aux["Item"].map(canonicalize_electric_bed_two_movements)
+
                 top10_pn = (
                     df_pn.groupby("Item", as_index=False)["Quantidade"].sum()
                     .sort_values("Quantidade", ascending=False)["Item"].head(10).tolist()
@@ -1162,6 +1254,8 @@ def main() -> None:
                 st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
                 st.plotly_chart(fig_pn_bar, width="stretch")
                 st.markdown('</div>', unsafe_allow_html=True)
+
+                # Auditoria removida a pedido
 
                 df_pn_tot = (
                     df_pn.groupby("Mês", as_index=False)["Quantidade"].sum()
@@ -1292,6 +1386,10 @@ def main() -> None:
                     if df_e.empty:
                         st.info(f"Sem dados para {empresa} nos meses 6/7/8")
                     else:
+                        # Dataset consolidado apenas para auditoria (sem gráfico adicional)
+                        df_e_aux = df_e.copy()
+                        df_e_aux["ItemCanon2"] = df_e_aux["Item"].map(canonicalize_electric_bed_two_movements)
+
                         top10_e = (
                             df_e.groupby("Item", as_index=False)["Quantidade"].sum()
                             .sort_values("Quantidade", ascending=False)["Item"].head(10).tolist()
@@ -1317,6 +1415,8 @@ def main() -> None:
                         st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
                         st.plotly_chart(fig_e_bar, width="stretch")
                         st.markdown('</div>', unsafe_allow_html=True)
+
+                        # Auditoria removida a pedido
 
                         df_e_tot = (
                             df_e.groupby("Mês", as_index=False)["Quantidade"].sum()
