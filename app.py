@@ -12,7 +12,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 
-APP_TITLE = "Painel Gerencial do Setor de Contratos | Alô Cama"
+APP_TITLE = "Painel Gerencial do Setor de Contratos | Alocama"
 OUTPUT_FILENAME = "resultado_itens.xlsx"
 SMART_FALLBACK_CANDIDATES = [
     "item",
@@ -106,7 +106,7 @@ def render_splash_once() -> bool:
         </style>
         <div class='splash-overlay'>
           <div class='splash-card'>
-            <div class='brand'>Alô Cama · Setor de Contratos</div>
+            <div class='brand'>Alocama · Setor de Contratos</div>
             <div class='title'>Preparando seu painel...</div>
             <div class='subtitle'>Carregando componentes e verificando ambiente</div>
             <div class='loader'></div>
