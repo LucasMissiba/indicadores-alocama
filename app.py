@@ -236,11 +236,29 @@ def canonicalize_wheelchair_group(name: str) -> str:
     if not ("cadeira" in t and ("rod" in t or re.search(r"\brodas?\b", t))):
         return name
     tokens = re.findall(r"(\d{2})", t)
-    has_40_48 = any(40 <= int(tok) <= 48 for tok in tokens if tok.isdigit())
-    if not has_40_48:
+    has_38_48 = any(38 <= int(tok) <= 48 for tok in tokens if tok.isdigit())
+    if not has_38_48:
         return name
     is_reclinavel = "reclin" in t  # cobre 'reclinavel'/'reclinável'
     return "CADEIRA DE RODAS RECLINAVEL" if is_reclinavel else "CADEIRA DE RODAS SIMPLES"
+
+
+def canonicalize_wheelchair_obese_60(name: str) -> str:
+    """Unifica variações de cadeiras 'obeso' 60 e correlatas.
+    - 'CADEIRA DE RODAS OBESO SIMPLES ALUM 60 - 140KG' → 'CADEIRA DE RODAS OBESO SIMPLES 60'
+    - 'CADEIRA DE RODAS OBESO ORTOBRAS ALUM 60 - 200KG' → idem
+    - 'CADEIRA DE RODAS 65' → idem (solicitado)
+    """
+    t = normalize_text_for_match(name)
+    if not ("cadeira" in t and ("rod" in t or re.search(r"\brodas?\b", t))):
+        return name
+    # Mapa por condições
+    tokens = re.findall(r"(\d{2})", t)
+    has_60 = any(tok == "60" for tok in tokens)
+    has_65 = any(tok == "65" for tok in tokens)
+    if ("obes" in t and has_60) or ("ortobras" in t and has_60) or has_65:
+        return "CADEIRA DE RODAS OBESO SIMPLES 60"
+    return name
 
 def infer_group_for_label(label: str, candidates: List[str]) -> str:
     """Inferência robusta do grupo a partir do caminho (aceita \ ou / e variações)."""
@@ -888,6 +906,7 @@ def main() -> None:
         # Unificar variações específicas
         df_result["Item"] = df_result["Item"].map(canonicalize_electric_bed_two_movements)
         df_result["Item"] = df_result["Item"].map(canonicalize_wheelchair_group)
+        df_result["Item"] = df_result["Item"].map(canonicalize_wheelchair_obese_60)
 
         df_totais = (
             df_result.groupby("Item", as_index=False)["Quantidade"].sum().sort_values("Quantidade", ascending=False)
