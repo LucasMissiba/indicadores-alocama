@@ -27,7 +27,6 @@ SMART_FALLBACK_CANDIDATES = [
     "nome do item",
 ]
 
-# Candidatos para detectar coluna de pacientes/vidas
 NAME_FALLBACK_CANDIDATES = [
     "paciente",
     "beneficiario",
@@ -43,9 +42,6 @@ NAME_FALLBACK_CANDIDATES = [
 ]
 
 
-# ==============================
-# Autenticação simples (sem lib)
-# ==============================
 def hash_password(raw: str) -> str:
     try:
         return hashlib.sha256(raw.encode("utf-8")).hexdigest()
@@ -65,7 +61,6 @@ def get_auth_users() -> Dict[str, str]:
     """
     users: Dict[str, str] = {}
     try:
-        # Pode ser dict normal, ou dict com prefixo 'sha256:'
         for k, v in (st.secrets.get("auth_users", {}) or {}).items():
             if isinstance(v, str) and v.startswith("sha256:"):
                 users[k] = v.split(":", 1)[1]
@@ -73,7 +68,6 @@ def get_auth_users() -> Dict[str, str]:
                 users[k] = v  # assume já ser sha256
     except Exception:
         users = {}
-    # Fallback seguro para desenvolvimento local
     if not users:
         users = {"admin": hash_password("admin")}
     return users
@@ -93,7 +87,6 @@ def render_splash_once() -> bool:
         st.session_state["splash_shown"] = False
     if st.session_state["splash_shown"]:
         return False
-    # Overlay em toda a viewport (sem iframe) para garantir cor única
     ph = st.empty()
     ph.markdown(
         """
@@ -131,12 +124,9 @@ def render_login() -> bool:
     if st.session_state.get("authed"):
         return True
 
-    # Card de login único centralizado
     col_center = st.columns([1, 2, 1])[1]
     with col_center:
-        # Removido pulse/animacão
         with st.container(border=True):
-            # Logo: procura em assets/logo.(png|jpg|jpeg|svg) ou usa URL em secrets
             logo_path: Optional[str] = None
             try:
                 for ext in ("png", "jpg", "jpeg", "svg"):
@@ -169,7 +159,6 @@ def render_login() -> bool:
             submit = st.button("Entrar", type="primary", use_container_width=True)
 
             st.caption("Respeitamos a LGPD e tratamos dados pessoais com segurança e finalidade específica.")
-        # fim do card
 
     if submit:
         if verify_credentials(user, pwd):
@@ -186,23 +175,16 @@ def render_login() -> bool:
 def clean_item_values(series: pd.Series, selected_col_name: str, only_equipment: bool = False) -> pd.Series:
     """Normaliza e filtra valores não válidos da coluna de itens/produtos."""
     s = series.astype(str).str.strip()
-    # Remove vazios
     s = s[s != ""]
-    # Remove valores iguais ao cabeçalho/nome da coluna (e sinônimos comuns)
     invalid_names = {selected_col_name.lower(), "item", "produto", "produtos", "descrição", "descricao"}
     s = s[~s.str.lower().isin(invalid_names)]
-    # Remove linhas de totais/subtotais
     s = s[~s.str.lower().str.match(r"^(total|subtotal)\b")] 
-    # Normalização para filtros adicionais
     norm = s.map(normalize_text_for_match)
-    # Remove indicadores que não representam equipamentos
     bad_regex = r"(?:valor|pagina|page|quant|\bqtd\b|status|retirada|paciente|periodo|serie|unidade|unidades|\bun\b|\brs\b)"
     s = s[~norm.str.contains(bad_regex, regex=True, na=False)]
-    # Remove tokens muito curtos após normalização
     norm = s.map(normalize_text_for_match)
     s = s[norm.str.len() >= 3]
     if only_equipment:
-        # Mantém apenas valores que contenham letras (desconsidera números aleatórios ou somente símbolos)
         s = s[norm.str.contains(r"[a-z]", regex=True, na=False)]
     return s
 
@@ -223,7 +205,6 @@ def categorize_item_name(item_name: str) -> str:
     """Classifica o item em categorias macro (CAMA, CADEIRA DE RODAS, etc.)."""
     t = normalize_text_for_match(item_name)
 
-    # Ordem importa: categorias mais específicas primeiro
     if "higien" in t or "banho" in t:
         return "CADEIRA HIGIÊNICA"
     if ("cadeira" in t and "rod" in t) or re.search(r"\brodas?\b", t):
@@ -284,7 +265,6 @@ def infer_group_for_label(label: str, candidates: List[str]) -> str:
     parts_norm = [normalize_text_for_match(p) for p in parts]
     norm_candidates = {normalize_text_for_match(c): c for c in candidates}
 
-    # Preferência: após 'GRUPO SOLAR'
     if "grupo solar" in parts_norm:
         idx = parts_norm.index("grupo solar")
         if idx + 1 < len(parts_norm):
@@ -293,12 +273,10 @@ def infer_group_for_label(label: str, candidates: List[str]) -> str:
                 return norm_candidates[nxt_norm]
             return parts[idx + 1]
 
-    # Checa qualquer parte que bata exatamente com candidatos
     for p_norm, p in zip(parts_norm, parts):
         if p_norm in norm_candidates:
             return norm_candidates[p_norm]
 
-    # Heurísticas de substring
     if any("hospital" in p for p in parts_norm):
         return "HOSPITALAR"
     if any("dommus" in p or "domus" in p for p in parts_norm):
@@ -346,10 +324,8 @@ def render_top3_pies(df_by_file: pd.DataFrame, group_names: Optional[List[str]] 
     df = df_by_file.copy()
     if "Grupo" not in df.columns:
         df["Grupo"] = df["Arquivo"].apply(lambda s: infer_group_for_label(str(s), group_names))
-    # Se group_names não for informado, usa os grupos detectados nos dados
     if not group_names:
         group_names = sorted([g for g in df["Grupo"].unique().tolist() if str(g).strip() != ""])
-    # Anexa categorias para possível filtro; se um grupo ficar vazio, cai no fallback sem filtro
     df_with_cat = attach_categories(df)
 
     st.subheader("Top 3 itens por grupo")
@@ -360,7 +336,6 @@ def render_top3_pies(df_by_file: pd.DataFrame, group_names: Optional[List[str]] 
         df_g = df_with_cat[df_with_cat["Grupo"] == group]
         df_g = df_g[df_g["Categoria"] != "OUTROS"]
         if df_g.empty:
-            # Fallback: usa dados crus (sem filtrar categoria)
             df_g = df_g_raw
         if df_g.empty:
             continue
@@ -402,7 +377,6 @@ def is_excel_file(path: Path) -> bool:
     if not path.is_file():
         return False
     name_lower = path.name.lower()
-    # Aceita .xlsx e .xlsm
     if not (name_lower.endswith(".xlsx") or name_lower.endswith(".xlsm")):
         return False
     if name_lower.startswith("~$"):
@@ -423,7 +397,6 @@ def list_excel_files(directory: Path, recursive: bool = False) -> List[Path]:
         for entry in directory.iterdir():
             if is_excel_file(entry):
                 files.append(entry)
-    # Deduplica por caminho absoluto case-insensitive
     seen = set()
     deduped: List[Path] = []
     for p in files:
@@ -461,7 +434,6 @@ def deduplicate_files_by_content(files: List[Path]) -> Tuple[List[Path], Dict[st
             kept.append(p)
             continue
         if file_hash in seen_hash_to_path:
-            # Arquivo duplicado por conteúdo – ignora
             duplicates.setdefault(file_hash, []).append(str(p))
             continue
         seen_hash_to_path[file_hash] = p
@@ -500,16 +472,13 @@ def resolve_column_selector(columns: List[str], selector: str) -> Optional[str]:
     if not selector:
         return None
     s = str(selector).strip()
-    # Número 1-based
     if s.isdigit():
         pos = int(s) - 1
         if 0 <= pos < len(columns):
             return columns[pos]
-    # Letra(s) do Excel
     pos_from_letter = excel_letter_to_index(s)
     if pos_from_letter is not None and 0 <= pos_from_letter < len(columns):
         return columns[pos_from_letter]
-    # Nome da coluna (case-insensitive)
     return find_matching_column(columns, s)
 
 
@@ -531,19 +500,16 @@ def select_best_column(df: pd.DataFrame, selector: Optional[str], use_smart: boo
         series = series.astype(str).str.strip()
         return int((series != "").sum())
 
-    # 1) Manual
     if selector:
         manual_col = resolve_column_selector(columns, selector)
         if manual_col is not None:
             cnt = non_empty_count(manual_col)
             if cnt > 0:
                 return manual_col, "manual", cnt
-            # se não houver dados, ainda podemos tentar smart
 
     if not use_smart:
         return (manual_col if selector else None), "none", 0
 
-    # 2) Por nomes comuns
     for cand in SMART_FALLBACK_CANDIDATES:
         match = find_matching_column(columns, cand)
         if match is not None:
@@ -551,7 +517,6 @@ def select_best_column(df: pd.DataFrame, selector: Optional[str], use_smart: boo
             if cnt > 0:
                 return match, "smart_name", cnt
 
-    # 3) Melhor coluna textual
     best_col: Optional[str] = None
     best_cnt = 0
     for col in columns:
@@ -588,15 +553,12 @@ def select_best_name_column(df: pd.DataFrame) -> Optional[str]:
         s = s[s != ""]
         if s.empty:
             return 0
-        # Normaliza e filtra valores com letras e preferência por nomes compostos
         norm = s.map(normalize_text_for_match)
         looks_like_name = norm.str.contains(r"[a-z]", regex=True, na=False)
-        # favorece strings com espaço (nome e sobrenome)
         has_space = norm.str.contains(r"\s", regex=True, na=False)
         candidates = norm[looks_like_name & has_space & (norm.str.len() >= 5)]
         return int(candidates.nunique())
 
-    # 1) Exatos a partir dos candidatos
     best_col: Optional[str] = None
     best_score = -1
     for cand in NAME_FALLBACK_CANDIDATES:
@@ -610,7 +572,6 @@ def select_best_name_column(df: pd.DataFrame) -> Optional[str]:
     if best_col is not None and best_score > 0:
         return best_col
 
-    # 2) Por tokens no nome da coluna
     token_candidates = [
         "nome", "pacient", "benefici", "usuario", "assistid", "cliente", "vida"
     ]
@@ -624,7 +585,6 @@ def select_best_name_column(df: pd.DataFrame) -> Optional[str]:
     if best_col is not None and best_score > 0:
         return best_col
 
-    # 3) Heurística geral
     for col in columns:
         try:
             score = count_valid_names(df[col])
@@ -674,7 +634,6 @@ def count_items_in_files(
     column_debug: Dict[str, List[Tuple[str, str, str, int]]] = {}
 
     for file in files:
-        # Rótulo do arquivo como caminho relativo (sem extensão)
         try:
             rel = file.relative_to(base_dir)
             file_label = str(rel.with_suffix(""))
@@ -689,7 +648,6 @@ def count_items_in_files(
         found_in_this_file = False
         per_sheet_info: List[Tuple[str, str, str, int]] = []
         for sheet_name, df in (book or {}).items():
-            # Ignora abas de resumo/gráficos/totais/etc.
             if should_exclude_sheet(str(sheet_name)):
                 continue
             if not isinstance(df, pd.DataFrame) or df.empty:
@@ -706,7 +664,6 @@ def count_items_in_files(
             if series.empty:
                 continue
 
-            # Limpeza de valores para evitar contar cabeçalhos/total/vazios
             series = clean_item_values(series, selected_col, only_equipment=only_equipment)
             counts = series.value_counts()
             for item_value, qty in counts.items():
@@ -730,7 +687,6 @@ def count_items_in_files(
         .sort_values(["Arquivo", "Quantidade"], ascending=[True, False])
         .reset_index(drop=True)
     )
-    # Reordena colunas para [Item, Quantidade, Arquivo] ao salvar, mas mantém aqui para gráfico
     return df_result, ignored_missing_col, read_errors, column_debug
 
 
@@ -761,13 +717,11 @@ def discover_unique_items(files: List[Path], target_column: str, use_smart: bool
 
 
 def save_to_excel(df_by_file: pd.DataFrame, df_totals: pd.DataFrame, path: Path, group_name: Optional[str] = None) -> None:
-    # Salva em ordem solicitada: Item, Quantidade, Arquivo (aba principal)
     ordered = df_by_file[["Item", "Quantidade", "Arquivo"]].copy()
     totals = df_totals[["Item", "Quantidade"]].copy()
     with pd.ExcelWriter(path, engine="openpyxl") as writer:
         ordered.to_excel(writer, index=False, sheet_name="resultado")
         totals.to_excel(writer, index=False, sheet_name="totais_por_item")
-        # Aba adicional consolidada (igual aos totais, opcionalmente com nome do grupo)
         if group_name:
             totals_group = totals.copy()
             totals_group.insert(0, "Grupo", group_name)
@@ -818,24 +772,19 @@ def render_bar_chart_consolidated(df_totals: pd.DataFrame, item_order: List[str]
 
 def main() -> None:
     st.set_page_config(page_title=APP_TITLE, layout="wide")
-    # Splash (primeiro acesso)
     if render_splash_once():
         return
-    # Login obrigatório
     if not render_login():
         return
-    # Cabeçalho compacto sem barra acima
     st.markdown(
         f"<div style='margin:0 0 8px 0; font-size:26px; font-weight:700;'>{APP_TITLE}</div>",
         unsafe_allow_html=True,
     )
-    # Injeta CSS/JS global (remove âncoras e define animação de entrada)
     components.html(
         """
         <style>
         a[aria-label^="Anchor link"]{display:none!important}
         /* Oculta cabeçalho/menus nativos do Streamlit em todas as telas */
-        #MainMenu, footer{visibility:hidden}
         [data-testid="stHeader"], [data-testid="stToolbar"], [data-testid="stDecoration"], .stDeployButton{display:none!important}
         header{visibility:hidden;height:0!important}
         .block-container{padding-top:0.25rem!important}
@@ -859,7 +808,6 @@ def main() -> None:
         height=0,
     )
 
-    # Seção de origem dos arquivos (sem cabeçalho para manter painel mais limpo)
     colp1, colp2 = st.columns([3, 1])
     with colp1:
         base_dir_str = st.text_input("Pasta base (caminho completo)", value=str(Path.cwd()))
@@ -871,14 +819,12 @@ def main() -> None:
         st.error("Pasta base inválida. Verifique o caminho informado.")
         return
 
-    # Dica removida para simplificar o painel
 
     def discover_groups(dir_base: Path) -> List[str]:
         grupos: List[str] = []
         for entry in dir_base.iterdir():
             if not entry.is_dir():
                 continue
-            # Verifica se há pelo menos um .xlsx (case-insensitive) em alguma subpasta
             has_xlsx = False
             try:
                 for p in entry.rglob("*"):
@@ -892,7 +838,6 @@ def main() -> None:
         return sorted(grupos)
 
     grupos_disponiveis = discover_groups(base_dir)
-    # Filtro de grupo: escolha única (não permite múltiplos)
     if grupos_disponiveis:
         grupo_escolhido = st.radio(
             "Grupos (pastas principais)", options=grupos_disponiveis, horizontal=True, key="grupo_unico"
@@ -906,11 +851,9 @@ def main() -> None:
         per_group_counts: Dict[str, int] = {}
         for g in grupos_selecionados:
             group_files = list_excel_files(base_dir / g, recursive=True)
-            # Mantemos todos os arquivos do grupo/mesmo conteúdo — não deduplicar por conteúdo
             excel_files.extend(group_files)
             per_group_counts[g] = len(group_files)
     else:
-        # Mantemos todos — não deduplicar por conteúdo
         excel_files = list_excel_files(base_dir, recursive=recursive)
 
     if not excel_files:
@@ -922,7 +865,6 @@ def main() -> None:
             st.write([str(f.relative_to(base_dir)) for f in excel_files])
         except Exception:
             st.write([f.name for f in excel_files])
-        # Diagnóstico: contagem por grupo
         if grupos_selecionados:
             st.write({k: per_group_counts.get(k, 0) for k in grupos_selecionados})
 
@@ -939,9 +881,7 @@ def main() -> None:
 
     if run:
         with st.spinner("Processando (coluna E) e contando itens por pasta 6/7/8..."):
-            # Mantém somente arquivos de 6/7/8, aceitando 2025-06/07/08
             sel_files = [f for f in excel_files if month_from_path(f) in {"6", "7", "8"}]
-            # Força uso da coluna E e considera somente equipamentos
             df_result, ignored_files, error_files, column_debug = count_items_in_files(
                 sel_files, "E", base_dir, use_smart=True, only_equipment=True
             )
@@ -956,10 +896,8 @@ def main() -> None:
                     st.write(error_files)
             return
 
-        # Deriva a pasta (mês) a partir do caminho relativo (primeiro segmento após grupo)
         def extract_pasta(label: str) -> str:
             parts = re.split(r"[\\/]+", label)
-            # Ex.: DOMMUS/2025-06/arquivo -> pasta = 6
             for p in parts:
                 m = re.search(r"(0?[678])", p)
                 if m:
@@ -967,12 +905,10 @@ def main() -> None:
             return "?"
 
         df_result["Pasta"] = df_result["Arquivo"].apply(extract_pasta)
-        # Remove itens artificiais 'DOMMUS' com quantidade 0
         df_result = df_result[~(
             df_result["Item"].astype(str).str.strip().str.upper() == "DOMMUS"
         ) | (df_result["Quantidade"] > 0)].reset_index(drop=True)
 
-        # Totais por item (global) e ordenação
         df_totais = (
             df_result.groupby("Item", as_index=False)["Quantidade"].sum().sort_values("Quantidade", ascending=False)
         )
@@ -982,17 +918,14 @@ def main() -> None:
 
         output_path = base_dir / OUTPUT_FILENAME
         try:
-            # Salva como requisitado: Item, Quantidade, Pasta
             save_df = df_result_sorted[["Item", "Quantidade", "Pasta"]]
 
-            # Preparação de consolidados por empresa
             df_emp = df_result_sorted.copy()
             df_emp["Empresa"] = df_emp["Arquivo"].apply(primary_group_from_label).str.upper()
             df_emp["Empresa"] = df_emp["Empresa"].replace({
                 "GRUPO SOLAR": "SOLAR",
             })
 
-            # Consolidação geral apenas do último mês disponível (6/7/8)
             months_numeric = pd.to_numeric(df_emp["Pasta"], errors="coerce")
             last_month_num = int(months_numeric.max()) if not months_numeric.dropna().empty else None
             last_month_str = str(last_month_num) if last_month_num is not None else None
@@ -1001,19 +934,15 @@ def main() -> None:
                 df_emp_last.groupby("Item", as_index=False)["Quantidade"].sum().sort_values("Quantidade", ascending=False)
             )
 
-            # Normaliza nomes para ranking mais consistente (trio principal)
             df_emp["ItemCanon"] = df_emp["Item"].map(canonicalize_trio_item)
 
-            # Top 3 por empresa considerando o mês de pico (não soma os meses)
             df_mes_empresa = (
                 df_emp.groupby(["Empresa", "ItemCanon", "Pasta"], as_index=False)["Quantidade"].sum()
             )
-            # Seleciona, para cada (Empresa, Item), o registro com maior Quantidade
             df_peak = (
                 df_mes_empresa.sort_values(["Empresa", "ItemCanon", "Quantidade"], ascending=[True, True, False])
                 .drop_duplicates(["Empresa", "ItemCanon"], keep="first")
             )
-            # Ranking por empresa usando a quantidade de pico (posição inicia em 1)
             df_peak["Posição"] = (
                 df_peak.groupby("Empresa")["Quantidade"].rank(ascending=False, method="first").astype(int)
             )
@@ -1032,7 +961,6 @@ def main() -> None:
 
         st.success("✅ Extração e contagem concluídas! Resultado salvo em resultado_itens.xlsx")
 
-        # Gráfico de barras comparativo (Top 10 itens entre Junho/Julho/Agosto)
         st.markdown('<h3 style="margin:0 0 8px 0;">Dashboard</h3>', unsafe_allow_html=True)
         month_map = {"6": "Junho", "7": "Julho", "8": "Agosto"}
         df_viz = df_result_sorted.copy()
@@ -1041,18 +969,15 @@ def main() -> None:
 
         top10_items = df_totais.head(10)["Item"].tolist()
         df_viz_top = df_viz[df_viz["Item"].isin(top10_items)]
-        # Consolida somatório mês a mês SOMANDO todos os arquivos/CNPJs do grupo selecionado
         df_viz_top = (
             df_viz_top.groupby(["Item", "Mês"], as_index=False)["Quantidade"].sum()
         )
-        # Garante exatamente Top 10 após a consolidação
         top10_after_agg = (
             df_viz_top.groupby("Item", as_index=False)["Quantidade"].sum()
             .sort_values("Quantidade", ascending=False)
             .head(10)["Item"].tolist()
         )
         df_viz_top = df_viz_top[df_viz_top["Item"].isin(top10_after_agg)]
-        # Inserimos um wrapper com animação de fade-in ao entrar na viewport
         components.html(
             """
             <style>
@@ -1105,8 +1030,6 @@ def main() -> None:
         st.plotly_chart(fig, width="stretch")
         st.markdown('</div>', unsafe_allow_html=True)
 
-        # Consolidação geral somando as três empresas
-        # Mostra consolidado apenas do último mês
         month_map_hdr = {"6": "Junho", "7": "Julho", "8": "Agosto"}
         last_month_hdr = df_emp_last["Pasta"].iloc[0] if not df_emp_last.empty else None
         last_month_label = month_map_hdr.get(str(last_month_hdr), str(last_month_hdr) if last_month_hdr else "-")
@@ -1115,7 +1038,6 @@ def main() -> None:
         df_consolidado_display.index = range(1, len(df_consolidado_display) + 1)
         df_consolidado_display.index.name = "Posição"
         st.dataframe(df_consolidado_display, use_container_width=True)
-        # Mostra também o mês de pico por item (informação pedida)
         df_peak_item = (
             df_result.sort_values(["Item", "Quantidade"], ascending=[True, False])
             .drop_duplicates(["Item"], keep="first")
@@ -1127,7 +1049,6 @@ def main() -> None:
             df_peak_item_display.index.name = "Posição"
             st.dataframe(df_peak_item_display, use_container_width=True)
 
-        # Top 3 por empresa (mês de pico por item) – dinâmico conforme grupos filtrados
         st.subheader("Top 3 itens por empresa (Junho/Julho/Agosto)")
         empresas_presentes = sorted(df_top3_empresa["Empresa"].unique().tolist())
         if not empresas_presentes:
@@ -1151,9 +1072,7 @@ def main() -> None:
                 show.rename(columns={"ItemCanon": "Item"}, inplace=True)
                 col.dataframe(show.set_index("Posição"), use_container_width=True)
 
-        # Gráfico comparativo removido conforme solicitado
 
-        # Evolução por empresa: mostra apenas AXX CARE quando for o único grupo; senão, abas dinâmicas
         df_emp_viz = df_result_sorted.copy()
         df_emp_viz["Empresa"] = df_emp_viz["Arquivo"].apply(primary_group_from_label).str.upper()
         df_emp_viz["Empresa"].replace({"GRUPO SOLAR": "SOLAR"}, inplace=True)
@@ -1209,8 +1128,6 @@ def main() -> None:
                 st.plotly_chart(fig_e_line, width="stretch")
                 st.markdown('</div>', unsafe_allow_html=True)
 
-                # Top 3 consolidado do último mês disponível
-                # Determina último mês presente (6/7/8)
                 meses_ordem = {"Junho": 6, "Julho": 7, "Agosto": 8}
                 ultimo_mes = df_e["Mês"].map(meses_ordem).max()
                 mes_label = [k for k, v in meses_ordem.items() if v == ultimo_mes]
@@ -1306,7 +1223,6 @@ def main() -> None:
                 st.plotly_chart(fig_pn_line, width="stretch")
                 st.markdown('</div>', unsafe_allow_html=True)
 
-                # Top 3 consolidado do último mês disponível – PRONEP
                 meses_ordem = {"Junho": 6, "Julho": 7, "Agosto": 8}
                 ultimo_mes = df_pn["Mês"].map(meses_ordem).max()
                 mes_label = [k for k, v in meses_ordem.items() if v == ultimo_mes]
@@ -1314,7 +1230,6 @@ def main() -> None:
 
                 st.subheader(f"Participação dos Top 3 (quantidade) – PRONEP ({mes_label})")
                 df_pn_last = df_pn[df_pn["Mês"] == mes_label].copy()
-                # Canonicalização dos 3 itens principais da PRONEP
                 canon_map_pn = {
                     normalize_text_for_match("CAMA ELÉTRICA 3 MOVIMENTOS"): "CAMA ELÉTRICA 3 MOVIMENTOS",
                     normalize_text_for_match("ARMÁRIO DE FÓRMICA"): "ARMÁRIO DE FÓRMICA",
@@ -1363,7 +1278,6 @@ def main() -> None:
                 st.markdown('</div>', unsafe_allow_html=True)
         else:
             st.subheader("Evolução por empresa (Junho/Julho/Agosto)")
-            # Donut consolidado do Grupo Solar (aparece quando o filtro não inclui AXX CARE)
             if empresas_presentes_viz and all(e in {"HOSPITALAR", "SOLAR", "DOMMUS"} for e in empresas_presentes_viz):
                 meses_ordem = {"Junho": 6, "Julho": 7, "Agosto": 8}
                 ultimo_mes = df_emp_viz["Mês"].map(meses_ordem).max()
@@ -1464,7 +1378,6 @@ def main() -> None:
                         st.plotly_chart(fig_e_line, width="stretch")
                         st.markdown('</div>', unsafe_allow_html=True)
 
-        # Faturamento: AXX CARE somente OU Grupo Solar somente
         empresas_presentes_fat = sorted(df_emp_viz["Empresa"].unique().tolist())
         if empresas_presentes_fat == ["AXX CARE"]:
             st.subheader("Faturamento AXX CARE – Top 3 Itens (Junho/Julho/Agosto)")
@@ -1520,7 +1433,6 @@ def main() -> None:
                 st.plotly_chart(fig_rev, width="stretch")
                 st.markdown('</div>', unsafe_allow_html=True)
         elif all(e in {"HOSPITALAR", "SOLAR", "DOMMUS"} for e in empresas_presentes_fat):
-            # Grupo Solar (quando filtro só tem empresas do grupo)
             st.subheader("Faturamento Grupo Solar – Top Itens (Junho/Julho/Agosto)")
             price_map_solar = {
                 normalize_text_for_match("CAMA ELÉTRICA 3 MOVIMENTOS"): 10.80,
@@ -1552,7 +1464,6 @@ def main() -> None:
                     canonical_map_solar[normalize_text_for_match("SUPORTE DE SORO")],
                     canonical_map_solar[normalize_text_for_match("COLCHÃO PNEUMÁTICO")],
                 ]
-                # Agrega o faturamento do Grupo Solar (soma entre empresas) por mês e item
                 df_gs_total = (
                     df_gs_sum.groupby(["Mês", "ItemCanonical"], as_index=False)["Faturamento"].sum()
                 )
@@ -1572,10 +1483,8 @@ def main() -> None:
                 st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
                 st.plotly_chart(fig_gs, width="stretch")
                 st.markdown('</div>', unsafe_allow_html=True)
-                # Disponibiliza df_gs_sum como df_rev_sum para seções abaixo que usam esse nome
                 df_rev_sum = df_gs_sum
 
-            # Faturamento separado por empresa (apenas quando for Grupo Solar)
             st.subheader("Faturamento por empresa (Junho/Julho/Agosto)")
             col_h, col_s, col_d = st.columns(3)
             for empresa, col in [("HOSPITALAR", col_h), ("SOLAR", col_s), ("DOMMUS", col_d)]:
@@ -1605,7 +1514,6 @@ def main() -> None:
                         st.plotly_chart(fig_e, width="stretch")
                         st.markdown('</div>', unsafe_allow_html=True)
 
-        # Faturamento PRONEP – quando apenas PRONEP está filtrada
         if empresas_presentes_fat == ["PRONEP"]:
             st.subheader("Faturamento PRONEP – Top Itens (Junho/Julho/Agosto)")
             price_map_pronep = {
@@ -1660,10 +1568,8 @@ def main() -> None:
                 st.plotly_chart(fig_pn_rev, width="stretch")
                 st.markdown('</div>', unsafe_allow_html=True)
 
-        # Vidas ativas no Home Care (Grupo Solar) – últimos 3 meses (Junho/Julho/Agosto)
         if empresas_presentes_viz and all(e in {"HOSPITALAR", "SOLAR", "DOMMUS"} for e in empresas_presentes_viz):
             st.subheader("Vidas ativas no Home Care – Grupo Solar (últimos 3 meses)")
-            # Conjunto de nomes únicos por mês (Junho/Julho/Agosto)
             month_sets = {"Junho": set(), "Julho": set(), "Agosto": set()}
             for file in sel_files:
                 try:
@@ -1675,12 +1581,10 @@ def main() -> None:
                 if mes_label not in month_sets:
                     continue
                 for sheet_name, df_sheet in (book or {}).items():
-                    # Ignora abas de resumo/totais/gráficos
                     if should_exclude_sheet(str(sheet_name)):
                         continue
                     if not isinstance(df_sheet, pd.DataFrame) or df_sheet.empty:
                         continue
-                    # 1) Força coluna B (segunda coluna). 2) Se não existir, fallback inteligente
                     series = None
                     try:
                         if df_sheet.shape[1] >= 2:
@@ -1696,10 +1600,8 @@ def main() -> None:
                     series = series[series != ""]
                     if series.empty:
                         continue
-                    # Normaliza levemente para evitar duplicatas por variação de acento/caixa
                     nomes_norm = series.apply(normalize_text_for_match)
                     month_sets[mes_label].update(nomes_norm.tolist())
-            # Monta DataFrame com contagem por mês e média
             df_vidas_mes = pd.DataFrame({
                 "Mês": ["Junho", "Julho", "Agosto"],
                 "VidasUnicas": [len(month_sets["Junho"]), len(month_sets["Julho"]), len(month_sets["Agosto"])],
@@ -1717,7 +1619,6 @@ def main() -> None:
             fig_vidas.update_traces(textposition="outside")
             fig_vidas.update_layout(yaxis_title="Vidas únicas", xaxis_title="Mês", margin=dict(l=20, r=20, t=60, b=40))
             st.plotly_chart(fig_vidas, width="stretch")
-            # Animação do contador até a média
             target = int(round(media_vidas))
             placeholder = st.empty()
             for val in range(0, target + 1, max(1, target // 30)):
@@ -1727,7 +1628,6 @@ def main() -> None:
                 placeholder.metric("Média de vidas ativas (3 meses)", f"{target}")
         elif empresas_presentes_viz == ["AXX CARE"]:
             st.subheader("Vidas ativas no Home Care – AXX CARE (últimos 3 meses)")
-            # Conjunto de nomes únicos por mês (Junho/Julho/Agosto)
             month_sets = {"Junho": set(), "Julho": set(), "Agosto": set()}
             for file in sel_files:
                 try:
@@ -1743,7 +1643,6 @@ def main() -> None:
                         continue
                     if not isinstance(df_sheet, pd.DataFrame) or df_sheet.empty:
                         continue
-                    # Coluna B como padrão; fallback inteligente
                     series = None
                     try:
                         if df_sheet.shape[1] >= 2:
@@ -1844,7 +1743,6 @@ def main() -> None:
             if target % max(1, target // 30) != 0:
                 placeholder.metric("Média de vidas ativas (3 meses)", f"{target}")
 
-        # Botão de download removido conforme solicitado
 
 
 if __name__ == "__main__":
