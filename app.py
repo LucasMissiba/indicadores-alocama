@@ -1229,31 +1229,7 @@ def main() -> None:
                 df_pn_aux = df_pn.copy()
                 df_pn_aux["ItemCanon2"] = df_pn_aux["Item"].map(canonicalize_electric_bed_two_movements)
 
-                top10_pn = (
-                    df_pn.groupby("Item", as_index=False)["Quantidade"].sum()
-                    .sort_values("Quantidade", ascending=False)["Item"].head(10).tolist()
-                )
-                df_pn_top = df_pn[df_pn["Item"].isin(top10_pn)]
-                fig_pn_bar = px.bar(
-                    df_pn_top,
-                    x="Item",
-                    y="Quantidade",
-                    color="Mês",
-                    category_orders={"Mês": month_order, "Item": top10_pn},
-                    barmode="group",
-                    title="Top 10 itens – PRONEP",
-                    hover_data={"Mês": True, "Quantidade": ":,", "Item": True},
-                )
-                fig_pn_bar.update_layout(
-                    xaxis_title="Itens (Junho / Julho / Agosto)",
-                    yaxis_title="Quantidade",
-                    margin=dict(l=20, r=20, t=60, b=150),
-                    showlegend=False,
-                )
-                fig_pn_bar.update_xaxes(tickangle=-60)
-                st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
-                st.plotly_chart(fig_pn_bar, width="stretch")
-                st.markdown('</div>', unsafe_allow_html=True)
+                # Gráfico Top 10 PRONEP removido a pedido
 
                 # Auditoria removida a pedido
 
