@@ -280,6 +280,14 @@ def canonicalize_walker(name: str) -> str:
         return "ANDADOR"
     return name
 
+
+def canonicalize_bed_alt_trem(name: str) -> str:
+    """Unifica variações de CAMA ELÉTRICA ALT. TREM (com dimensões/typos)."""
+    t = normalize_text_for_match(name)
+    if "cama" in t and "alt" in t and "trem" in t:
+        return "CAMA ELÉTRICA ALT. TREM"
+    return name
+
 def infer_group_for_label(label: str, candidates: List[str]) -> str:
     """Inferência robusta do grupo a partir do caminho (aceita \ ou / e variações)."""
     parts = re.split(r"[\\/]+", str(label))
@@ -929,6 +937,7 @@ def main() -> None:
         df_result["Item"] = df_result["Item"].map(canonicalize_wheelchair_obese_60)
         df_result["Item"] = df_result["Item"].map(canonicalize_wheelchair_50)
         df_result["Item"] = df_result["Item"].map(canonicalize_walker)
+        df_result["Item"] = df_result["Item"].map(canonicalize_bed_alt_trem)
 
         df_totais = (
             df_result.groupby("Item", as_index=False)["Quantidade"].sum().sort_values("Quantidade", ascending=False)
