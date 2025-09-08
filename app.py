@@ -226,6 +226,28 @@ def canonicalize_electric_bed_two_movements(name: str) -> str:
     return name
 
 
+def canonicalize_wheelchair_simple(name: str) -> str:
+    """
+    Agrupa cadeiras de rodas de tamanhos entre 40 e 48 (inclusive)
+    sob o rótulo "CADEIRA DE RODAS SIMPLES", exceto quando consta
+    algum indicativo de reclinável.
+    """
+    t = normalize_text_for_match(name)
+    if not ("cadeira" in t and ("rod" in t or re.search(r"\brodas?\b", t))):
+        return name
+    if "reclin" in t:
+        return name
+    # Procura números de 2 dígitos (com opcional , ou . decimal)
+    tokens = re.findall(r"(\d{2}(?:[\.,]\d{1,2})?)", t)
+    for tok in tokens:
+        try:
+            val = float(str(tok).replace(",", "."))
+        except Exception:
+            continue
+        if 40.0 <= val <= 48.0:
+            return "CADEIRA DE RODAS SIMPLES"
+    return name
+
 def infer_group_for_label(label: str, candidates: List[str]) -> str:
     """Inferência robusta do grupo a partir do caminho (aceita \ ou / e variações)."""
     parts = re.split(r"[\\/]+", str(label))
@@ -869,8 +891,9 @@ def main() -> None:
             df_result["Item"].astype(str).str.strip().str.upper() == "DOMMUS"
         ) | (df_result["Quantidade"] > 0)].reset_index(drop=True)
 
-        # Unificar variações de "CAMA ELÉTRICA 2 MOVIMENTOS" (ex.: com tamanhos/sufixos)
+        # Unificar variações específicas
         df_result["Item"] = df_result["Item"].map(canonicalize_electric_bed_two_movements)
+        df_result["Item"] = df_result["Item"].map(canonicalize_wheelchair_simple)
 
         df_totais = (
             df_result.groupby("Item", as_index=False)["Quantidade"].sum().sort_values("Quantidade", ascending=False)
