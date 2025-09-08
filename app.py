@@ -775,16 +775,9 @@ def main() -> None:
         height=0,
     )
 
-    colp1, colp2 = st.columns([3, 1])
-    with colp1:
-        base_dir_str = st.text_input("Pasta base (caminho completo)", value=str(Path.cwd()))
-    with colp2:
-        recursive = st.checkbox("Incluir subpastas", value=True, help="Se marcado, lê também os .xlsx de subpastas.")
-
-    base_dir = Path(base_dir_str).expanduser()
-    if not base_dir.exists() or not base_dir.is_dir():
-        st.error("Pasta base inválida. Verifique o caminho informado.")
-        return
+    # Removido input de pasta base/checkbox: usa diretório atual e subpastas por padrão
+    base_dir = Path.cwd()
+    recursive = True
 
 
     def discover_groups(dir_base: Path) -> List[str]:
