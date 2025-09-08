@@ -50,34 +50,38 @@ def hash_password(raw: str) -> str:
 
 
 def get_auth_users() -> Dict[str, str]:
-    """Retorna {usuario: senha_sha256}. Configure em st.secrets['auth_users'].
-
-    Exemplo do secrets.toml (Streamlit Cloud):
-    [auth_users]
-    admin = "sha256:..."
-    lucas = "sha256:..."
-
-    Use: python -c "import hashlib;print('sha256:'+hashlib.sha256('SUA_SENHA'.encode()).hexdigest())"
+    """Retorna {usuario_lower: valor} em que valor pode ser:
+    - "sha256:<hash>" (recomendado)
+    - "<hash>" (compatível)
+    - "plain:<senha>" (útil para testes rápidos no Cloud)
     """
-    users: Dict[str, str] = {}
+    users_lower: Dict[str, str] = {}
     try:
         for k, v in (st.secrets.get("auth_users", {}) or {}).items():
-            if isinstance(v, str) and v.startswith("sha256:"):
-                users[k] = v.split(":", 1)[1]
-            elif isinstance(v, str):
-                users[k] = v  # assume já ser sha256
+            key = str(k).strip().lower()
+            val = str(v)
+            if val.startswith("sha256:"):
+                val = val.split(":", 1)[1]
+            # plain:<senha> é mantido como está
+            users_lower[key] = val
     except Exception:
-        users = {}
-    if not users:
-        users = {"admin": hash_password("admin")}
-    return users
+        users_lower = {}
+    if not users_lower:
+        users_lower = {"admin": hash_password("admin")}
+    return users_lower
 
 
 def verify_credentials(username: str, password: str) -> bool:
     users = get_auth_users()
-    if not username or not password:
+    user_key = (username or "").strip().lower()
+    pwd = (password or "")
+    if not user_key or not pwd:
         return False
-    stored = users.get(username)
+    stored = users.get(user_key)
+    if not stored:
+        return False
+    if stored.startswith("plain:"):
+        return password == stored.split(":", 1)[1]
     return stored == hash_password(password)
 
 
@@ -120,57 +124,9 @@ def render_splash_once() -> bool:
 
 
 def render_login() -> bool:
-    """Página de login moderna/animada. Retorna True se logado."""
-    if st.session_state.get("authed"):
-        return True
-
-    col_center = st.columns([1, 2, 1])[1]
-    with col_center:
-        with st.container(border=True):
-            logo_path: Optional[str] = None
-            try:
-                for ext in ("png", "jpg", "jpeg", "svg"):
-                    p = Path("assets") / f"logo.{ext}"
-                    if p.exists():
-                        logo_path = str(p)
-                        break
-                if not logo_path:
-                    logo_path = st.secrets.get("logo_url", None) if hasattr(st, "secrets") else None
-            except Exception:
-                logo_path = None
-            if logo_path:
-                c1, c2, c3 = st.columns([1, 2, 1])
-                with c2:
-                    try:
-                        st.image(logo_path, width=180)
-                    except Exception:
-                        pass
-            st.markdown(
-                """
-                <div style="display:flex;flex-direction:column;gap:4px">
-                  <div style="font-weight:700;font-size:20px;color:#87ceeb">Acesso ao Painel</div>
-                  <div style="color:#b7c7d9;font-size:14px;margin-bottom:6px">Insira suas credenciais para continuar</div>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
-            user = st.text_input("Usuário", key="auth_user", placeholder="Seu usuário")
-            pwd = st.text_input("Senha", type="password", key="auth_pwd", placeholder="Sua senha")
-            submit = st.button("Entrar", type="primary", use_container_width=True)
-
-            st.caption("Respeitamos a LGPD e tratamos dados pessoais com segurança e finalidade específica.")
-
-    if submit:
-        if verify_credentials(user, pwd):
-            st.session_state["authed"] = True
-            st.session_state["auth_user_name"] = user
-            st.success("Autenticação realizada. Redirecionando...")
-            time.sleep(0.6)
-            st.rerun()
-        else:
-            st.error("Usuário ou senha inválidos")
-
-    return False
+    """Login desativado a pedido: sempre retorna True após a splash."""
+    st.session_state["authed"] = True
+    return True
 
 def clean_item_values(series: pd.Series, selected_col_name: str, only_equipment: bool = False) -> pd.Series:
     """Normaliza e filtra valores não válidos da coluna de itens/produtos."""
