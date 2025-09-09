@@ -813,11 +813,13 @@ def main() -> None:
     _, col_title, _ = st.columns([0.06, 0.88, 0.06])
     with col_title:
         st.markdown(
-            f"<h1 style='margin: 24px 0 6px 0; text-align: center;'>{APP_TITLE}</h1>",
-            unsafe_allow_html=True,
-        )
-        st.markdown(
-            "<div style='text-align:center; margin: 0 0 16px 0; font-size: 18px; opacity: .9;'>Setor de Contratos</div>",
+            f"""
+            <div class='page-hero'>
+              <h1 class='page-hero__title'>Dashboard de Contratos <span class='sep'>|</span> <span class='brand'>Alocama</span></h1>
+              <div class='page-hero__subtitle'>Setor de Contratos</div>
+              <div class='page-hero__bar'></div>
+            </div>
+            """,
             unsafe_allow_html=True,
         )
     # CSS mínimo: ajustar padding superior para não cortar o título e exibir menu nativo
@@ -826,6 +828,13 @@ def main() -> None:
         <style>
         a[aria-label^='Anchor link']{display:none!important}
         .block-container{padding-top:2.25rem!important}
+        :root{--accent:#2563eb}
+        .page-hero{display:flex;flex-direction:column;align-items:center;margin:18px 0 10px 0;text-align:center}
+        .page-hero__title{margin:0;font-weight:800;font-size:34px;line-height:1.15;letter-spacing:.2px}
+        .page-hero__title .brand{color:var(--accent)}
+        .page-hero__title .sep{color:var(--accent);opacity:.9;margin:0 .25rem}
+        .page-hero__subtitle{margin-top:6px;font-size:16px;opacity:.9}
+        .page-hero__bar{margin-top:10px;width:clamp(140px,22vw,360px);height:3px;border-radius:999px;background:linear-gradient(90deg,var(--accent),#7c3aed)}
         </style>
         """,
         unsafe_allow_html=True,
