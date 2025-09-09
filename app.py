@@ -813,7 +813,11 @@ def main() -> None:
     _, col_title, _ = st.columns([0.06, 0.88, 0.06])
     with col_title:
         st.markdown(
-            f"<div style='margin: 12px 0 12px 0; font-size: 36px; font-weight: 800; text-align: center; color: inherit;'>{APP_TITLE}</div>",
+            f"<h1 style='margin: 12px 0 4px 0; text-align: center;'>{APP_TITLE}</h1>",
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            "<div style='text-align:center; margin: 0 0 14px 0; font-size: 18px; opacity: .9;'>Setor de Contratos</div>",
             unsafe_allow_html=True,
         )
     # CSS mínimo: exibir cabeçalho/toolbar/menu para permitir tema nativo
