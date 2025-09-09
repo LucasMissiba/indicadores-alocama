@@ -884,6 +884,11 @@ def main() -> None:
         div[data-testid='stDataFrame'] thead tr th, div[data-testid='stTable'] thead tr th{{background:{header_bg}; color:{fg_color}; border-bottom:1px solid {border_color}}}
         div[data-testid='stDataFrame'] tbody tr td, div[data-testid='stTable'] tbody tr td{{background:{bg_color}; color:{fg_color}; border-bottom:1px solid {border_color}}}
         div[data-testid='stDataFrame'] tbody tr:hover td{{background:rgba(127,127,127,0.06)}}
+        /* Força branco/preto especificamente no tema claro para qualquer grid do dataframe */
+        body.light div[data-testid='stDataFrame']{{background:#ffffff!important;color:#0f1113!important;border-color:#e5e7eb!important}}
+        body.light div[data-testid='stDataFrame'] *{{background:#ffffff!important;color:#0f1113!important;border-color:#e5e7eb!important}}
+        body.light div[data-testid='stTable']{{background:#ffffff!important;color:#0f1113!important;border-color:#e5e7eb!important}}
+        body.light div[data-testid='stTable'] *{{background:#ffffff!important;color:#0f1113!important;border-color:#e5e7eb!important}}
         /* Reduz tamanho do toggle para ficar minimalista */
         [data-testid='stWidgetLabel'] + div [role='switch']{{transform:scale(0.9)}}
         </style>
