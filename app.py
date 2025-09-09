@@ -806,7 +806,7 @@ def main() -> None:
     if not render_login():
         return
     st.markdown(
-        f"<div style='margin:0 0 8px 0; font-size:26px; font-weight:700;'>{APP_TITLE}</div>",
+        f"<div style='margin: 0 0 12px 0; font-size: 36px; font-weight: 800; text-align: center;'>{APP_TITLE}</div>",
         unsafe_allow_html=True,
     )
     components.html(
