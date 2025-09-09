@@ -806,7 +806,11 @@ def main() -> None:
     if not render_login():
         return
     st.markdown(
-        f"<div style='margin: 0 0 12px 0; font-size: 36px; font-weight: 800; text-align: center;'>{APP_TITLE}</div>",
+        f"""
+        <div class="hero-animated">
+          <div class="hero-title">{APP_TITLE}</div>
+        </div>
+        """,
         unsafe_allow_html=True,
     )
     components.html(
@@ -821,6 +825,19 @@ def main() -> None:
         header{visibility:hidden;height:0!important}
         [data-testid="stStatusWidget"]{display:none!important}
         [class^="viewerBadge_container__"], [class*="viewerBadge_container__"]{display:none!important}
+        /* Tema automático da página conforme sistema (claro/escuro) */
+        :root{color-scheme: light dark}
+        [data-testid="stAppViewContainer"]{background:#ffffff;color:#0f1113;transition:background .3s ease,color .3s ease}
+        @media (prefers-color-scheme: dark){
+          [data-testid="stAppViewContainer"]{background:#000000;color:#f2f4f8}
+        }
+        /* Fundo animado apenas atrás do título */
+        .hero-animated{position:relative;margin:0 0 14px 0;padding:18px 12px;border-radius:14px;text-align:center;overflow:hidden}
+        .hero-animated::before{content:"";position:absolute;inset:-30px;background:linear-gradient(120deg,#2d6cdf, #7b5ff6, #23b5d3);background-size:200% 200%;filter:blur(36px);opacity:.35;animation:gradientShift 12s ease infinite;z-index:0}
+        .hero-title{position:relative;z-index:1;font-size:36px;font-weight:800;letter-spacing:.2px}
+        @media (prefers-color-scheme: light){.hero-title{color:#0f1113}}
+        @media (prefers-color-scheme: dark){.hero-title{color:#f2f4f8}}
+        @keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
         .block-container{padding-top:0.25rem!important}
         .fade-in-on-scroll{opacity:0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease}
         .fade-in-on-scroll.is-visible{opacity:1; transform: translateY(0)}
