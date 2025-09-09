@@ -815,7 +815,12 @@ def main() -> None:
         a[aria-label^="Anchor link"]{display:none!important}
         /* Oculta cabeçalho/menus nativos do Streamlit em todas as telas */
         [data-testid="stHeader"], [data-testid="stToolbar"], [data-testid="stDecoration"], .stDeployButton{display:none!important}
+        /* Oculta menús superiores/rodapé e badge do Streamlit Cloud */
+        #MainMenu{display:none!important}
+        footer{display:none!important}
         header{visibility:hidden;height:0!important}
+        [data-testid="stStatusWidget"]{display:none!important}
+        [class^="viewerBadge_container__"], [class*="viewerBadge_container__"]{display:none!important}
         .block-container{padding-top:0.25rem!important}
         .fade-in-on-scroll{opacity:0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease}
         .fade-in-on-scroll.is-visible{opacity:1; transform: translateY(0)}
