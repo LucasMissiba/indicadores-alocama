@@ -862,7 +862,7 @@ def main() -> None:
     grupos_disponiveis = discover_groups(base_dir)
     if grupos_disponiveis:
         grupo_escolhido = st.radio(
-            "Grupos", options=grupos_disponiveis, horizontal=True, key="grupo_unico"
+            "Home Care", options=grupos_disponiveis, horizontal=True, key="grupo_unico"
         )
         grupos_selecionados = [grupo_escolhido] if grupo_escolhido else []
     else:
