@@ -816,7 +816,7 @@ def main() -> None:
             f"""
             <div class='page-hero'>
               <h1 class='page-hero__title'>Dashboard de Contratos <span class='sep'>|</span> <span class='brand'>Alocama</span></h1>
-              <div class='page-hero__subtitle'>Setor de Contratos</div>
+              <div class='page-hero__subtitle'>Indicadores do Setor</div>
               <div class='page-hero__bar'></div>
             </div>
             """,
