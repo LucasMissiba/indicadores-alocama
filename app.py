@@ -1373,7 +1373,6 @@ def main() -> None:
                 st.plotly_chart(fig_pie_pn, width="stretch")
                 st.markdown('</div>', unsafe_allow_html=True)
         else:
-            st.subheader("Evolução por empresa (Junho/Julho/Agosto)")
             if empresas_presentes_viz and all(e in {"HOSPITALAR", "SOLAR", "DOMMUS"} for e in empresas_presentes_viz):
                 meses_ordem = {"Junho": 6, "Julho": 7, "Agosto": 8}
                 ultimo_mes = df_emp_viz["Mês"].map(meses_ordem).max()
