@@ -888,6 +888,12 @@ def main() -> None:
         div[data-testid='stDataFrame'] table, div[data-testid='stTable'] table{{background:{bg_color} !important; color:{fg_color} !important}}
         div[data-testid='stDataFrame'] thead tr th, div[data-testid='stTable'] thead tr th{{background:{header_bg} !important; color:{fg_color} !important; border-bottom:1px solid {border_color} !important}}
         div[data-testid='stDataFrame'] tbody tr td, div[data-testid='stTable'] tbody tr td{{background:{bg_color} !important; color:{fg_color} !important; border-bottom:1px solid {border_color} !important}}
+        /* DataFrame (Arrow) usa grid interno; garantir branco/preto no claro */
+        body.light div[data-testid='stDataFrame'] div[role='grid'],
+        body.light div[data-testid='stDataFrame'] div[role='rowgroup'],
+        body.light div[data-testid='stDataFrame'] div[role='row'],
+        body.light div[data-testid='stDataFrame'] div[role='columnheader'],
+        body.light div[data-testid='stDataFrame'] div[role='cell']{{background-color:#ffffff!important;color:#0f1113!important}}
         div[data-testid='stDataFrame'] tbody tr:hover td{{background:rgba(127,127,127,0.06)}}
         /* Força branco/preto especificamente no tema claro para qualquer grid do dataframe */
         body.light div[data-testid='stDataFrame']{{background:#ffffff!important;color:#0f1113!important;border-color:#e5e7eb!important}}
@@ -895,9 +901,11 @@ def main() -> None:
         body.light div[data-testid='stTable']{{background:#ffffff!important;color:#0f1113!important;border-color:#e5e7eb!important}}
         body.light div[data-testid='stTable'] *{{background:#ffffff!important;color:#0f1113!important;border-color:#e5e7eb!important}}
         /* Expanders (caixas) no tema claro */
-        body.light [data-testid='stExpander'] details, 
+        body.light [data-testid='stExpander'] details,
         body.light [data-testid='stExpander'] summary,
-        body.light [data-testid='stExpander'] div[role='region']{{background:#ffffff!important;color:#0f1113!important;border:1px solid #e5e7eb!important;border-radius:8px!important}}
+        body.light [data-testid='stExpander'] div[role='region']{{background:#ffffff!important;background-color:#ffffff!important;color:#0f1113!important;border:1px solid #e5e7eb!important;border-radius:8px!important}}
+        body.light [data-testid='stExpander'] summary > div{{background:#ffffff!important;color:#0f1113!important}}
+        body.light [data-testid='stExpander'] *{{background:#ffffff!important;background-color:#ffffff!important;color:#0f1113!important}}
         /* Reduz tamanho do toggle para ficar minimalista */
         [data-testid='stWidgetLabel'] + div [role='switch']{{transform:scale(0.9)}}
         </style>
