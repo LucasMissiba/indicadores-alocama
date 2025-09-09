@@ -827,42 +827,38 @@ def main() -> None:
     # Estado de tema (claro/escuro)
     if "theme_mode" not in st.session_state:
         st.session_state["theme_mode"] = "dark"
-    body_class = "light" if st.session_state.get("theme_mode") == "light" else ""
-    st.markdown(
-        f"<script>document.body.className='{body_class}';</script>", unsafe_allow_html=True,
-    )
     col_btn, col_title, col_sp = st.columns([0.06, 0.88, 0.06])
     with col_btn:
-        toggle_label = "☀️" if st.session_state.get("theme_mode") == "dark" else "🌙"
-        if st.button(toggle_label, key="btn_theme_toggle", help="Alternar tema"):
-            st.session_state["theme_mode"] = "light" if st.session_state["theme_mode"] == "dark" else "dark"
+        is_light = st.toggle(" ", value=st.session_state.get("theme_mode") == "light", key="toggle_theme", label_visibility="collapsed")
+        new_mode = "light" if is_light else "dark"
+        if new_mode != st.session_state["theme_mode"]:
+            st.session_state["theme_mode"] = new_mode
             st.rerun()
     with col_title:
         st.markdown(
             f"<div style='margin: 0 0 12px 0; font-size: 36px; font-weight: 800; text-align: center;'>{APP_TITLE}</div>",
             unsafe_allow_html=True,
         )
+    # CSS dinâmico conforme tema
+    bg_color = "#ffffff" if st.session_state.get("theme_mode") == "light" else "#000000"
+    fg_color = "#0f1113" if st.session_state.get("theme_mode") == "light" else "#f2f4f8"
     st.markdown(
-        """
+        f"""
         <style>
-        a[aria-label^="Anchor link"]{display:none!important}
-        /* Oculta cabeçalho/menus nativos do Streamlit em todas as telas */
-        [data-testid="stHeader"], [data-testid="stToolbar"], [data-testid="stDecoration"], .stDeployButton{display:none!important}
-        /* Oculta menús superiores/rodapé e badge do Streamlit Cloud */
-        #MainMenu{display:none!important}
-        footer{display:none!important}
-        header{visibility:hidden;height:0!important}
-        [data-testid="stStatusWidget"]{display:none!important}
-        [class^="viewerBadge_container__"], [class*="viewerBadge_container__"]{display:none!important}
-        /* Tema automático da página conforme sistema (claro/escuro) */
-        :root{color-scheme: light dark}
-        [data-testid="stAppViewContainer"]{transition:background .3s ease,color .3s ease}
-        /* Força o background conforme tema selecionado */
-        body:not(.light) [data-testid="stAppViewContainer"]{background:#000000;color:#f2f4f8}
-        body.light [data-testid="stAppViewContainer"]{background:#ffffff;color:#0f1113}
-        .block-container{padding-top:0.25rem!important}
-        .fade-in-on-scroll{opacity:0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease}
-        .fade-in-on-scroll.is-visible{opacity:1; transform: translateY(0)}
+        a[aria-label^='Anchor link']{{display:none!important}}
+        [data-testid='stHeader'], [data-testid='stToolbar'], [data-testid='stDecoration'], .stDeployButton{{display:none!important}}
+        #MainMenu{{display:none!important}}
+        footer{{display:none!important}}
+        header{{visibility:hidden;height:0!important}}
+        [data-testid='stStatusWidget']{{display:none!important}}
+        [class^='viewerBadge_container__'], [class*='viewerBadge_container__']{{display:none!important}}
+        :root{{color-scheme: light dark}}
+        [data-testid='stAppViewContainer']{{transition:background .3s ease,color .3s ease; background:{bg_color}; color:{fg_color}}}
+        .block-container{{padding-top:0.25rem!important}}
+        .fade-in-on-scroll{{opacity:0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease}}
+        .fade-in-on-scroll.is-visible{{opacity:1; transform: translateY(0)}}
+        /* Reduz tamanho do toggle para ficar minimalista */
+        [data-testid='stWidgetLabel'] + div [role='switch']{{transform:scale(0.9)}}
         </style>
         """,
         unsafe_allow_html=True,
