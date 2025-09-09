@@ -861,6 +861,11 @@ def main() -> None:
     fg_color = "#0f1113" if is_light_theme else "#f2f4f8"
     header_bg = "#f2f4f8" if is_light_theme else "#0b0f14"
     border_color = "#e5e7eb" if is_light_theme else "#1f242a"
+    # Garante seletor body.light para regras reforçadas no tema claro
+    st.markdown(
+        f"<script>document.body.classList.toggle('light', {'true' if is_light_theme else 'false'});</script>",
+        unsafe_allow_html=True,
+    )
     st.markdown(
         f"""
         <style>
@@ -872,23 +877,27 @@ def main() -> None:
         [data-testid='stStatusWidget']{{display:none!important}}
         [class^='viewerBadge_container__'], [class*='viewerBadge_container__']{{display:none!important}}
         :root{{color-scheme: light dark}}
-        [data-testid='stAppViewContainer']{{transition:background .3s ease,color .3s ease; background:{bg_color}; color:{fg_color}}}
+        [data-testid='stAppViewContainer']{{transition:background .3s ease,color .3s ease; background:{bg_color} !important; color:{fg_color} !important}}
         .block-container{{padding-top:0.25rem!important}}
         .fade-in-on-scroll{{opacity:0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease}}
         .fade-in-on-scroll.is-visible{{opacity:1; transform: translateY(0)}}
         /* Força elementos de texto do Streamlit a seguirem o tema */
         h1,h2,h3,h4,h5,h6,p,span,div,small,label,strong,em,li,th,td{{color:{fg_color}!important}}
         /* DataFrames seguem o tema */
-        div[data-testid='stDataFrame'], div[data-testid='stTable']{{background:{bg_color}; color:{fg_color}}}
-        div[data-testid='stDataFrame'] table, div[data-testid='stTable'] table{{background:{bg_color}; color:{fg_color}}}
-        div[data-testid='stDataFrame'] thead tr th, div[data-testid='stTable'] thead tr th{{background:{header_bg}; color:{fg_color}; border-bottom:1px solid {border_color}}}
-        div[data-testid='stDataFrame'] tbody tr td, div[data-testid='stTable'] tbody tr td{{background:{bg_color}; color:{fg_color}; border-bottom:1px solid {border_color}}}
+        div[data-testid='stDataFrame'], div[data-testid='stTable']{{background:{bg_color} !important; color:{fg_color} !important}}
+        div[data-testid='stDataFrame'] table, div[data-testid='stTable'] table{{background:{bg_color} !important; color:{fg_color} !important}}
+        div[data-testid='stDataFrame'] thead tr th, div[data-testid='stTable'] thead tr th{{background:{header_bg} !important; color:{fg_color} !important; border-bottom:1px solid {border_color} !important}}
+        div[data-testid='stDataFrame'] tbody tr td, div[data-testid='stTable'] tbody tr td{{background:{bg_color} !important; color:{fg_color} !important; border-bottom:1px solid {border_color} !important}}
         div[data-testid='stDataFrame'] tbody tr:hover td{{background:rgba(127,127,127,0.06)}}
         /* Força branco/preto especificamente no tema claro para qualquer grid do dataframe */
         body.light div[data-testid='stDataFrame']{{background:#ffffff!important;color:#0f1113!important;border-color:#e5e7eb!important}}
         body.light div[data-testid='stDataFrame'] *{{background:#ffffff!important;color:#0f1113!important;border-color:#e5e7eb!important}}
         body.light div[data-testid='stTable']{{background:#ffffff!important;color:#0f1113!important;border-color:#e5e7eb!important}}
         body.light div[data-testid='stTable'] *{{background:#ffffff!important;color:#0f1113!important;border-color:#e5e7eb!important}}
+        /* Expanders (caixas) no tema claro */
+        body.light [data-testid='stExpander'] details, 
+        body.light [data-testid='stExpander'] summary,
+        body.light [data-testid='stExpander'] div[role='region']{{background:#ffffff!important;color:#0f1113!important;border:1px solid #e5e7eb!important;border-radius:8px!important}}
         /* Reduz tamanho do toggle para ficar minimalista */
         [data-testid='stWidgetLabel'] + div [role='switch']{{transform:scale(0.9)}}
         </style>
