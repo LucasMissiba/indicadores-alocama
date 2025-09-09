@@ -809,7 +809,7 @@ def main() -> None:
         f"<div style='margin: 0 0 12px 0; font-size: 36px; font-weight: 800; text-align: center;'>{APP_TITLE}</div>",
         unsafe_allow_html=True,
     )
-    components.html(
+    st.markdown(
         """
         <style>
         a[aria-label^="Anchor link"]{display:none!important}
@@ -827,26 +827,12 @@ def main() -> None:
         @media (prefers-color-scheme: dark){
           [data-testid="stAppViewContainer"]{background:#000000;color:#f2f4f8}
         }
-        /* Removida a animação do título */
         .block-container{padding-top:0.25rem!important}
         .fade-in-on-scroll{opacity:0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease}
         .fade-in-on-scroll.is-visible{opacity:1; transform: translateY(0)}
         </style>
-        <script>
-        (function(){
-          const init=()=>{
-            const els=document.querySelectorAll('.fade-in-on-scroll');
-            const io=new IntersectionObserver((entries)=>{
-              entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); } });
-            },{threshold:0.15});
-            els.forEach(el=>io.observe(el));
-          };
-          if(document.readyState==='complete' || document.readyState==='interactive') init();
-          else window.addEventListener('DOMContentLoaded', init);
-        })();
-        </script>
         """,
-        height=0,
+        unsafe_allow_html=True,
     )
 
     # Removido input de pasta base/checkbox: usa diretório atual e subpastas por padrão
