@@ -751,10 +751,26 @@ def apply_figure_theme(fig):
     if theme_mode == "dark":
         bg = "#000000"
         fg = "#f2f4f8"
+        grid = "#2a2f36"
+        template = "plotly_dark"
     else:
         bg = "#ffffff"
         fg = "#0f1113"
-    fig.update_layout(paper_bgcolor=bg, plot_bgcolor=bg, font=dict(color=fg))
+        grid = "#e5e7eb"
+        template = "plotly_white"
+    fig.update_layout(
+        paper_bgcolor=bg,
+        plot_bgcolor=bg,
+        font=dict(color=fg),
+        template=template,
+        legend=dict(font=dict(color=fg)),
+    )
+    # Eixos (inclui subplots)
+    try:
+        fig.update_xaxes(title_font_color=fg, tickfont=dict(color=fg), gridcolor=grid, zerolinecolor=grid)
+        fig.update_yaxes(title_font_color=fg, tickfont=dict(color=fg), gridcolor=grid, zerolinecolor=grid)
+    except Exception:
+        pass
     return fig
 
 
@@ -860,6 +876,8 @@ def main() -> None:
         .block-container{{padding-top:0.25rem!important}}
         .fade-in-on-scroll{{opacity:0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease}}
         .fade-in-on-scroll.is-visible{{opacity:1; transform: translateY(0)}}
+        /* Força elementos de texto do Streamlit a seguirem o tema */
+        h1,h2,h3,h4,h5,h6,p,span,div,small,label,strong,em,li,th,td{{color:{fg_color}!important}}
         /* DataFrames seguem o tema */
         div[data-testid='stDataFrame'], div[data-testid='stTable']{{background:{bg_color}; color:{fg_color}}}
         div[data-testid='stDataFrame'] table, div[data-testid='stTable'] table{{background:{bg_color}; color:{fg_color}}}
