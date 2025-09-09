@@ -1331,6 +1331,26 @@ def main() -> None:
                 st.plotly_chart(fig_pn_line, width="stretch")
                 st.markdown('</div>', unsafe_allow_html=True)
 
+                # Resumo por categorias – PRONEP
+                df_pn_cat = df_pn.copy()
+                if not df_pn_cat.empty:
+                    df_pn_cat["Categoria"] = df_pn_cat["Item"].map(categorize_item_name)
+                    alvo_cat_pn = ["CAMA", "CADEIRA HIGIÊNICA", "CADEIRA DE RODAS", "SUPORTE DE SORO"]
+                    df_cat_pn = (
+                        df_pn_cat[df_pn_cat["Categoria"].isin(alvo_cat_pn)]
+                        .groupby(["Categoria"], as_index=False)["Quantidade"].sum()
+                        .sort_values("Quantidade", ascending=False)
+                    )
+                    st.subheader("Resumo por categorias – PRONEP")
+                    fig_cat_pn = px.bar(
+                        df_cat_pn,
+                        x="Categoria",
+                        y="Quantidade",
+                        title="Quantidade por categoria (Camas, Cadeira Higiene, Cadeira de Rodas, Suporte de Soro)",
+                    )
+                    fig_cat_pn.update_layout(margin=dict(l=20, r=20, t=60, b=80))
+                    st.plotly_chart(fig_cat_pn, use_container_width=True)
+
                 meses_ordem = {"Junho": 6, "Julho": 7, "Agosto": 8}
                 ultimo_mes = df_pn["Mês"].map(meses_ordem).max()
                 mes_label = [k for k, v in meses_ordem.items() if v == ultimo_mes]
