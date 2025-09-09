@@ -840,8 +840,11 @@ def main() -> None:
             unsafe_allow_html=True,
         )
     # CSS dinâmico conforme tema
-    bg_color = "#ffffff" if st.session_state.get("theme_mode") == "light" else "#000000"
-    fg_color = "#0f1113" if st.session_state.get("theme_mode") == "light" else "#f2f4f8"
+    is_light_theme = st.session_state.get("theme_mode") == "light"
+    bg_color = "#ffffff" if is_light_theme else "#000000"
+    fg_color = "#0f1113" if is_light_theme else "#f2f4f8"
+    header_bg = "#f2f4f8" if is_light_theme else "#0b0f14"
+    border_color = "#e5e7eb" if is_light_theme else "#1f242a"
     st.markdown(
         f"""
         <style>
@@ -857,6 +860,12 @@ def main() -> None:
         .block-container{{padding-top:0.25rem!important}}
         .fade-in-on-scroll{{opacity:0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease}}
         .fade-in-on-scroll.is-visible{{opacity:1; transform: translateY(0)}}
+        /* DataFrames seguem o tema */
+        div[data-testid='stDataFrame'], div[data-testid='stTable']{{background:{bg_color}; color:{fg_color}}}
+        div[data-testid='stDataFrame'] table, div[data-testid='stTable'] table{{background:{bg_color}; color:{fg_color}}}
+        div[data-testid='stDataFrame'] thead tr th, div[data-testid='stTable'] thead tr th{{background:{header_bg}; color:{fg_color}; border-bottom:1px solid {border_color}}}
+        div[data-testid='stDataFrame'] tbody tr td, div[data-testid='stTable'] tbody tr td{{background:{bg_color}; color:{fg_color}; border-bottom:1px solid {border_color}}}
+        div[data-testid='stDataFrame'] tbody tr:hover td{{background:rgba(127,127,127,0.06)}}
         /* Reduz tamanho do toggle para ficar minimalista */
         [data-testid='stWidgetLabel'] + div [role='switch']{{transform:scale(0.9)}}
         </style>
