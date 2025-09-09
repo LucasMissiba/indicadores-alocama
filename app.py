@@ -806,11 +806,7 @@ def main() -> None:
     if not render_login():
         return
     st.markdown(
-        f"""
-        <div class="hero-animated">
-          <div class="hero-title">{APP_TITLE}</div>
-        </div>
-        """,
+        f"<div style='margin: 0 0 12px 0; font-size: 36px; font-weight: 800; text-align: center;'>{APP_TITLE}</div>",
         unsafe_allow_html=True,
     )
     components.html(
@@ -831,13 +827,7 @@ def main() -> None:
         @media (prefers-color-scheme: dark){
           [data-testid="stAppViewContainer"]{background:#000000;color:#f2f4f8}
         }
-        /* Destaque animado apenas no título (sublinhado animado, sem caixa azul) */
-        .hero-animated{position:relative;margin:0 0 14px 0;padding:10px 12px;text-align:center}
-        .hero-animated::after{content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:-2px;width:clamp(160px,30vw,420px);height:4px;border-radius:999px;background:linear-gradient(90deg,#2d6cdf,#7b5ff6,#23b5d3);background-size:300% 100%;animation:gradientShift 8s ease infinite;opacity:.9}
-        .hero-title{position:relative;z-index:1;font-size:36px;font-weight:800;letter-spacing:.2px}
-        @media (prefers-color-scheme: light){.hero-title{color:#0f1113}}
-        @media (prefers-color-scheme: dark){.hero-title{color:#f2f4f8}}
-        @keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+        /* Removida a animação do título */
         .block-container{padding-top:0.25rem!important}
         .fade-in-on-scroll{opacity:0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease}
         .fade-in-on-scroll.is-visible{opacity:1; transform: translateY(0)}
@@ -1445,6 +1435,25 @@ def main() -> None:
                 st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
                 st.plotly_chart(fig_pie_gs, width="stretch")
                 st.markdown('</div>', unsafe_allow_html=True)
+                # Resumo por categorias – Grupo Solar (entre os dois grupos)
+                df_gs_cat = df_emp_viz[df_emp_viz["Empresa"].isin(["HOSPITALAR","SOLAR","DOMMUS"])].copy()
+                if not df_gs_cat.empty:
+                    df_gs_cat["Categoria"] = df_gs_cat["Item"].map(categorize_item_name)
+                    alvo_cat = ["CAMA", "CADEIRA HIGIÊNICA", "CADEIRA DE RODAS", "SUPORTE DE SORO"]
+                    df_cat_tot = (
+                        df_gs_cat[df_gs_cat["Categoria"].isin(alvo_cat)]
+                        .groupby(["Categoria"], as_index=False)["Quantidade"].sum()
+                        .sort_values("Quantidade", ascending=False)
+                    )
+                    st.subheader("Resumo por categorias – Grupo Solar")
+                    fig_cat_gs = px.bar(
+                        df_cat_tot,
+                        x="Categoria",
+                        y="Quantidade",
+                        title="Quantidade por categoria (Camas, Cadeira Higiene, Cadeira de Rodas, Suporte de Soro)",
+                    )
+                    fig_cat_gs.update_layout(margin=dict(l=20, r=20, t=60, b=80))
+                    st.plotly_chart(fig_cat_gs, use_container_width=True)
 
             tabs = st.tabs(empresas_presentes_viz)
             for tab, empresa in zip(tabs, empresas_presentes_viz):
@@ -1625,25 +1634,6 @@ def main() -> None:
                 st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
                 st.plotly_chart(fig_gs, width="stretch")
                 st.markdown('</div>', unsafe_allow_html=True)
-                # Resumo por categorias – Grupo Solar (entre os dois gráficos)
-                df_gs_cat = df_emp_viz[df_emp_viz["Empresa"].isin(["HOSPITALAR","SOLAR","DOMMUS"])].copy()
-                if not df_gs_cat.empty:
-                    df_gs_cat["Categoria"] = df_gs_cat["Item"].map(categorize_item_name)
-                    alvo_cat = ["CAMA", "CADEIRA HIGIÊNICA", "CADEIRA DE RODAS", "SUPORTE DE SORO"]
-                    df_cat_tot = (
-                        df_gs_cat[df_gs_cat["Categoria"].isin(alvo_cat)]
-                        .groupby(["Categoria"], as_index=False)["Quantidade"].sum()
-                        .sort_values("Quantidade", ascending=False)
-                    )
-                    st.subheader("Resumo por categorias – Grupo Solar")
-                    fig_cat_gs = px.bar(
-                        df_cat_tot,
-                        x="Categoria",
-                        y="Quantidade",
-                        title="Quantidade por categoria (Camas, Cadeira Higiene, Cadeira de Rodas, Suporte de Soro)",
-                    )
-                    fig_cat_gs.update_layout(margin=dict(l=20, r=20, t=60, b=80))
-                    st.plotly_chart(fig_cat_gs, use_container_width=True)
                 # Faturamento geral (Grupo Solar) – valores informados
                 st.subheader("Faturamento geral (Grupo Solar) – Junho/Julho/Agosto")
                 df_total_gs = pd.DataFrame({
