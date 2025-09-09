@@ -824,24 +824,24 @@ def main() -> None:
         return
     if not render_login():
         return
-    # Alternador de tema (claro/escuro)
+    # Estado de tema (claro/escuro)
     if "theme_mode" not in st.session_state:
-        # detecta preferência do sistema por padrão (assume dark como default para manter visual atual)
         st.session_state["theme_mode"] = "dark"
-    with st.sidebar:
-        theme_choice = st.radio("Tema", ["Escuro", "Claro"], index=0 if st.session_state["theme_mode"]=="dark" else 1, horizontal=True)
-        new_mode = "dark" if theme_choice == "Escuro" else "light"
-        if new_mode != st.session_state["theme_mode"]:
-            st.session_state["theme_mode"] = new_mode
-            st.rerun()
     body_class = "light" if st.session_state.get("theme_mode") == "light" else ""
     st.markdown(
         f"<script>document.body.className='{body_class}';</script>", unsafe_allow_html=True,
     )
-    st.markdown(
-        f"<div style='margin: 0 0 12px 0; font-size: 36px; font-weight: 800; text-align: center;'>{APP_TITLE}</div>",
-        unsafe_allow_html=True,
-    )
+    col_btn, col_title, col_sp = st.columns([0.06, 0.88, 0.06])
+    with col_btn:
+        toggle_label = "☀️" if st.session_state.get("theme_mode") == "dark" else "🌙"
+        if st.button(toggle_label, key="btn_theme_toggle", help="Alternar tema"):
+            st.session_state["theme_mode"] = "light" if st.session_state["theme_mode"] == "dark" else "dark"
+            st.rerun()
+    with col_title:
+        st.markdown(
+            f"<div style='margin: 0 0 12px 0; font-size: 36px; font-weight: 800; text-align: center;'>{APP_TITLE}</div>",
+            unsafe_allow_html=True,
+        )
     st.markdown(
         """
         <style>
