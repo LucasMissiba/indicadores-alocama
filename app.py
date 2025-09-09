@@ -12,7 +12,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 
-APP_TITLE = "Painel Gerencial do Setor de Contratos | Alocama"
+APP_TITLE = "Dashboard de Contratos | Alocama"
 OUTPUT_FILENAME = "resultado_itens.xlsx"
 SMART_FALLBACK_CANDIDATES = [
     "item",
@@ -862,7 +862,7 @@ def main() -> None:
     grupos_disponiveis = discover_groups(base_dir)
     if grupos_disponiveis:
         grupo_escolhido = st.radio(
-            "Grupos (pastas principais)", options=grupos_disponiveis, horizontal=True, key="grupo_unico"
+            "Grupos", options=grupos_disponiveis, horizontal=True, key="grupo_unico"
         )
         grupos_selecionados = [grupo_escolhido] if grupo_escolhido else []
     else:
