@@ -745,6 +745,25 @@ def discover_unique_items(files: List[Path], target_column: str, use_smart: bool
     return sorted(unique_values)
 
 
+def apply_figure_theme(fig):
+    """Aplica cores de fundo do gráfico conforme o tema selecionado (escuro/claro)."""
+    theme_mode = st.session_state.get("theme_mode", "dark")
+    if theme_mode == "dark":
+        bg = "#000000"
+        fg = "#f2f4f8"
+    else:
+        bg = "#ffffff"
+        fg = "#0f1113"
+    fig.update_layout(paper_bgcolor=bg, plot_bgcolor=bg, font=dict(color=fg))
+    return fig
+
+
+def show_plot(fig, **kwargs):
+    """Aplica o tema ao gráfico e o exibe mantendo os kwargs originais."""
+    fig = apply_figure_theme(fig)
+    st.plotly_chart(fig, **kwargs)
+
+
 def save_to_excel(df_by_file: pd.DataFrame, df_totals: pd.DataFrame, path: Path, group_name: Optional[str] = None) -> None:
     ordered = df_by_file[["Item", "Quantidade", "Arquivo"]].copy()
     totals = df_totals[["Item", "Quantidade"]].copy()
@@ -777,7 +796,7 @@ def render_bar_chart(df: pd.DataFrame, item_order: List[str]) -> None:
         margin=dict(l=20, r=20, t=60, b=20),
     )
     fig.update_xaxes(tickangle=-45)
-    st.plotly_chart(fig, use_container_width=True)
+    show_plot(fig, use_container_width=True)
 
 
 def render_bar_chart_consolidated(df_totals: pd.DataFrame, item_order: List[str]) -> None:
@@ -796,7 +815,7 @@ def render_bar_chart_consolidated(df_totals: pd.DataFrame, item_order: List[str]
         margin=dict(l=20, r=20, t=60, b=20),
     )
     fig.update_xaxes(tickangle=-45)
-    st.plotly_chart(fig, use_container_width=True)
+    show_plot(fig, use_container_width=True)
 
 
 def main() -> None:
@@ -805,6 +824,20 @@ def main() -> None:
         return
     if not render_login():
         return
+    # Alternador de tema (claro/escuro)
+    if "theme_mode" not in st.session_state:
+        # detecta preferência do sistema por padrão (assume dark como default para manter visual atual)
+        st.session_state["theme_mode"] = "dark"
+    with st.sidebar:
+        theme_choice = st.radio("Tema", ["Escuro", "Claro"], index=0 if st.session_state["theme_mode"]=="dark" else 1, horizontal=True)
+        new_mode = "dark" if theme_choice == "Escuro" else "light"
+        if new_mode != st.session_state["theme_mode"]:
+            st.session_state["theme_mode"] = new_mode
+            st.rerun()
+    body_class = "light" if st.session_state.get("theme_mode") == "light" else ""
+    st.markdown(
+        f"<script>document.body.className='{body_class}';</script>", unsafe_allow_html=True,
+    )
     st.markdown(
         f"<div style='margin: 0 0 12px 0; font-size: 36px; font-weight: 800; text-align: center;'>{APP_TITLE}</div>",
         unsafe_allow_html=True,
@@ -823,10 +856,10 @@ def main() -> None:
         [class^="viewerBadge_container__"], [class*="viewerBadge_container__"]{display:none!important}
         /* Tema automático da página conforme sistema (claro/escuro) */
         :root{color-scheme: light dark}
-        [data-testid="stAppViewContainer"]{background:#ffffff;color:#0f1113;transition:background .3s ease,color .3s ease}
-        @media (prefers-color-scheme: dark){
-          [data-testid="stAppViewContainer"]{background:#000000;color:#f2f4f8}
-        }
+        [data-testid="stAppViewContainer"]{transition:background .3s ease,color .3s ease}
+        /* Força o background conforme tema selecionado */
+        body:not(.light) [data-testid="stAppViewContainer"]{background:#000000;color:#f2f4f8}
+        body.light [data-testid="stAppViewContainer"]{background:#ffffff;color:#0f1113}
         .block-container{padding-top:0.25rem!important}
         .fade-in-on-scroll{opacity:0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease}
         .fade-in-on-scroll.is-visible{opacity:1; transform: translateY(0)}
@@ -1056,7 +1089,7 @@ def main() -> None:
             margin=dict(l=10, r=10, t=48, b=110),
         )
         fig.update_xaxes(tickangle=-60)
-        st.plotly_chart(fig, width="stretch")
+        show_plot(fig, width="stretch")
         st.markdown('</div>', unsafe_allow_html=True)
 
         # Auditoria removida a pedido
@@ -1237,7 +1270,7 @@ def main() -> None:
                     title="Quantidade por categoria (Camas, Cadeira Higiene, Cadeira de Rodas, Suporte de Soro)",
                 )
                 fig_cat.update_layout(margin=dict(l=20, r=20, t=60, b=80))
-                st.plotly_chart(fig_cat, use_container_width=True)
+                show_plot(fig_cat, use_container_width=True)
 
                 # Determina último mês disponível para os gráficos subsequentes
                 meses_ordem = {"Junho": 6, "Julho": 7, "Agosto": 8}
@@ -1285,7 +1318,7 @@ def main() -> None:
                     margin=dict(l=20, r=60, t=60, b=20),
                 )
                 st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
-                st.plotly_chart(fig_pie, width="stretch")
+                show_plot(fig_pie, width="stretch")
                 st.markdown('</div>', unsafe_allow_html=True)
         elif empresas_presentes_viz == ["PRONEP"]:
             st.subheader("Evolução PRONEP (Junho/Julho/Agosto)")
@@ -1313,8 +1346,7 @@ def main() -> None:
                     title="Evolução mensal – PRONEP",
                 )
                 fig_pn_line.update_layout(yaxis_title="Quantidade", xaxis_title="Mês")
-                st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
-                st.plotly_chart(fig_pn_line, width="stretch")
+                show_plot(fig_pn_line, width="stretch")
                 st.markdown('</div>', unsafe_allow_html=True)
 
                 # Resumo por categorias – PRONEP
@@ -1335,7 +1367,7 @@ def main() -> None:
                         title="Quantidade por categoria (Camas, Cadeira Higiene, Cadeira de Rodas, Suporte de Soro)",
                     )
                     fig_cat_pn.update_layout(margin=dict(l=20, r=20, t=60, b=80))
-                    st.plotly_chart(fig_cat_pn, use_container_width=True)
+                    show_plot(fig_cat_pn, use_container_width=True)
 
                 meses_ordem = {"Junho": 6, "Julho": 7, "Agosto": 8}
                 ultimo_mes = df_pn["Mês"].map(meses_ordem).max()
@@ -1388,7 +1420,7 @@ def main() -> None:
                     margin=dict(l=20, r=60, t=60, b=20),
                 )
                 st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
-                st.plotly_chart(fig_pie_pn, width="stretch")
+                show_plot(fig_pie_pn, width="stretch")
                 st.markdown('</div>', unsafe_allow_html=True)
         else:
             if empresas_presentes_viz and all(e in {"HOSPITALAR", "SOLAR", "DOMMUS"} for e in empresas_presentes_viz):
@@ -1439,7 +1471,7 @@ def main() -> None:
                     margin=dict(l=20, r=60, t=60, b=20),
                 )
                 st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
-                st.plotly_chart(fig_pie_gs, width="stretch")
+                show_plot(fig_pie_gs, width="stretch")
                 st.markdown('</div>', unsafe_allow_html=True)
                 # Resumo por categorias – Grupo Solar (entre os dois grupos)
                 df_gs_cat = df_emp_viz[df_emp_viz["Empresa"].isin(["HOSPITALAR","SOLAR","DOMMUS"])].copy()
@@ -1459,7 +1491,7 @@ def main() -> None:
                         title="Quantidade por categoria (Camas, Cadeira Higiene, Cadeira de Rodas, Suporte de Soro)",
                     )
                     fig_cat_gs.update_layout(margin=dict(l=20, r=20, t=60, b=80))
-                    st.plotly_chart(fig_cat_gs, use_container_width=True)
+                    show_plot(fig_cat_gs, use_container_width=True)
 
             tabs = st.tabs(empresas_presentes_viz)
             for tab, empresa in zip(tabs, empresas_presentes_viz):
@@ -1495,7 +1527,7 @@ def main() -> None:
                         )
                         fig_e_bar.update_xaxes(tickangle=-60)
                         st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
-                        st.plotly_chart(fig_e_bar, width="stretch")
+                        show_plot(fig_e_bar, width="stretch")
                         st.markdown('</div>', unsafe_allow_html=True)
 
                         # Auditoria removida a pedido
@@ -1513,7 +1545,7 @@ def main() -> None:
                         )
                         fig_e_line.update_layout(yaxis_title="Quantidade", xaxis_title="Mês")
                         st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
-                        st.plotly_chart(fig_e_line, width="stretch")
+                        show_plot(fig_e_line, width="stretch")
                         st.markdown('</div>', unsafe_allow_html=True)
 
         empresas_presentes_fat = sorted(df_emp_viz["Empresa"].unique().tolist())
@@ -1568,7 +1600,7 @@ def main() -> None:
                 )
                 fig_rev.update_yaxes(tickprefix="R$ ", tickformat=".2f")
                 st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
-                st.plotly_chart(fig_rev, width="stretch")
+                show_plot(fig_rev, width="stretch")
                 st.markdown('</div>', unsafe_allow_html=True)
 
                 # Faturamento geral (AXX CARE) – valores informados
@@ -1588,7 +1620,7 @@ def main() -> None:
                 ymax_axx = float(df_total_axx["Faturamento"].max())
                 fig_total_axx.update_yaxes(tickprefix="R$ ", tickformat=",.2f", range=[0, ymax_axx * 1.15])
                 fig_total_axx.update_layout(yaxis_title="Faturamento (R$)", margin=dict(l=20, r=20, t=80, b=60))
-                st.plotly_chart(fig_total_axx, use_container_width=True)
+                show_plot(fig_total_axx, use_container_width=True)
         elif all(e in {"HOSPITALAR", "SOLAR", "DOMMUS"} for e in empresas_presentes_fat):
             st.subheader("Faturamento Grupo Solar – Top Itens (Junho/Julho/Agosto)")
             price_map_solar = {
@@ -1638,7 +1670,7 @@ def main() -> None:
                                      margin=dict(l=20, r=20, t=60, b=80))
                 fig_gs.update_yaxes(tickprefix="R$ ", tickformat=".2f")
                 st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
-                st.plotly_chart(fig_gs, width="stretch")
+                show_plot(fig_gs, width="stretch")
                 st.markdown('</div>', unsafe_allow_html=True)
                 # Faturamento geral (Grupo Solar) – valores informados
                 st.subheader("Faturamento geral (Grupo Solar) – Junho/Julho/Agosto")
@@ -1657,7 +1689,7 @@ def main() -> None:
                 ymax_gs = float(df_total_gs["Faturamento"].max())
                 fig_total_gs.update_yaxes(tickprefix="R$ ", tickformat=",.2f", range=[0, ymax_gs * 1.15])
                 fig_total_gs.update_layout(yaxis_title="Faturamento (R$)", margin=dict(l=20, r=20, t=80, b=60))
-                st.plotly_chart(fig_total_gs, use_container_width=True)
+                show_plot(fig_total_gs, use_container_width=True)
                 df_rev_sum = df_gs_sum
 
             st.subheader("Faturamento por empresa (Junho/Julho/Agosto)")
@@ -1686,7 +1718,7 @@ def main() -> None:
                         )
                         fig_e.update_yaxes(tickprefix="R$ ", tickformat=".2f")
                         st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
-                        st.plotly_chart(fig_e, width="stretch")
+                        show_plot(fig_e, width="stretch")
                         st.markdown('</div>', unsafe_allow_html=True)
 
         if empresas_presentes_fat == ["PRONEP"]:
@@ -1740,7 +1772,7 @@ def main() -> None:
                 )
                 fig_pn_rev.update_yaxes(tickprefix="R$ ", tickformat=".2f")
                 st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
-                st.plotly_chart(fig_pn_rev, width="stretch")
+                show_plot(fig_pn_rev, width="stretch")
                 st.markdown('</div>', unsafe_allow_html=True)
 
                 # Faturamento geral (soma dos itens) por mês - valores informados
@@ -1760,7 +1792,7 @@ def main() -> None:
                 ymax = float(df_total_manual["Faturamento"].max())
                 fig_total.update_yaxes(tickprefix="R$ ", tickformat=",.2f", range=[0, ymax * 1.15])
                 fig_total.update_layout(yaxis_title="Faturamento (R$)", margin=dict(l=20, r=20, t=80, b=60))
-                st.plotly_chart(fig_total, use_container_width=True)
+                show_plot(fig_total, use_container_width=True)
 
         if empresas_presentes_viz and all(e in {"HOSPITALAR", "SOLAR", "DOMMUS"} for e in empresas_presentes_viz):
             st.subheader("Vidas ativas no Home Care – Grupo Solar (últimos 3 meses)")
@@ -1812,7 +1844,7 @@ def main() -> None:
             )
             fig_vidas.update_traces(textposition="outside")
             fig_vidas.update_layout(yaxis_title="Vidas únicas", xaxis_title="Mês", margin=dict(l=20, r=20, t=60, b=40))
-            st.plotly_chart(fig_vidas, width="stretch")
+            show_plot(fig_vidas, width="stretch")
             target = int(round(media_vidas))
             placeholder = st.empty()
             for val in range(0, target + 1, max(1, target // 30)):
@@ -1870,7 +1902,7 @@ def main() -> None:
             )
             fig_vidas.update_traces(textposition="outside")
             fig_vidas.update_layout(yaxis_title="Vidas únicas", xaxis_title="Mês", margin=dict(l=20, r=20, t=60, b=40))
-            st.plotly_chart(fig_vidas, width="stretch")
+            show_plot(fig_vidas, width="stretch")
             target = int(round(media_vidas))
             placeholder = st.empty()
             for val in range(0, target + 1, max(1, target // 30)):
@@ -1928,7 +1960,7 @@ def main() -> None:
             )
             fig_vidas.update_traces(textposition="outside")
             fig_vidas.update_layout(yaxis_title="Vidas únicas", xaxis_title="Mês", margin=dict(l=20, r=20, t=60, b=40))
-            st.plotly_chart(fig_vidas, width="stretch")
+            show_plot(fig_vidas, width="stretch")
             target = int(round(media_vidas))
             placeholder = st.empty()
             for val in range(0, target + 1, max(1, target // 30)):
