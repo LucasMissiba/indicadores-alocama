@@ -1,0 +1,30 @@
+840be63 2025-09-10 13:45:25 -0300 rollback(3m): voltar a ler 6/7/8 e restaurar mapeamentos/ordens fixas; remover filtros globais nessa parte
+730f4d1 2025-09-10 13:35:30 -0300 chore: wire df_axx_base into faturamento/vidas e robustecer fluxo
+898c528 2025-09-10 13:29:16 -0300 feat(data): criar base consolidada AXX CARE (Paciente/Item/Valor Diário) lendo 12 pastas e exibir no dashboard
+a33ccaa 2025-09-10 13:18:36 -0300 fix(ui): evitar erro de tabs vazias quando não há empresas após filtros
+8bb30b4 2025-09-10 13:15:41 -0300 fix(vidas): extração de nomes únicos por workbook (coluna B) sem excluir abas; aplica a AXX CARE, Grupo Solar e PRONEP
+1a04eea 2025-09-10 13:09:20 -0300 fix(vidas): ler colunas sem cabeçalho (header=None) e aceitar .xls; coluna B forçada
+ebe1721 2025-09-10 13:05:17 -0300 feat(vidas): forçar leitura da coluna B (segunda coluna) para nomes únicos em todas as empresas
+f6e8380 2025-09-10 13:01:51 -0300 fix(vidas): relaxar exclusão de abas (permitir 'base/cadastro/validacao' etc.) para não zerar contagem
+955e35a 2025-09-10 12:57:33 -0300 feat(vidas-axx): leitura obrigatória das 12 pastas mês a mês aplicando todos os filtros
+b1afbe0 2025-09-10 12:53:02 -0300 feat(vidas-axx): prioriza filtro clássico de Junho/Julho/Agosto; fallback para janela 12m
+1aa2092 2025-09-10 12:49:17 -0300 feat(vidas): AXX CARE mês a mês desde ago/ano-passado até CAP; rótulos M/AAAA; média 12 meses
+713afbc 2025-09-10 11:36:47 -0300 feat(period-cap): gráficos respeitam filtros e limitam até mês anterior; restaura regras de último mês (Top3/Resumo cat) com Ano/MesNum; títulos dinâmicos
+64d7909 2025-09-10 11:25:22 -0300 feat(filters): função de filtro temporal aplicada globalmente; vidas ativas e projeção respeitam Ano/Semestre/Trimestre
+be13319 2025-09-10 11:20:25 -0300 fix: remover dependência de 'Pasta' em visualizações; usar MesNum/Ano; corrigir Top 3 por empresa e rótulos
+bd60aef 2025-09-10 11:16:08 -0300 feat(projecao): filtros Ano/Semestre/Trimestre; leitura coluna Y; projeção 3 meses com gráficos e KPIs; suporte 12 meses
+8895b97 2025-09-10 09:16:24 -0300 feat(ui): gráficos de categoria agora filtram somente o último mês
+86df38e 2025-09-09 13:42:34 -0300 chore(ui): ajustar subtítulo para 'Indicadores do Setor'
+f02661f 2025-09-09 13:38:42 -0300 feat(ui): header profissional com marca, barra de destaque e subtítulo
+754c31c 2025-09-09 13:20:16 -0300 fix(ui): evitar corte do título (padding superior maior)
+ca033e3 2025-09-09 13:17:08 -0300 feat(ui): exibir título e subtítulo centralizados no topo
+2476a19 2025-09-09 13:14:04 -0300 fix(ui): restaurar título visível e centralizado (cor herdada)
+c6e6bef 2025-09-09 13:10:56 -0300 revert(theme): remover alternância customizada e reativar menu nativo do Streamlit
+197456e 2025-09-09 13:05:01 -0300 fix(theme-light): aplicar branco/preto também nas linhas das tabelas e reforçar expanders
+d07a829 2025-09-09 12:59:14 -0300 fix(theme-light): forçar tema claro em expanders e dataframes (todos brancos)
+5379d21 2025-09-09 12:52:50 -0300 fix(theme-light): garantir fundo branco em expanders e tabelas; reforçar body.light
+613f830 2025-09-09 12:48:23 -0300 fix(theme-light): forçar caixas de dataframes com letras pretas e fundo branco
+c4b41dc 2025-09-09 12:42:56 -0300 fix(theme): forçar cores de textos no tema claro e ajustar eixos/legendas dos gráficos
+e5c6b4b 2025-09-09 12:39:22 -0300 fix(theme): alinhar tabelas/dataframes ao tema e refinar toggle minimalista
+d741b2c 2025-09-09 12:34:54 -0300 fix(ui-theme): usar st.toggle minimalista ao lado do título e CSS dinâmico por tema
+b0e5a64 2025-09-09 11:34:53 -0300 feat(ui-theme): botão de alternância de tema ao lado do título
