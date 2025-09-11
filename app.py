@@ -1251,7 +1251,7 @@ def main() -> None:
                     continue
                 col.markdown(f"**{empresa}**")
                 show = subset.assign(
-                    Mês=subset["Pasta"].map({"5":"Maio","6":"Junho","7":"Julho","8":"Agosto"}),
+                    Mês=subset["Pasta"].map({"4":"Abril","5":"Maio","6":"Junho","7":"Julho","8":"Agosto"}),
                     Posição=(subset.groupby("Empresa")["Quantidade"].rank(ascending=False, method="first").astype(int))
                 )[["Posição","ItemCanon","Quantidade","Mês"]]
                 show.rename(columns={"ItemCanon": "Item"}, inplace=True)
