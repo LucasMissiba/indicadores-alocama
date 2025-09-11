@@ -946,11 +946,11 @@ def main() -> None:
         def _is_2025_mm(label: str, months: set) -> bool:
             parts = re.split(r"[\\/]+", label)
             for p in parts:
-                if re.fullmatch(r"2025-(0?[4-8])", p.strip()):
-                    m = re.fullmatch(r"2025-(0?[4-8])", p.strip()).group(1).lstrip("0")
+                if re.fullmatch(r"2025-(0?[3-8])", p.strip()):
+                    m = re.fullmatch(r"2025-(0?[3-8])", p.strip()).group(1).lstrip("0")
                     return m in months
             return False
-        months_keep = {"4","5","6","7","8"}
+        months_keep = {"3","4","5","6","7","8"}
         df_result = df_result[df_result["Arquivo"].apply(lambda s: _is_2025_mm(s, months_keep))]
         df_result = df_result[~(
             df_result["Item"].astype(str).str.strip().str.upper() == "DOMMUS"
@@ -1019,10 +1019,10 @@ def main() -> None:
         st.success("✅ Extração e contagem concluídas! Resultado salvo em resultado_itens.xlsx")
 
         st.markdown('<h3 style="margin:0 0 8px 0;">Dashboard</h3>', unsafe_allow_html=True)
-        month_map = {"4":"Abril","5":"Maio", "6": "Junho", "7": "Julho", "8": "Agosto"}
+        month_map = {"3":"Março","4":"Abril","5":"Maio", "6": "Junho", "7": "Julho", "8": "Agosto"}
         df_viz = df_result_sorted.copy()
         df_viz["Mês"] = df_viz["Pasta"].map(month_map).fillna(df_viz["Pasta"])
-        month_order = [month_map[m] for m in ["4","5", "6", "7", "8"]]
+        month_order = [month_map[m] for m in ["3","4","5", "6", "7", "8"]]
 
         # 1) Gráfico – Top 10 por Item (comparativo por mês Maio→Agosto), somando COMPL ao item base
         top10_items_orig = df_totais.head(10)["Item"].tolist()
@@ -1040,7 +1040,7 @@ def main() -> None:
             .sort_values("Quantidade", ascending=False)
             .head(10)["Item"].tolist()
         )
-        # Garante presença de todos os meses (Abril..Agosto) para cada um dos top10 itens
+        # Garante presença de todos os meses (Março..Agosto) para cada um dos top10 itens
         if top10_after_agg:
             df_all_pairs = pd.MultiIndex.from_product([top10_after_agg, month_order], names=["Item","Mês"]).to_frame(index=False)
             df_viz_top = (
@@ -1111,7 +1111,7 @@ def main() -> None:
             except Exception as e:
                 st.warning(f"Não foi possível executar a auditoria: {e}")
 
-        month_map_hdr = {"4": "Abril","5": "Maio", "6": "Junho", "7": "Julho", "8": "Agosto"}
+        month_map_hdr = {"3":"Março","4": "Abril","5": "Maio", "6": "Junho", "7": "Julho", "8": "Agosto"}
         last_month_hdr = df_emp_last["Pasta"].iloc[0] if not df_emp_last.empty else None
         last_month_label = month_map_hdr.get(str(last_month_hdr), str(last_month_hdr) if last_month_hdr else "-")
         with st.expander(f"Consolidado geral do último mês ({last_month_label})", expanded=False):
@@ -1234,7 +1234,7 @@ def main() -> None:
                     tabela.index.name = "Posição"
                     st.dataframe(tabela, use_container_width=True)
 
-        st.subheader("Top 3 itens por empresa (Abril/Maio/Junho/Julho/Agosto)")
+        st.subheader("Top 3 itens por empresa (Março/Abril/Maio/Junho/Julho/Agosto)")
         empresas_presentes = sorted(df_top3_empresa["Empresa"].unique().tolist())
         if not empresas_presentes:
             st.info("Sem dados para os grupos selecionados")
@@ -1261,8 +1261,8 @@ def main() -> None:
         df_emp_viz = df_result_sorted.copy()
         df_emp_viz["Empresa"] = df_emp_viz["Arquivo"].apply(primary_group_from_label).str.upper()
         df_emp_viz["Empresa"].replace({"GRUPO SOLAR": "SOLAR"}, inplace=True)
-        df_emp_viz["Mês"] = df_emp_viz["Pasta"].map({"4":"Abril","5":"Maio","6": "Junho", "7": "Julho", "8": "Agosto"})
-        month_order = ["Abril","Maio","Junho", "Julho", "Agosto"]
+        df_emp_viz["Mês"] = df_emp_viz["Pasta"].map({"3":"Março","4":"Abril","5":"Maio","6": "Junho", "7": "Julho", "8": "Agosto"})
+        month_order = ["Março","Abril","Maio","Junho", "Julho", "Agosto"]
 
         empresas_presentes_viz = sorted(df_emp_viz["Empresa"].unique().tolist())
         if empresas_presentes_viz == ["AXX CARE"]:
@@ -1276,7 +1276,7 @@ def main() -> None:
                 df_e_cat["Categoria"] = df_e_cat["Item"].map(categorize_item_name)
                 alvo = ["CAMA", "CADEIRA HIGIÊNICA", "CADEIRA DE RODAS", "SUPORTE DE SORO"]
                 # Considerar SOMENTE o último mês disponível
-                meses_ordem_full = {"Maio":5, "Junho": 6, "Julho": 7, "Agosto": 8}
+                meses_ordem_full = {"Março":3, "Maio":5, "Junho": 6, "Julho": 7, "Agosto": 8}
                 ultimo_mes = df_e["Mês"].map(meses_ordem_full).max()
                 mes_ult_label = [k for k,v in meses_ordem_full.items() if v == ultimo_mes]
                 mes_ult_label = mes_ult_label[0] if mes_ult_label else "Agosto"
@@ -1297,7 +1297,7 @@ def main() -> None:
                 show_plot(fig_cat, use_container_width=True)
 
                 # Determina último mês disponível para os gráficos subsequentes
-                meses_ordem = {"Junho": 6, "Julho": 7, "Agosto": 8}
+                meses_ordem = {"Março":3, "Abril":4, "Maio":5, "Junho": 6, "Julho": 7, "Agosto": 8}
                 ultimo_mes = df_e["Mês"].map(meses_ordem).max()
                 mes_label = [k for k, v in meses_ordem.items() if v == ultimo_mes]
                 mes_label = mes_label[0] if mes_label else "Junho"
@@ -1574,7 +1574,7 @@ def main() -> None:
 
         empresas_presentes_fat = sorted(df_emp_viz["Empresa"].unique().tolist())
         if empresas_presentes_fat == ["AXX CARE"]:
-            st.subheader("Faturamento AXX CARE – Top 3 Itens (Abril/Maio/Junho/Julho/Agosto)")
+            st.subheader("Faturamento AXX CARE – Top 3 Itens (Março/Abril/Maio/Junho/Julho/Agosto)")
             price_map = {
                 normalize_text_for_match("CAMA ELÉTRICA 3 MOVIMENTOS"): 10.80,
                 normalize_text_for_match("CAMA MANUAL 2 MANIVELAS"): 2.83,
@@ -1637,10 +1637,10 @@ def main() -> None:
                 st.markdown('</div>', unsafe_allow_html=True)
 
                 # Faturamento geral (AXX CARE) – valores informados
-                st.subheader("Faturamento geral (AXX CARE) – Abril/Maio/Junho/Julho/Agosto")
+                st.subheader("Faturamento geral (AXX CARE) – Março/Abril/Maio/Junho/Julho/Agosto")
                 df_total_axx = pd.DataFrame({
-                    "Mês": ["Abril","Maio","Junho", "Julho", "Agosto"],
-                    "Faturamento": [92286.01, 87803.67, 77499.87, 81856.05, 82609.95],
+                    "Mês": ["Março","Abril","Maio","Junho", "Julho", "Agosto"],
+                    "Faturamento": [None, 92286.01, 87803.67, 77499.87, 81856.05, 82609.95],
                 })
                 fig_total_axx = px.bar(
                     df_total_axx,
@@ -1888,17 +1888,17 @@ def main() -> None:
             if target % max(1, target // 30) != 0:
                 placeholder.metric("Média de vidas ativas (3 meses)", f"{target}")
         elif empresas_presentes_viz == ["AXX CARE"]:
-            st.subheader("Vidas ativas no Home Care – AXX CARE (Abril/Maio/Junho/Julho/Agosto)")
-            month_sets = {"Abril": set(), "Maio": set(), "Junho": set(), "Julho": set(), "Agosto": set()}
+            st.subheader("Vidas ativas no Home Care – AXX CARE (Março/Abril/Maio/Junho/Julho/Agosto)")
+            month_sets = {"Março": set(), "Abril": set(), "Maio": set(), "Junho": set(), "Julho": set(), "Agosto": set()}
             for file in sel_files:
                 try:
                     book = pd.read_excel(file, sheet_name=None)
                 except Exception:
                     continue
                 ym = year_month_from_path(file)
-                if ym not in {"2025-04", "2025-05", "2025-06", "2025-07", "2025-08"}:
+                if ym not in {"2025-03","2025-04", "2025-05", "2025-06", "2025-07", "2025-08"}:
                     continue
-                mes_label = {"2025-04":"Abril","2025-05":"Maio","2025-06": "Junho", "2025-07": "Julho", "2025-08": "Agosto"}.get(ym, None)
+                mes_label = {"2025-03":"Março","2025-04":"Abril","2025-05":"Maio","2025-06": "Junho", "2025-07": "Julho", "2025-08": "Agosto"}.get(ym, None)
                 if mes_label not in month_sets:
                     continue
                 for sheet_name, df_sheet in (book or {}).items():
@@ -1924,8 +1924,9 @@ def main() -> None:
                     nomes_norm = series.apply(normalize_text_for_match)
                     month_sets[mes_label].update(nomes_norm.tolist())
             df_vidas_mes = pd.DataFrame({
-                "Mês": ["Abril","Maio","Junho", "Julho", "Agosto"],
+                "Mês": ["Março","Abril","Maio","Junho", "Julho", "Agosto"],
                 "VidasUnicas": [
+                    len(month_sets.get("Março", set())),
                     len(month_sets.get("Abril", set())),
                     len(month_sets.get("Maio", set())),
                     len(month_sets.get("Junho", set())),
@@ -2023,10 +2024,10 @@ def main() -> None:
 
             # Série histórica do Faturamento geral (valores fornecidos)
             df_total_axx_hist = pd.DataFrame({
-                "Mês": ["Abril","Maio","Junho","Julho","Agosto"],
-                "Faturamento": [92286.01, 87803.67, 77499.87, 81856.05, 82609.95],
+                "Mês": ["Março","Abril","Maio","Junho","Julho","Agosto"],
+                "Faturamento": [None, 92286.01, 87803.67, 77499.87, 81856.05, 82609.95],
             })
-            ordem = {m:i for i,m in enumerate(["Abril","Maio","Junho","Julho","Agosto"]) }
+            ordem = {m:i for i,m in enumerate(["Março","Abril","Maio","Junho","Julho","Agosto"]) }
             df_total_axx_hist["ord"] = df_total_axx_hist["Mês"].map(ordem)
             df_total_axx_hist = df_total_axx_hist.sort_values("ord").drop(columns=["ord"]).reset_index(drop=True)
 
