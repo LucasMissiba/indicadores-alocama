@@ -1573,10 +1573,9 @@ def main() -> None:
                         st.markdown('</div>', unsafe_allow_html=True)
 
         empresas_presentes_fat = sorted(df_emp_viz["Empresa"].unique().tolist())
-        # Subtítulo geral entre os gráficos de participação (pizza) e os gráficos de faturamento
+        # Título central entre os gráficos de participação (pizza) e os gráficos de faturamento
         if empresas_presentes_fat:
-            st.markdown("<h3 style='margin:12px 0 6px 0;'>FATURAMENTO</h3>", unsafe_allow_html=True)
-            st.caption("Os gráficos abaixo referem-se ao faturamento estimado/calculado.")
+            st.markdown("<h3 style='margin:12px 0 6px 0; text-align:center;'>FATURAMENTO</h3>", unsafe_allow_html=True)
         if empresas_presentes_fat == ["AXX CARE"]:
             st.subheader("Faturamento AXX CARE – Top 3 Itens (Março/Abril/Maio/Junho/Julho/Agosto)")
             price_map = {
