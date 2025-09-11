@@ -2151,6 +2151,11 @@ def main() -> None:
                         df_rev_sum[df_rev_sum["ItemCanonical"].isin(camas_principais)]
                         .groupby(["Mês","ItemCanonical"], as_index=False)["Faturamento"].sum()
                     )
+                    # Garante série completa e ordenada (evita "voltar" no fim)
+                    grid = pd.MultiIndex.from_product([meses_ordem_full, camas_principais], names=["Mês","ItemCanonical"]).to_frame(index=False)
+                    df_camas = grid.merge(df_camas, on=["Mês","ItemCanonical"], how="left").fillna({"Faturamento": 0})
+                    df_camas["Mês"] = pd.Categorical(df_camas["Mês"], categories=meses_ordem_full, ordered=True)
+                    df_camas = df_camas.sort_values(["ItemCanonical", "Mês"])  
                     fig_camas = px.line(
                         df_camas,
                         x="Mês",
@@ -2160,6 +2165,7 @@ def main() -> None:
                         category_orders={"Mês": meses_ordem_full},
                         title="Evolução mensal – Camas que mais impactam o faturamento",
                     )
+                    fig_camas.update_traces(mode="lines+markers", line_shape="linear")
                     fig_camas.update_yaxes(tickprefix="R$ ", tickformat=",.2f")
                     show_plot(fig_camas, use_container_width=True)
             except Exception:
