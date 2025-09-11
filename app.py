@@ -2077,6 +2077,70 @@ def main() -> None:
             k2.metric(f"{proximos_meses[1]} (Realista)", f"R$ {proj_realista[1]:,.2f}")
             k3.metric(f"{proximos_meses[2]} (Realista)", f"R$ {proj_realista[2]:,.2f}")
 
+            # Área de análise: por que caiu/subiu e o que fazer
+            try:
+                meses_ordem_full = ["Março","Abril","Maio","Junho","Julho","Agosto"]
+                ultimo = df_total_axx_hist["Mês"].iloc[-1]
+                idx_u = meses_ordem_full.index(ultimo) if ultimo in meses_ordem_full else len(meses_ordem_full) - 1
+                anterior = meses_ordem_full[idx_u - 1] if idx_u > 0 else ultimo
+                fat_u = float(df_total_axx_hist.loc[df_total_axx_hist["Mês"] == ultimo, "Faturamento"].fillna(0).iloc[0])
+                fat_a = float(df_total_axx_hist.loc[df_total_axx_hist["Mês"] == anterior, "Faturamento"].fillna(0).iloc[0])
+                delta_abs = fat_u - fat_a
+                delta_pct = (delta_abs / fat_a * 100.0) if fat_a > 0 else None
+                direcao = "subiu" if delta_abs >= 0 else "caiu"
+
+                # Drivers por item (quando disponível)
+                top_pos, top_neg = [], []
+                if 'df_rev_sum' in locals() and isinstance(df_rev_sum, pd.DataFrame) and not df_rev_sum.empty:
+                    last_item = df_rev_sum[df_rev_sum["Mês"] == ultimo].groupby("ItemCanonical")["Faturamento"].sum()
+                    prev_item = df_rev_sum[df_rev_sum["Mês"] == anterior].groupby("ItemCanonical")["Faturamento"].sum()
+                    items = sorted(set(last_item.index).union(set(prev_item.index)))
+                    deltas = []
+                    for it in items:
+                        deltas.append((it, float(last_item.get(it, 0.0) - prev_item.get(it, 0.0))))
+                    # Maiores altas e quedas
+                    top_pos = [f"{it} (+R$ {v:,.2f})" for it, v in sorted([d for d in deltas if d[1] > 0], key=lambda x: x[1], reverse=True)[:2]]
+                    top_neg = [f"{it} (-R$ {abs(v):,.2f})" for it, v in sorted([d for d in deltas if d[1] < 0], key=lambda x: x[1])[:2]]
+
+                sugestoes = []
+                if delta_abs < 0:
+                    if top_neg:
+                        sugestoes.append(f"Recuperar volumes em {', '.join(top_neg)}")
+                    if top_pos:
+                        sugestoes.append(f"Acelerar itens em alta: {', '.join(top_pos)}")
+                    sugestoes.extend([
+                        "Reativar pacientes inativos e evitar churn",
+                        "Revisar disponibilidade logística/estoque para evitar rupturas",
+                    ])
+                else:
+                    if top_pos:
+                        sugestoes.append(f"Manter foco nos drivers: {', '.join(top_pos)}")
+                    sugestoes.extend([
+                        "Prospectar novos contratos semelhantes aos de melhor desempenho",
+                        "Aprimorar conversão de solicitações e tempo de instalação",
+                    ])
+
+                st.markdown("<hr>", unsafe_allow_html=True)
+                st.markdown("<h4 style='margin:6px 0 6px 0;'>Análise de variação do faturamento</h4>", unsafe_allow_html=True)
+                resumo = f"Entre {anterior} e {ultimo}, o faturamento {direcao} em R$ {abs(delta_abs):,.2f}"
+                if delta_pct is not None:
+                    resumo += f" (\u2248 {delta_pct:.1f}%)."
+                st.markdown(resumo)
+                if top_pos or top_neg:
+                    if top_pos:
+                        st.markdown(f"- Itens que mais puxaram para cima: {', '.join(top_pos)}")
+                    if top_neg:
+                        st.markdown(f"- Itens que mais puxaram para baixo: {', '.join(top_neg)}")
+                if sugestoes:
+                    st.markdown("**O que pode ser feito para subir mais:**")
+                    for s in sugestoes:
+                        st.markdown(f"- {s}")
+            except Exception:
+                pass
+
+            # Rodapé
+            st.markdown("<div style='text-align:center;margin-top:28px;opacity:.75'>dashboard desenvolvivo por LMSTUDIO</div>", unsafe_allow_html=True)
+
 
 
 
