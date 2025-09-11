@@ -1601,12 +1601,12 @@ def main() -> None:
                     df_rev.groupby(["Empresa", "Mês", "ItemCanonical"], as_index=False)
                     .agg(Quantidade=("Quantidade", "sum"), PrecoDiaria=("PrecoDiaria", "first"))
                 )
-                # Completar meses ausentes com zero para exibir Abril quando não houver ocorrências
-                months_for_fat = ["Abril","Maio","Junho","Julho","Agosto"]
+                # Completar meses ausentes com zero (Março→Agosto)
+                months_for_fat = ["Março","Abril","Maio","Junho","Julho","Agosto"]
                 if not df_rev_sum.empty:
                     idx = pd.MultiIndex.from_product([["AXX CARE"], months_for_fat, df_rev_sum["ItemCanonical"].unique()], names=["Empresa","Mês","ItemCanonical"]).to_frame(index=False)
                     df_rev_sum = idx.merge(df_rev_sum, on=["Empresa","Mês","ItemCanonical"], how="left").fillna({"Quantidade":0})
-                dias_map = {"Abril": 30, "Maio": 31, "Junho": 30, "Julho": 31, "Agosto": 31}
+                dias_map = {"Março": 31, "Abril": 30, "Maio": 31, "Junho": 30, "Julho": 31, "Agosto": 31}
                 df_rev_sum["Dias"] = df_rev_sum["Mês"].map(dias_map).fillna(30)
                 df_rev_sum["Faturamento"] = df_rev_sum["Quantidade"] * df_rev_sum["PrecoDiaria"] * df_rev_sum["Dias"]
 
@@ -1621,7 +1621,7 @@ def main() -> None:
                     y="Faturamento",
                     color="ItemCanonical",
                     facet_col="ItemCanonical",
-                    category_orders={"Mês": ["Abril","Maio","Junho", "Julho", "Agosto"], "ItemCanonical": item_order},
+                    category_orders={"Mês": ["Março","Abril","Maio","Junho", "Julho", "Agosto"], "ItemCanonical": item_order},
                     title="Faturamento AXX CARE por Mês (diária x ocorrências)",
                     hover_data={"Faturamento": ":.2f", "Quantidade": True, "Dias": True},
                     labels={"ItemCanonical": "Item"},
