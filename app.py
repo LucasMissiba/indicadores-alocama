@@ -335,13 +335,13 @@ def primary_group_from_label(label: str) -> str:
 
 
 def month_from_path(path: Path) -> Optional[str]:
-    """Retorna '4', '5', '6', '7' ou '8' se o caminho contiver pastas 4/5/6/7/8 ou 2025-04/05/06/07/08."""
+    """Retorna '3'..'8' se o caminho contiver pastas 3/4/5/6/7/8 ou 2025-03..2025-08."""
     parts = re.split(r"[\\/]+", str(path))
     for p in parts:
         p_norm = p.strip()
-        if re.fullmatch(r"0?[45678]", p_norm):
+        if re.fullmatch(r"0?[345678]", p_norm):
             return p_norm.lstrip("0")
-        m = re.fullmatch(r"\d{4}-(0[45678])", p_norm)
+        m = re.fullmatch(r"\d{4}-(0[345678])", p_norm)
         if m:
             return m.group(1).lstrip("0")
     return None
@@ -914,8 +914,8 @@ def main() -> None:
     run = st.button("Executar Análise", type="primary")
 
     if run:
-        with st.spinner("Processando (coluna E) e contando itens por pasta 5/6/7/8..."):
-            sel_files = [f for f in excel_files if month_from_path(f) in {"4", "5", "6", "7", "8"}]
+        with st.spinner("Processando (coluna E) e contando itens por pasta 3/4/5/6/7/8..."):
+            sel_files = [f for f in excel_files if month_from_path(f) in {"3","4", "5", "6", "7", "8"}]
             df_result, ignored_files, error_files, column_debug = count_items_in_files(
                 sel_files, "E", base_dir, use_smart=True, only_equipment=True
             )
@@ -1055,7 +1055,7 @@ def main() -> None:
             color="Mês",
             barmode="group",
             category_orders={"Mês": month_order, "Item": top10_after_agg},
-            title="Top 10 - Comparação de Itens (Abril/Maio/Junho/Julho/Agosto)",
+            title="Top 10 - Comparação de Itens (Março/Abril/Maio/Junho/Julho/Agosto)",
             hover_data={"Mês": True, "Quantidade": ":,", "Item": True},
         )
         fig.update_traces(
@@ -1640,7 +1640,7 @@ def main() -> None:
                 st.subheader("Faturamento geral (AXX CARE) – Março/Abril/Maio/Junho/Julho/Agosto")
                 df_total_axx = pd.DataFrame({
                     "Mês": ["Março","Abril","Maio","Junho", "Julho", "Agosto"],
-                    "Faturamento": [None, 92286.01, 87803.67, 77499.87, 81856.05, 82609.95],
+                    "Faturamento": [96184.47, 92286.01, 87803.67, 77499.87, 81856.05, 82609.95],
                 })
                 fig_total_axx = px.bar(
                     df_total_axx,
@@ -2025,7 +2025,7 @@ def main() -> None:
             # Série histórica do Faturamento geral (valores fornecidos)
             df_total_axx_hist = pd.DataFrame({
                 "Mês": ["Março","Abril","Maio","Junho","Julho","Agosto"],
-                "Faturamento": [None, 92286.01, 87803.67, 77499.87, 81856.05, 82609.95],
+                "Faturamento": [96184.47, 92286.01, 87803.67, 77499.87, 81856.05, 82609.95],
             })
             ordem = {m:i for i,m in enumerate(["Março","Abril","Maio","Junho","Julho","Agosto"]) }
             df_total_axx_hist["ord"] = df_total_axx_hist["Mês"].map(ordem)
