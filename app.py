@@ -1573,6 +1573,10 @@ def main() -> None:
                         st.markdown('</div>', unsafe_allow_html=True)
 
         empresas_presentes_fat = sorted(df_emp_viz["Empresa"].unique().tolist())
+        # Subtítulo geral entre os gráficos de participação (pizza) e os gráficos de faturamento
+        if empresas_presentes_fat:
+            st.markdown("<h3 style='margin:12px 0 6px 0;'>FATURAMENTO</h3>", unsafe_allow_html=True)
+            st.caption("Os gráficos abaixo referem-se ao faturamento estimado/calculado.")
         if empresas_presentes_fat == ["AXX CARE"]:
             st.subheader("Faturamento AXX CARE – Top 3 Itens (Março/Abril/Maio/Junho/Julho/Agosto)")
             price_map = {
@@ -2135,6 +2139,41 @@ def main() -> None:
                     st.markdown("**O que pode ser feito para subir mais:**")
                     for s in sugestoes:
                         st.markdown(f"- {s}")
+
+                # Visualização em gráficos
+                # 1) Barras: Faturamento mês a mês (histórico)
+                fig_hist = px.bar(
+                    df_total_axx_hist,
+                    x="Mês",
+                    y="Faturamento",
+                    title="Histórico de faturamento (Geral – AXX CARE)",
+                )
+                fig_hist.update_yaxes(tickprefix="R$ ", tickformat=",.2f")
+                show_plot(fig_hist, use_container_width=True)
+
+                # 2) Barras horizontais: Contribuições por item (último vs anterior)
+                if 'df_rev_sum' in locals() and isinstance(df_rev_sum, pd.DataFrame) and not df_rev_sum.empty:
+                    last_item = df_rev_sum[df_rev_sum["Mês"] == ultimo].groupby("ItemCanonical")["Faturamento"].sum()
+                    prev_item = df_rev_sum[df_rev_sum["Mês"] == anterior].groupby("ItemCanonical")["Faturamento"].sum()
+                    items = sorted(set(last_item.index).union(set(prev_item.index)))
+                    df_contrib = pd.DataFrame({
+                        "Item": items,
+                        "Último": [float(last_item.get(it, 0.0)) for it in items],
+                        "Anterior": [float(prev_item.get(it, 0.0)) for it in items],
+                    })
+                    df_contrib["Delta"] = df_contrib["Último"] - df_contrib["Anterior"]
+                    df_contrib = df_contrib.sort_values("Delta", ascending=True)
+                    fig_delta = px.bar(
+                        df_contrib,
+                        x="Delta",
+                        y="Item",
+                        orientation="h",
+                        title=f"Variação por item – {anterior} → {ultimo}",
+                        color=df_contrib["Delta"].apply(lambda v: "Positivo" if v >= 0 else "Negativo"),
+                        color_discrete_map={"Positivo": "#10b981", "Negativo": "#ef4444"},
+                    )
+                    fig_delta.update_xaxes(tickprefix="R$ ", tickformat=",.2f")
+                    show_plot(fig_delta, use_container_width=True)
             except Exception:
                 pass
 
