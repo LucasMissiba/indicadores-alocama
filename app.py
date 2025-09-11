@@ -2117,7 +2117,7 @@ def main() -> None:
                     ])
                 else:
                     if top_pos:
-                        sugestoes.append(f"Manter foco nos drivers: {', '.join(top_pos)}")
+                        sugestoes.append(f"Manter foco no item: {', '.join(top_pos)}")
                     sugestoes.extend([
                         "Prospectar novos contratos semelhantes aos de melhor desempenho",
                         "Aprimorar conversão de solicitações e tempo de instalação",
