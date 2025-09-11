@@ -2140,39 +2140,28 @@ def main() -> None:
                         st.markdown(f"- {s}")
 
                 # Visualização em gráficos
-                # 1) Barras: Faturamento mês a mês (histórico)
-                fig_hist = px.bar(
-                    df_total_axx_hist,
-                    x="Mês",
-                    y="Faturamento",
-                    title="Histórico de faturamento (Geral – AXX CARE)",
-                )
-                fig_hist.update_yaxes(tickprefix="R$ ", tickformat=",.2f")
-                show_plot(fig_hist, use_container_width=True)
-
-                # 2) Barras horizontais: Contribuições por item (último vs anterior)
+                # Linha: duas principais camas que mais impactam no faturamento (série mensal)
                 if 'df_rev_sum' in locals() and isinstance(df_rev_sum, pd.DataFrame) and not df_rev_sum.empty:
-                    last_item = df_rev_sum[df_rev_sum["Mês"] == ultimo].groupby("ItemCanonical")["Faturamento"].sum()
-                    prev_item = df_rev_sum[df_rev_sum["Mês"] == anterior].groupby("ItemCanonical")["Faturamento"].sum()
-                    items = sorted(set(last_item.index).union(set(prev_item.index)))
-                    df_contrib = pd.DataFrame({
-                        "Item": items,
-                        "Último": [float(last_item.get(it, 0.0)) for it in items],
-                        "Anterior": [float(prev_item.get(it, 0.0)) for it in items],
-                    })
-                    df_contrib["Delta"] = df_contrib["Último"] - df_contrib["Anterior"]
-                    df_contrib = df_contrib.sort_values("Delta", ascending=True)
-                    fig_delta = px.bar(
-                        df_contrib,
-                        x="Delta",
-                        y="Item",
-                        orientation="h",
-                        title=f"Variação por item – {anterior} → {ultimo}",
-                        color=df_contrib["Delta"].apply(lambda v: "Positivo" if v >= 0 else "Negativo"),
-                        color_discrete_map={"Positivo": "#10b981", "Negativo": "#ef4444"},
+                    camas_principais = [
+                        "CAMA ELÉTRICA 3 MOVIMENTOS",
+                        "CAMA MANUAL 2 MANIVELAS",
+                    ]
+                    meses_ordem_full = ["Março","Abril","Maio","Junho","Julho","Agosto"]
+                    df_camas = (
+                        df_rev_sum[df_rev_sum["ItemCanonical"].isin(camas_principais)]
+                        .groupby(["Mês","ItemCanonical"], as_index=False)["Faturamento"].sum()
                     )
-                    fig_delta.update_xaxes(tickprefix="R$ ", tickformat=",.2f")
-                    show_plot(fig_delta, use_container_width=True)
+                    fig_camas = px.line(
+                        df_camas,
+                        x="Mês",
+                        y="Faturamento",
+                        color="ItemCanonical",
+                        markers=True,
+                        category_orders={"Mês": meses_ordem_full},
+                        title="Evolução mensal – Camas que mais impactam o faturamento",
+                    )
+                    fig_camas.update_yaxes(tickprefix="R$ ", tickformat=",.2f")
+                    show_plot(fig_camas, use_container_width=True)
             except Exception:
                 pass
 
