@@ -1523,7 +1523,7 @@ def main() -> None:
             hovertemplate="Item: %{x}<br>Mês: %{customdata[0]}<br>Qtd: %{y:,}<extra></extra>",
         )
         fig.update_layout(
-            xaxis_title="Itens (Março / Abril / Maio / Junho / Julho / Agosto / Fevereiro)",
+            xaxis_title="Itens (Fevereiro / Março / Abril / Maio / Junho / Julho / Agosto)",
             yaxis_title="Quantidade",
             showlegend=False,
             margin=dict(l=10, r=10, t=48, b=110),
