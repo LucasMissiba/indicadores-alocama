@@ -2161,10 +2161,10 @@ def main() -> None:
                 st.markdown('</div>', unsafe_allow_html=True)
 
                 # Faturamento geral (AXX CARE) – valores informados
-                st.subheader("Faturamento geral (AXX CARE) – Março/Abril/Maio/Junho/Julho/Agosto")
+                st.subheader("Faturamento geral (AXX CARE) – Fevereiro/Março/Abril/Maio/Junho/Julho/Agosto")
                 df_total_axx = pd.DataFrame({
-                    "Mês": ["Março","Abril","Maio","Junho", "Julho", "Agosto"],
-                    "Faturamento": [96184.47, 92286.01, 87803.67, 77499.87, 81856.05, 82609.95],
+                    "Mês": ["Fevereiro","Março","Abril","Maio","Junho", "Julho", "Agosto"],
+                    "Faturamento": [87831.11, 96184.47, 92286.01, 87803.67, 77499.87, 81856.05, 82609.95],
                 })
                 fig_total_axx = px.bar(
                     df_total_axx,
@@ -2172,6 +2172,7 @@ def main() -> None:
                     y="Faturamento",
                     text="Faturamento",
                     title="Faturamento geral por mês (valores fornecidos)",
+                    category_orders={"Mês": ["Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"]},
                 )
                 fig_total_axx.update_traces(texttemplate="R$ %{y:,.2f}", textposition="outside")
                 ymax_axx = float(df_total_axx["Faturamento"].max())
