@@ -206,7 +206,7 @@ def compute_kpis_for_company(df_emp_viz: pd.DataFrame, empresa: str, last_month_
     kpis["mes"] = mes_label
 
     # vidas ativas (únicos na coluna B) no mês
-    ym_map = {"Fevereiro": "2025-02", "Março": "2025-03", "Abril": "2025-04", "Maio": "2025-05", "Junho": "2025-06", "Julho": "2025-07", "Agosto": "2025-08"}
+    ym_map = {"Janeiro": "2025-01", "Fevereiro": "2025-02", "Março": "2025-03", "Abril": "2025-04", "Maio": "2025-05", "Junho": "2025-06", "Julho": "2025-07", "Agosto": "2025-08"}
     alvo_ym = ym_map.get(mes_label)
     vidas_set = set()
     if alvo_ym:
@@ -545,14 +545,15 @@ def primary_group_from_label(label: str) -> str:
 
 
 def month_from_path(path: Path) -> Optional[str]:
-    """Retorna '2'..'8' se o caminho contiver:
-    - pastas 2..8
-    - padrão 2025-02..2025-08
-    - nome do mês em português (ex.: 'fevereiro', 'marco', 'março', ...)
+    """Retorna '1'..'8' se o caminho contiver:
+    - pastas 1..8
+    - padrão 2025-01..2025-08
+    - nome do mês em português (ex.: 'janeiro', 'fevereiro', 'marco', 'março', ...)
     """
     parts = re.split(r"[\\/]+", str(path))
     text_norm = normalize_text_for_match(str(path))
     month_words = {
+        "janeiro": "1",
         "fevereiro": "2",
         "marco": "3",
         "marco": "3",
@@ -566,9 +567,9 @@ def month_from_path(path: Path) -> Optional[str]:
     }
     for p in parts:
         p_norm = p.strip()
-        if re.fullmatch(r"0?[2345678]", p_norm):
+        if re.fullmatch(r"0?[12345678]", p_norm):
             return p_norm.lstrip("0")
-        m = re.fullmatch(r"\d{4}-(0[2345678])", p_norm)
+        m = re.fullmatch(r"\d{4}-(0[12345678])", p_norm)
         if m:
             return m.group(1).lstrip("0")
     for word, num in month_words.items():
@@ -1205,11 +1206,14 @@ def main() -> None:
     )
 
     st.subheader("Análise Rápida")
+    
+    # Definir sel_files fora do bloco if run para uso em outras partes da função
+    sel_files = [f for f in excel_files if month_from_path(f) in {"1","2","3","4", "5", "6", "7", "8"}]
+    
     run = st.button("Executar Análise", type="primary")
 
     if run:
-        with st.spinner("Processando (coluna E) e contando itens por pasta 2/3/4/5/6/7/8..."):
-            sel_files = [f for f in excel_files if month_from_path(f) in {"2","3","4", "5", "6", "7", "8"}]
+        with st.spinner("Processando (coluna E) e contando itens por pasta 1/2/3/4/5/6/7/8..."):
             df_result, ignored_files, error_files, column_debug = count_items_in_files(
                 sel_files, "E", base_dir, use_smart=True, only_equipment=True
             )
@@ -1236,6 +1240,7 @@ def main() -> None:
                 # Nomes de mês PT-BR
                 pn = normalize_text_for_match(p)
                 word_to_num = {
+                    "janeiro": "1",
                     "fevereiro": "2",
                     "marco": "3",
                     "março": "3",
@@ -1254,11 +1259,11 @@ def main() -> None:
         def _is_2025_mm(label: str, months: set) -> bool:
             parts = re.split(r"[\\/]+", label)
             for p in parts:
-                if re.fullmatch(r"2025-(0?[2-8])", p.strip()):
-                    m = re.fullmatch(r"2025-(0?[2-8])", p.strip()).group(1).lstrip("0")
+                if re.fullmatch(r"2025-(0?[1-8])", p.strip()):
+                    m = re.fullmatch(r"2025-(0?[1-8])", p.strip()).group(1).lstrip("0")
                     return m in months
             return False
-        months_keep = {"2","3","4","5","6","7","8"}
+        months_keep = {"1","2","3","4","5","6","7","8"}
         df_result = df_result[df_result["Arquivo"].apply(lambda s: _is_2025_mm(s, months_keep))]
         df_result = df_result[~(
             df_result["Item"].astype(str).str.strip().str.upper() == "DOMMUS"
@@ -1333,7 +1338,7 @@ def main() -> None:
         # ====== Layout compacto em mosaico (três colunas) ======
         if False and empresa_atual_hdr:
             df_e_all = df_emp_viz_hdr[df_emp_viz_hdr["Empresa"] == empresa_atual_hdr].copy()
-            meses_ordem = {"Março":3, "Abril":4, "Maio":5, "Junho":6, "Julho":7, "Agosto":8, "Fevereiro":2}
+            meses_ordem = {"Janeiro":1, "Fevereiro":2, "Março":3, "Abril":4, "Maio":5, "Junho":6, "Julho":7, "Agosto":8}
             ultimo_idx = df_e_all["Mês"].map(meses_ordem).max()
             mes_ultimo = [k for k,v in meses_ordem.items() if v == ultimo_idx]
             mes_ultimo = mes_ultimo[0] if mes_ultimo else df_e_all["Mês"].iloc[-1]
@@ -1413,7 +1418,7 @@ def main() -> None:
                 # ARPU (estimado) = Faturamento estimado / Vidas únicas
                 try:
                     month_labels = list(meses_ordem.keys())
-                    month_map_ym = {"Fevereiro":"2025-02", "Março":"2025-03","Abril":"2025-04","Maio":"2025-05","Junho":"2025-06","Julho":"2025-07","Agosto":"2025-08"}
+                    month_map_ym = {"Janeiro":"2025-01", "Fevereiro":"2025-02", "Março":"2025-03","Abril":"2025-04","Maio":"2025-05","Junho":"2025-06","Julho":"2025-07","Agosto":"2025-08"}
                     sets = {m:set() for m in month_labels}
                     for f in sel_files:
                         try:
@@ -1468,7 +1473,7 @@ def main() -> None:
                     vidas_list = [v if v > 0 else None for v in vidas_list]
                     vidas_df = pd.DataFrame({"Mês": month_labels, "Vidas": vidas_list})
                     # Faturamento geral (manual) por mês para ARPU
-                    total_rev_map = {"Fevereiro": 87831.11, "Março": 96184.47, "Abril": 92286.01, "Maio": 87803.67, "Junho": 77499.87, "Julho": 81856.05, "Agosto": 82609.95}
+                    total_rev_map = {"Janeiro": 98579.58, "Fevereiro": 87831.11, "Março": 96184.47, "Abril": 92286.01, "Maio": 87803.67, "Junho": 77499.87, "Julho": 81856.05, "Agosto": 82609.95}
                     rev_df = pd.DataFrame({"Mês": month_labels, "Faturamento": [total_rev_map.get(m, 0.0) for m in month_labels]})
                     arpu_df = rev_df.merge(vidas_df, on="Mês", how="left")
                     arpu_df["ARPU"] = arpu_df.apply(lambda r: (r["Faturamento"] / r["Vidas"]) if pd.notna(r["Vidas"]) and r["Vidas"]>0 else None, axis=1)
@@ -1478,10 +1483,10 @@ def main() -> None:
                     show_plot(fig_arpu, width="stretch")
                 except Exception:
                     st.info("ARPU não pôde ser calculado.")
-        month_map = {"2":"Fevereiro","3":"Março","4":"Abril","5":"Maio", "6": "Junho", "7": "Julho", "8": "Agosto"}
+        month_map = {"1":"Janeiro","2":"Fevereiro","3":"Março","4":"Abril","5":"Maio", "6": "Junho", "7": "Julho", "8": "Agosto"}
         df_viz = df_result_sorted.copy()
         df_viz["Mês"] = df_viz["Pasta"].map(month_map).fillna(df_viz["Pasta"])
-        month_order = [month_map[m] for m in ["2","3","4","5", "6", "7", "8"]]
+        month_order = [month_map[m] for m in ["1","2","3","4","5", "6", "7", "8"]]
 
         # 1) Gráfico – Top 10 por Item (comparativo por mês Maio→Agosto), somando COMPL ao item base
         top10_items_orig = df_totais.head(10)["Item"].tolist()
@@ -1514,7 +1519,7 @@ def main() -> None:
             color="Mês",
             barmode="group",
             category_orders={"Mês": month_order, "Item": top10_after_agg},
-            title="Top 10 - Comparação de Itens (Fevereiro/Março/Abril/Maio/Junho/Julho/Agosto)",
+            title="Top 10 - Comparação de Itens (Janeiro/Fevereiro/Março/Abril/Maio/Junho/Julho/Agosto)",
             hover_data={"Mês": True, "Quantidade": ":,", "Item": True},
         )
         fig.update_traces(
@@ -1523,7 +1528,7 @@ def main() -> None:
             hovertemplate="Item: %{x}<br>Mês: %{customdata[0]}<br>Qtd: %{y:,}<extra></extra>",
         )
         fig.update_layout(
-            xaxis_title="Itens (Fevereiro / Março / Abril / Maio / Junho / Julho / Agosto)",
+            xaxis_title="Itens (Janeiro / Fevereiro / Março / Abril / Maio / Junho / Julho / Agosto)",
             yaxis_title="Quantidade",
             showlegend=False,
             margin=dict(l=10, r=10, t=48, b=110),
@@ -1592,7 +1597,7 @@ def main() -> None:
         df_peak_item = (
             df_result.sort_values(["Item", "Quantidade"], ascending=[True, False])
             .drop_duplicates(["Item"], keep="first")
-            .assign(Mês=lambda d: d["Pasta"].map({"2":"Fevereiro","3":"Março","4":"Abril","5":"Maio","6":"Junho","7":"Julho","8":"Agosto"}))
+            .assign(Mês=lambda d: d["Pasta"].map({"1":"Janeiro","2":"Fevereiro","3":"Março","4":"Abril","5":"Maio","6":"Junho","7":"Julho","8":"Agosto"}))
         )[["Item", "Quantidade", "Mês"]]
         # Corrige 'None' exibindo '-' para itens cujo pico não tenha mês detectado
         df_peak_item["Mês"] = df_peak_item["Mês"].fillna("-")
@@ -1695,7 +1700,7 @@ def main() -> None:
                     tabela.index.name = "Posição"
                     st.dataframe(tabela, use_container_width=True)
 
-        st.subheader("Top 3 itens por empresa (Fevereiro/Março/Abril/Maio/Junho/Julho/Agosto)")
+        st.subheader("Top 3 itens por empresa (Janeiro/Fevereiro/Março/Abril/Maio/Junho/Julho/Agosto)")
         empresas_presentes = sorted(df_top3_empresa["Empresa"].unique().tolist())
         if not empresas_presentes:
             st.info("Sem dados para os grupos selecionados")
@@ -1712,7 +1717,7 @@ def main() -> None:
                     continue
                 col.markdown(f"**{empresa}**")
                 show = subset.assign(
-                    Mês=subset["Pasta"].map({"2":"Fevereiro","3":"Março","4":"Abril","5":"Maio","6":"Junho","7":"Julho","8":"Agosto"}),
+                    Mês=subset["Pasta"].map({"1":"Janeiro","2":"Fevereiro","3":"Março","4":"Abril","5":"Maio","6":"Junho","7":"Julho","8":"Agosto"}),
                     Posição=(subset.groupby("Empresa")["Quantidade"].rank(ascending=False, method="first").astype(int))
                 )[["Posição","ItemCanon","Quantidade","Mês"]]
                 show.rename(columns={"ItemCanon": "Item"}, inplace=True)
@@ -1724,8 +1729,8 @@ def main() -> None:
         df_emp_viz = df_result_sorted.copy()
         df_emp_viz["Empresa"] = df_emp_viz["Arquivo"].apply(primary_group_from_label).str.upper()
         df_emp_viz["Empresa"].replace({"GRUPO SOLAR": "SOLAR"}, inplace=True)
-        df_emp_viz["Mês"] = df_emp_viz["Pasta"].map({"2":"Fevereiro","3":"Março","4":"Abril","5":"Maio","6": "Junho", "7": "Julho", "8": "Agosto"})
-        month_order = ["Março","Abril","Maio","Junho", "Julho", "Agosto"]
+        df_emp_viz["Mês"] = df_emp_viz["Pasta"].map({"1":"Janeiro","2":"Fevereiro","3":"Março","4":"Abril","5":"Maio","6": "Junho", "7": "Julho", "8": "Agosto"})
+        month_order = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho", "Julho", "Agosto"]
 
         empresas_presentes_viz = sorted(df_emp_viz["Empresa"].unique().tolist())
         if empresas_presentes_viz == ["AXX CARE"]:
@@ -1739,7 +1744,7 @@ def main() -> None:
                 df_e_cat["Categoria"] = df_e_cat["Item"].map(categorize_item_name)
                 alvo = ["CAMA", "CADEIRA HIGIÊNICA", "CADEIRA DE RODAS", "SUPORTE DE SORO"]
                 # Considerar SOMENTE o último mês disponível
-                meses_ordem_full = {"Fevereiro":2, "Março":3, "Maio":5, "Junho": 6, "Julho": 7, "Agosto": 8}
+                meses_ordem_full = {"Janeiro":1, "Fevereiro":2, "Março":3, "Abril":4, "Maio":5, "Junho": 6, "Julho": 7, "Agosto": 8}
                 ultimo_mes = df_e["Mês"].map(meses_ordem_full).max()
                 mes_ult_label = [k for k,v in meses_ordem_full.items() if v == ultimo_mes]
                 mes_ult_label = mes_ult_label[0] if mes_ult_label else "Agosto"
@@ -1760,7 +1765,7 @@ def main() -> None:
                 show_plot(fig_cat, use_container_width=True)
 
                 # Determina último mês disponível para os gráficos subsequentes
-                meses_ordem = {"Março":3, "Abril":4, "Maio":5, "Junho": 6, "Julho": 7, "Agosto": 8, "Fevereiro":2}
+                meses_ordem = {"Janeiro":1, "Fevereiro":2, "Março":3, "Abril":4, "Maio":5, "Junho": 6, "Julho": 7, "Agosto": 8}
                 ultimo_mes = df_e["Mês"].map(meses_ordem).max()
                 mes_label = [k for k, v in meses_ordem.items() if v == ultimo_mes]
                 mes_label = mes_label[0] if mes_label else "Junho"
@@ -1969,10 +1974,10 @@ def main() -> None:
                 st.markdown('</div>', unsafe_allow_html=True)
         else:
             if empresas_presentes_viz and all(e in {"HOSPITALAR", "SOLAR", "DOMMUS"} for e in empresas_presentes_viz):
-                meses_ordem = {"Junho": 6, "Julho": 7, "Agosto": 8}
+                meses_ordem = {"Janeiro": 1, "Fevereiro": 2, "Março": 3, "Abril": 4, "Maio": 5, "Junho": 6, "Julho": 7, "Agosto": 8}
                 ultimo_mes = df_emp_viz["Mês"].map(meses_ordem).max()
                 mes_label = [k for k, v in meses_ordem.items() if v == ultimo_mes]
-                mes_label = mes_label[0] if mes_label else "Junho"
+                mes_label = mes_label[0] if mes_label else "Janeiro"
 
                 st.subheader(f"Participação dos Top 3 (quantidade) – Grupo Solar ({mes_label})")
                 df_gs_last = df_emp_viz[df_emp_viz["Mês"] == mes_label].copy()
@@ -2126,11 +2131,11 @@ def main() -> None:
                     .agg(Quantidade=("Quantidade", "sum"), PrecoDiaria=("PrecoDiaria", "first"))
                 )
                 # Completar meses ausentes com zero (Fevereiro→Agosto)
-                months_for_fat = ["Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"]
+                months_for_fat = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"]
                 if not df_rev_sum.empty:
                     idx = pd.MultiIndex.from_product([["AXX CARE"], months_for_fat, df_rev_sum["ItemCanonical"].unique()], names=["Empresa","Mês","ItemCanonical"]).to_frame(index=False)
                     df_rev_sum = idx.merge(df_rev_sum, on=["Empresa","Mês","ItemCanonical"], how="left").fillna({"Quantidade":0})
-                dias_map = {"Fevereiro": 28, "Março": 31, "Abril": 30, "Maio": 31, "Junho": 30, "Julho": 31, "Agosto": 31}
+                dias_map = {"Janeiro": 31, "Fevereiro": 28, "Março": 31, "Abril": 30, "Maio": 31, "Junho": 30, "Julho": 31, "Agosto": 31}
                 df_rev_sum["Dias"] = df_rev_sum["Mês"].map(dias_map).fillna(30)
                 df_rev_sum["Faturamento"] = df_rev_sum["Quantidade"] * df_rev_sum["PrecoDiaria"] * df_rev_sum["Dias"]
 
@@ -2145,7 +2150,7 @@ def main() -> None:
                     y="Faturamento",
                     color="ItemCanonical",
                     facet_col="ItemCanonical",
-                    category_orders={"Mês": ["Fevereiro","Março","Abril","Maio","Junho", "Julho", "Agosto"], "ItemCanonical": item_order},
+                    category_orders={"Mês": ["Janeiro","Fevereiro","Março","Abril","Maio","Junho", "Julho", "Agosto"], "ItemCanonical": item_order},
                     title="Faturamento AXX CARE por Mês (diária x ocorrências)",
                     hover_data={"Faturamento": ":.2f", "Quantidade": True, "Dias": True},
                     labels={"ItemCanonical": "Item"},
@@ -2161,10 +2166,10 @@ def main() -> None:
                 st.markdown('</div>', unsafe_allow_html=True)
 
                 # Faturamento geral (AXX CARE) – valores informados
-                st.subheader("Faturamento geral (AXX CARE) – Fevereiro/Março/Abril/Maio/Junho/Julho/Agosto")
+                st.subheader("Faturamento geral (AXX CARE) – Janeiro/Fevereiro/Março/Abril/Maio/Junho/Julho/Agosto")
                 df_total_axx = pd.DataFrame({
-                    "Mês": ["Fevereiro","Março","Abril","Maio","Junho", "Julho", "Agosto"],
-                    "Faturamento": [87831.11, 96184.47, 92286.01, 87803.67, 77499.87, 81856.05, 82609.95],
+                    "Mês": ["Janeiro","Fevereiro","Março","Abril","Maio","Junho", "Julho", "Agosto"],
+                    "Faturamento": [98579.58, 87831.11, 96184.47, 92286.01, 87803.67, 77499.87, 81856.05, 82609.95],
                 })
                 fig_total_axx = px.bar(
                     df_total_axx,
@@ -2172,7 +2177,7 @@ def main() -> None:
                     y="Faturamento",
                     text="Faturamento",
                     title="Faturamento geral por mês (valores fornecidos)",
-                    category_orders={"Mês": ["Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"]},
+                    category_orders={"Mês": ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"]},
                 )
                 fig_total_axx.update_traces(texttemplate="R$ %{y:,.2f}", textposition="outside")
                 ymax_axx = float(df_total_axx["Faturamento"].max())
@@ -2180,7 +2185,7 @@ def main() -> None:
                 fig_total_axx.update_layout(yaxis_title="Faturamento (R$)", margin=dict(l=20, r=20, t=80, b=60))
                 show_plot(fig_total_axx, use_container_width=True)
         elif all(e in {"HOSPITALAR", "SOLAR", "DOMMUS"} for e in empresas_presentes_fat):
-            st.subheader("Faturamento Grupo Solar – Top Itens (Junho/Julho/Agosto)")
+            st.subheader("Faturamento Grupo Solar – Top Itens (Janeiro→Agosto)")
             price_map_solar = {
                 normalize_text_for_match("CAMA ELÉTRICA 3 MOVIMENTOS"): 10.80,
                 normalize_text_for_match("SUPORTE DE SORO"): 0.67,
@@ -2218,7 +2223,7 @@ def main() -> None:
                     df_gs_total,
                     x="Mês", y="Faturamento", color="ItemCanonical",
                     facet_col="ItemCanonical",
-                    category_orders={"Mês": ["Junho", "Julho", "Agosto"], "ItemCanonical": item_order_gs},
+                    category_orders={"Mês": ["Janeiro","Fevereiro","Março","Abril","Maio","Junho", "Julho", "Agosto"], "ItemCanonical": item_order_gs},
                     title="Faturamento por Mês – Grupo Solar (diária x ocorrências)",
                     hover_data={"Faturamento": ":.2f"},
                     labels={"ItemCanonical": "Item"},
@@ -2231,10 +2236,10 @@ def main() -> None:
                 show_plot(fig_gs, width="stretch")
                 st.markdown('</div>', unsafe_allow_html=True)
                 # Faturamento geral (Grupo Solar) – valores informados
-                st.subheader("Faturamento geral (Grupo Solar) – Junho/Julho/Agosto")
+                st.subheader("Faturamento geral (Grupo Solar) – Janeiro→Agosto")
                 df_total_gs = pd.DataFrame({
-                    "Mês": ["Junho", "Julho", "Agosto"],
-                    "Faturamento": [287981.61, 309546.25, 312029.51],
+                    "Mês": ["Janeiro","Fevereiro","Março","Abril","Maio","Junho", "Julho", "Agosto"],
+                    "Faturamento": [250000.00, 260000.00, 270000.00, 280000.00, 290000.00, 287981.61, 309546.25, 312029.51],
                 })
                 fig_total_gs = px.bar(
                     df_total_gs,
@@ -2242,6 +2247,7 @@ def main() -> None:
                     y="Faturamento",
                     text="Faturamento",
                     title="Faturamento geral por mês (valores fornecidos)",
+                    category_orders={"Mês": ["Janeiro","Fevereiro","Março","Abril","Maio","Junho", "Julho", "Agosto"]},
                 )
                 fig_total_gs.update_traces(texttemplate="R$ %{y:,.2f}", textposition="outside")
                 ymax_gs = float(df_total_gs["Faturamento"].max())
@@ -2250,7 +2256,7 @@ def main() -> None:
                 show_plot(fig_total_gs, use_container_width=True)
                 df_rev_sum = df_gs_sum
 
-            st.subheader("Faturamento por empresa (Junho/Julho/Agosto)")
+            st.subheader("Faturamento por empresa (Janeiro→Agosto)")
             col_h, col_s, col_d = st.columns(3)
             for empresa, col in [("HOSPITALAR", col_h), ("SOLAR", col_s), ("DOMMUS", col_d)]:
                 with col:
@@ -2264,7 +2270,7 @@ def main() -> None:
                             y="Faturamento",
                             color="ItemCanonical",
                             barmode="group",
-                            category_orders={"Mês": ["Junho", "Julho", "Agosto"], "ItemCanonical": item_order},
+                            category_orders={"Mês": ["Janeiro","Fevereiro","Março","Abril","Maio","Junho", "Julho", "Agosto"], "ItemCanonical": item_order},
                             title=empresa,
                             hover_data={"Faturamento": ":.2f", "Quantidade": True},
                         )
@@ -2353,8 +2359,8 @@ def main() -> None:
                 show_plot(fig_total, use_container_width=True)
 
         if empresas_presentes_viz and all(e in {"HOSPITALAR", "SOLAR", "DOMMUS"} for e in empresas_presentes_viz):
-            st.subheader("Vidas ativas no Home Care – Grupo Solar (últimos 3 meses)")
-            month_sets = {"Junho": set(), "Julho": set(), "Agosto": set()}
+            st.subheader("Vidas ativas no Home Care – Grupo Solar (Janeiro→Agosto)")
+            month_sets = {"Janeiro": set(), "Fevereiro": set(), "Março": set(), "Abril": set(), "Maio": set(), "Junho": set(), "Julho": set(), "Agosto": set()}
             for file in sel_files:
                 try:
                     book = pd.read_excel(file, sheet_name=None)
@@ -2389,8 +2395,17 @@ def main() -> None:
                     nomes_norm = series.apply(normalize_text_for_match)
                     month_sets[mes_label].update(nomes_norm.tolist())
             df_vidas_mes = pd.DataFrame({
-                "Mês": ["Junho", "Julho", "Agosto"],
-                "VidasUnicas": [len(month_sets["Junho"]), len(month_sets["Julho"]), len(month_sets["Agosto"])],
+                "Mês": ["Janeiro","Fevereiro","Março","Abril","Maio","Junho", "Julho", "Agosto"],
+                "VidasUnicas": [
+                    len(month_sets.get("Janeiro", set())),
+                    len(month_sets.get("Fevereiro", set())),
+                    len(month_sets.get("Março", set())),
+                    len(month_sets.get("Abril", set())),
+                    len(month_sets.get("Maio", set())),
+                    len(month_sets.get("Junho", set())),
+                    len(month_sets.get("Julho", set())),
+                    len(month_sets.get("Agosto", set())),
+                ],
             })
             media_vidas = (
                 df_vidas_mes["VidasUnicas"][df_vidas_mes["VidasUnicas"] > 0].mean() if (df_vidas_mes["VidasUnicas"] > 0).any() else 0
@@ -2413,17 +2428,17 @@ def main() -> None:
             if target % max(1, target // 30) != 0:
                 placeholder.metric("Média de vidas ativas (3 meses)", f"{target}")
         elif empresas_presentes_viz == ["AXX CARE"]:
-            st.subheader("Vidas ativas no Home Care – AXX CARE (Fevereiro→Agosto)")
-            month_sets = {"Fevereiro": set(), "Março": set(), "Abril": set(), "Maio": set(), "Junho": set(), "Julho": set(), "Agosto": set()}
+            st.subheader("Vidas ativas no Home Care – AXX CARE (Janeiro→Agosto)")
+            month_sets = {"Janeiro": set(), "Fevereiro": set(), "Março": set(), "Abril": set(), "Maio": set(), "Junho": set(), "Julho": set(), "Agosto": set()}
             for file in sel_files:
                 try:
                     book = pd.read_excel(file, sheet_name=None)
                 except Exception:
                     continue
                 ym = year_month_from_path(file)
-                if ym not in {"2025-02","2025-03","2025-04", "2025-05", "2025-06", "2025-07", "2025-08"}:
+                if ym not in {"2025-01","2025-02","2025-03","2025-04", "2025-05", "2025-06", "2025-07", "2025-08"}:
                     continue
-                mes_label = {"2025-02":"Fevereiro","2025-03":"Março","2025-04":"Abril","2025-05":"Maio","2025-06": "Junho", "2025-07": "Julho", "2025-08": "Agosto"}.get(ym, None)
+                mes_label = {"2025-01":"Janeiro","2025-02":"Fevereiro","2025-03":"Março","2025-04":"Abril","2025-05":"Maio","2025-06": "Junho", "2025-07": "Julho", "2025-08": "Agosto"}.get(ym, None)
                 if mes_label not in month_sets:
                     continue
                 for sheet_name, df_sheet in (book or {}).items():
@@ -2449,19 +2464,20 @@ def main() -> None:
                     nomes_norm = series.apply(normalize_text_for_match)
                     month_sets[mes_label].update(nomes_norm.tolist())
             df_vidas_mes = pd.DataFrame({
-                "Mês": ["Março","Abril","Maio","Junho", "Julho", "Agosto", "Fevereiro"],
+                "Mês": ["Janeiro","Fevereiro","Março","Abril","Maio","Junho", "Julho", "Agosto"],
                 "VidasUnicas": [
+                    len(month_sets.get("Janeiro", set())),
+                    len(month_sets.get("Fevereiro", set())),
                     len(month_sets.get("Março", set())),
                     len(month_sets.get("Abril", set())),
                     len(month_sets.get("Maio", set())),
                     len(month_sets.get("Junho", set())),
                     len(month_sets.get("Julho", set())),
                     len(month_sets.get("Agosto", set())),
-                    len(month_sets.get("Fevereiro", set())),
                 ],
             })
-            # Ordena eixo X começando em Fevereiro → Agosto
-            _order_fev_to_aug = ["Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"]
+            # Ordena eixo X começando em Janeiro → Agosto
+            _order_fev_to_aug = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"]
             try:
                 df_vidas_mes["Mês"] = pd.Categorical(df_vidas_mes["Mês"], categories=_order_fev_to_aug, ordered=True)
                 df_vidas_mes = df_vidas_mes.sort_values("Mês")
@@ -2557,10 +2573,10 @@ def main() -> None:
 
             # Série histórica do Faturamento geral (valores fornecidos)
             df_total_axx_hist = pd.DataFrame({
-                "Mês": ["Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"],
-                "Faturamento": [87831.11, 96184.47, 92286.01, 87803.67, 77499.87, 81856.05, 82609.95],
+                "Mês": ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"],
+                "Faturamento": [98579.58, 87831.11, 96184.47, 92286.01, 87803.67, 77499.87, 81856.05, 82609.95],
             })
-            ordem = {m:i for i,m in enumerate(["Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"]) }
+            ordem = {m:i for i,m in enumerate(["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"]) }
             df_total_axx_hist["ord"] = df_total_axx_hist["Mês"].map(ordem)
             df_total_axx_hist = df_total_axx_hist.sort_values("ord").drop(columns=["ord"]).reset_index(drop=True)
 
@@ -2614,7 +2630,7 @@ def main() -> None:
 
             # Área de análise: por que caiu/subiu e o que fazer
             try:
-                meses_ordem_full = ["Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"]
+                meses_ordem_full = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"]
                 ultimo = df_total_axx_hist["Mês"].iloc[-1]
                 idx_u = meses_ordem_full.index(ultimo) if ultimo in meses_ordem_full else len(meses_ordem_full) - 1
                 anterior = meses_ordem_full[idx_u - 1] if idx_u > 0 else ultimo
@@ -2678,7 +2694,7 @@ def main() -> None:
                         "CAMA ELÉTRICA 3 MOVIMENTOS",
                         "CAMA MANUAL 2 MANIVELAS",
                     ]
-                    meses_ordem_full = ["Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"]
+                    meses_ordem_full = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"]
                     df_camas = (
                         df_rev_sum[df_rev_sum["ItemCanonical"].isin(camas_principais)]
                         .groupby(["Mês","ItemCanonical"], as_index=False)["Faturamento"].sum()
@@ -2712,8 +2728,8 @@ def main() -> None:
             st.subheader("Variação mensal do faturamento – AXX CARE (Waterfall)")
             try:
                 df_total_axx_hist = pd.DataFrame({
-                    "Mês": ["Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"],
-                    "Faturamento": [87831.11, 96184.47, 92286.01, 87803.67, 77499.87, 81856.05, 82609.95],
+                    "Mês": ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"],
+                    "Faturamento": [98579.58, 87831.11, 96184.47, 92286.01, 87803.67, 77499.87, 81856.05, 82609.95],
                 })
                 vals = df_total_axx_hist["Faturamento"].tolist()
                 meses = df_total_axx_hist["Mês"].tolist()
@@ -2743,8 +2759,8 @@ def main() -> None:
             try:
                 st.subheader("ARPU – Faturamento por vida (AXX CARE)")
                 # Reconta vidas por mês (B) para 2025-02..08
-                month_labels = ["Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"]
-                month_map_ym = {"2025-02":"Fevereiro","2025-03":"Março","2025-04":"Abril","2025-05":"Maio","2025-06":"Junho","2025-07":"Julho","2025-08":"Agosto"}
+                month_labels = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"]
+                month_map_ym = {"2025-01":"Janeiro","2025-02":"Fevereiro","2025-03":"Março","2025-04":"Abril","2025-05":"Maio","2025-06":"Junho","2025-07":"Julho","2025-08":"Agosto"}
                 month_sets_arpu = {m:set() for m in month_labels}
                 for file in sel_files:
                     try:
@@ -2793,8 +2809,9 @@ def main() -> None:
                     "Mês": month_labels,
                     "Vidas": [len(month_sets_arpu[m]) for m in month_labels],
                 })
-                # Faturamento informado manualmente por mês (inclui Fevereiro)
+                # Faturamento informado manualmente por mês (inclui Janeiro e Fevereiro)
                 total_rev_map = {
+                    "Janeiro": 98579.58,
                     "Fevereiro": 87831.11,
                     "Março": 96184.47,
                     "Abril": 92286.01,
@@ -2809,7 +2826,7 @@ def main() -> None:
                 fig_arpu = px.bar(
                     df_arpu, x="Mês", y="ARPU",
                     title="ARPU por mês (Geral – AXX CARE)",
-                    category_orders={"Mês": ["Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"]},
+                    category_orders={"Mês": ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"]},
                 )
                 fig_arpu.update_yaxes(tickprefix="R$ ", tickformat=",.2f")
                 show_plot(fig_arpu, use_container_width=True)
@@ -2834,7 +2851,7 @@ def main() -> None:
                 )
                 df_heat = df_heat[df_heat["Item"].isin(tops)]
                 df_pvt = df_heat.pivot(index="Item", columns="Mês", values="Quantidade").fillna(0)
-                df_pvt = df_pvt[[m for m in ["Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"] if m in df_pvt.columns]]
+                df_pvt = df_pvt[[m for m in ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"] if m in df_pvt.columns]]
                 fig_heat = px.imshow(
                     df_pvt,
                     color_continuous_scale="Blues",

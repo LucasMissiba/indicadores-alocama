@@ -1,0 +1,2 @@
+# This file is used internally by FFMPEG.
+file 'file:C:/Users/lucas.missiba/Desktop/projetoalocama/media/videos/manim_bg/360p30/partial_movie_files/ContinuousMotion/644350460_2204119191_2581460585.mp4'
