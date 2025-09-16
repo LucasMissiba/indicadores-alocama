@@ -1143,9 +1143,147 @@ def render_bar_chart_consolidated(df_totals: pd.DataFrame, item_order: List[str]
 def main() -> None:
     st.set_page_config(page_title=APP_TITLE, layout="wide")
     
-    # Loading screen removido - dashboard carrega diretamente
+    # Tela de carregamento moderna
+    if "loading_complete" not in st.session_state:
+        st.session_state["loading_complete"] = False
     
-    # Dashboard principal - carregamento direto
+    if not st.session_state["loading_complete"]:
+        # CSS para tela de carregamento
+        st.markdown("""
+        <style>
+            .stApp {
+                background: #000000 !important;
+            }
+            .main .block-container {
+                padding: 0 !important;
+                max-width: 100% !important;
+            }
+            body {
+                overflow: hidden !important;
+            }
+            .loading-screen {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: #000000;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                z-index: 9999;
+                color: white;
+                font-family: 'Segoe UI', 'Roboto', sans-serif;
+            }
+            .title {
+                font-size: 4.5rem;
+                font-weight: 700;
+                background: linear-gradient(45deg, #2563eb, #3b82f6, #60a5fa);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                text-shadow: 0 0 30px rgba(37, 99, 235, 0.5);
+                margin-bottom: 1rem;
+                letter-spacing: 4px;
+                animation: glow 2s ease-in-out infinite alternate;
+            }
+            .subtitle {
+                font-size: 1.3rem;
+                color: #e5e7eb;
+                margin-bottom: 3rem;
+                font-weight: 300;
+                letter-spacing: 1px;
+                opacity: 0.9;
+            }
+            .progress-container {
+                width: 400px;
+                height: 6px;
+                background: rgba(26, 26, 26, 0.8);
+                border-radius: 3px;
+                overflow: hidden;
+                margin-bottom: 1.5rem;
+                box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            }
+            .progress-bar {
+                height: 100%;
+                background: linear-gradient(90deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%);
+                border-radius: 3px;
+                box-shadow: 0 0 15px rgba(37, 99, 235, 0.6);
+                transition: width 0.3s ease;
+            }
+            .percentage {
+                font-size: 1.8rem;
+                font-weight: 600;
+                color: #2563eb;
+                text-shadow: 0 0 10px rgba(37, 99, 235, 0.8);
+                margin-bottom: 1rem;
+                letter-spacing: 2px;
+            }
+            .status {
+                font-size: 1rem;
+                color: #e5e7eb;
+                opacity: 0.8;
+                font-weight: 300;
+            }
+            @keyframes glow {
+                0% { text-shadow: 0 0 30px rgba(37, 99, 235, 0.5); }
+                100% { text-shadow: 0 0 40px rgba(37, 99, 235, 0.8), 0 0 60px rgba(59, 130, 246, 0.4); }
+            }
+        </style>
+        """, unsafe_allow_html=True)
+        
+        # Container para a tela de carregamento
+        loading_container = st.empty()
+        
+        # Simular carregamento
+        for i in range(101):
+            if i < 20:
+                status = "Inicializando sistema..."
+            elif i < 40:
+                status = "Carregando dados..."
+            elif i < 60:
+                status = "Processando informações..."
+            elif i < 80:
+                status = "Preparando visualizações..."
+            else:
+                status = "Finalizando carregamento..."
+            
+            with loading_container.container():
+                st.markdown(f"""
+                <div class="loading-screen">
+                    <div class="title">ALOCAMA</div>
+                    <div class="subtitle">Sistema de Contratos</div>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: {i}%;"></div>
+                    </div>
+                    <div class="percentage">{i}%</div>
+                    <div class="status">{status}</div>
+                </div>
+                """, unsafe_allow_html=True)
+            
+            time.sleep(0.03)
+        
+        # Fade out final
+        with loading_container.container():
+            st.markdown("""
+            <div class="loading-screen" style="opacity: 1; transition: opacity 2s ease-out;">
+                <div class="title">ALOCAMA</div>
+                <div class="subtitle">Sistema de Contratos</div>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 100%;"></div>
+                </div>
+                <div class="percentage">100%</div>
+                <div class="status">Carregamento concluído!</div>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        time.sleep(1.5)
+        st.session_state["loading_complete"] = True
+        st.rerun()
+        return
+    
+    # Dashboard principal
     
     # Se solicitado, rolar automaticamente para uma âncora específica após o rerun
     if st.session_state.get("__scroll_hash"):
