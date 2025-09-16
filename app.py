@@ -1794,7 +1794,8 @@ def main() -> None:
             xaxis_title="Itens (Janeiro / Fevereiro / Março / Abril / Maio / Junho / Julho / Agosto)",
             yaxis_title="Quantidade",
             showlegend=False,
-            height=600,  # Aumentar altura do gráfico
+            width=1200,  # Aumentar largura do gráfico
+            height=500,  # Altura padrão
             margin=dict(l=10, r=10, t=60, b=120),
             font=dict(size=12),
         )
