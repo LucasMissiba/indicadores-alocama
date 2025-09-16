@@ -1,0 +1,33 @@
+[server]
+# Configurações de segurança
+headless = true
+enableCORS = false
+enableXsrfProtection = true
+maxUploadSize = 50
+
+# Configurações de performance
+maxMessageSize = 50
+port = 8550
+
+[browser]
+# Configurações do navegador
+gatherUsageStats = false
+serverAddress = "localhost"
+
+[theme]
+# Tema escuro otimizado
+primaryColor = "#2563eb"
+backgroundColor = "#000000"
+secondaryBackgroundColor = "#1a1a2e"
+textColor = "#e5e7eb"
+font = "sans serif"
+
+[logger]
+# Configurações de logging
+level = "info"
+messageFormat = "%(asctime)s - %(levelname)s - %(message)s"
+
+[client]
+# Configurações do cliente
+showErrorDetails = false
+toolbarMode = "minimal"

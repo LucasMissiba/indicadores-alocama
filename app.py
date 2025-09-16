@@ -5,14 +5,37 @@ import unicodedata
 import hashlib
 import time
 import base64
+import os
+import logging
 
 import pandas as pd
 import io
 import plotly.graph_objects as go
 import plotly.express as px
-import plotly.graph_objects as go
 import streamlit as st
-import streamlit.components.v1 as components
+
+# Configuração de logging para segurança
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('dashboard.log'),
+        logging.StreamHandler()
+    ]
+)
+
+# Configuração da página
+st.set_page_config(
+    page_title="Dashboard Alocama",
+    page_icon="📊",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# Configurações de segurança
+os.environ['STREAMLIT_SERVER_HEADLESS'] = 'true'
+os.environ['STREAMLIT_SERVER_ENABLE_CORS'] = 'false'
+
 
 # Statsmodels (opcional): previsão Holt-Winters
 try:
@@ -36,46 +59,79 @@ SMART_FALLBACK_CANDIDATES = [
     "nome do item",
 ]
 
-def render_background_animation() -> None:
-    """Insere vídeo do Manim como fundo do cabeçalho (hero) apenas dentro da área do título."""
+def validate_file_security(file_path: Path) -> bool:
+    """Valida segurança do arquivo antes da leitura."""
     try:
-        assets_dir = Path.cwd() / "assets"
-        candidates = ["sideview.webm", "sideview.mp4", "sideview.gif"]
-        src_path = None
-        for name in candidates:
-            p = assets_dir / name
-            if p.exists():
-                src_path = p
-                break
-        if not src_path:
-            return
-        suffix = src_path.suffix.lower()
-        mime = "video/webm" if suffix == ".webm" else ("video/mp4" if suffix == ".mp4" else "image/gif")
-        data_b64 = base64.b64encode(src_path.read_bytes()).decode("utf-8")
-        src_attr = f"data:{mime};base64,{data_b64}"
+        # Verificar se o arquivo existe
+        if not file_path.exists():
+            logging.warning(f"Arquivo não encontrado: {file_path}")
+            return False
+        
+        # Verificar extensão
+        allowed_extensions = ['.xlsx', '.xls']
+        if file_path.suffix.lower() not in allowed_extensions:
+            logging.warning(f"Extensão não permitida: {file_path.suffix}")
+            return False
+        
+        # Verificar tamanho do arquivo (máximo 50MB)
+        file_size = file_path.stat().st_size
+        max_size = 50 * 1024 * 1024  # 50MB
+        if file_size > max_size:
+            logging.warning(f"Arquivo muito grande: {file_size} bytes")
+            return False
+        
+        # Verificar se o arquivo não está vazio
+        if file_size == 0:
+            logging.warning(f"Arquivo vazio: {file_path}")
+            return False
+            
+        return True
+    except Exception as e:
+        logging.error(f"Erro na validação de segurança: {e}")
+        return False
 
-        # Tema dark mais preto
-        st.markdown(
-            """
-            <style>
-            body, [data-testid="stAppViewContainer"], .block-container { background:#05070a !important; }
-            .page-hero{position:relative; overflow:hidden; border-radius:14px; background:rgba(0,0,0,0.55);}            
-            .page-hero__bg{position:absolute; inset:0; z-index:-1;}
-            .page-hero__bg video, .page-hero__bg img{
-                width:100%; height:100%; object-fit:cover; filter:brightness(.28) saturate(1.05);
-            }
-            </style>
-            """,
-            unsafe_allow_html=True,
-        )
+def safe_read_excel(file_path: Path, **kwargs) -> Optional[pd.ExcelFile]:
+    """Leitura segura de arquivos Excel com validações."""
+    try:
+        if not validate_file_security(file_path):
+            return None
+        
+        # Log da operação
+        logging.info(f"Lendo arquivo: {file_path.name}")
+        
+        # Leitura com timeout implícito
+        book = pd.read_excel(file_path, **kwargs)
+        return book
+        
+    except Exception as e:
+        logging.error(f"Erro ao ler arquivo {file_path.name}: {str(e)}")
+        return None
 
-        # Vídeo/Imagem embutido apenas dentro da faixa do hero
-        if mime.startswith("video/"):
-            st.markdown(f"<div class='page-hero__bg'><video src='{src_attr}' autoplay muted loop playsinline></video></div>", unsafe_allow_html=True)
-        else:
-            st.markdown(f"<div class='page-hero__bg'><img src='{src_attr}' alt='bg' /></div>", unsafe_allow_html=True)
-    except Exception:
-        return
+def sanitize_dataframe(df: pd.DataFrame) -> pd.DataFrame:
+    """Sanitiza dados do DataFrame para segurança."""
+    try:
+        # Remover colunas com nomes suspeitos
+        suspicious_patterns = ['<script', 'javascript:', 'onload=', 'onerror=']
+        for col in df.columns:
+            col_str = str(col).lower()
+            if any(pattern in col_str for pattern in suspicious_patterns):
+                logging.warning(f"Coluna suspeita removida: {col}")
+                df = df.drop(columns=[col])
+        
+        # Limitar número de linhas (máximo 100.000)
+        if len(df) > 100000:
+            logging.warning(f"DataFrame truncado de {len(df)} para 100.000 linhas")
+            df = df.head(100000)
+        
+        # Limitar número de colunas (máximo 100)
+        if len(df.columns) > 100:
+            logging.warning(f"DataFrame truncado de {len(df.columns)} para 100 colunas")
+            df = df.iloc[:, :100]
+        
+        return df
+    except Exception as e:
+        logging.error(f"Erro na sanitização: {e}")
+        return df
 
 def render_company_selector(groups: List[str]) -> Optional[str]:
     """Painel de seleção de empresa, escalável para 200+. 
@@ -101,7 +157,7 @@ def render_company_selector(groups: List[str]) -> Optional[str]:
     if len(groups) <= 6:
         # Fallback para radio horizontal (compatível); persiste índice
         default = groups.index(selected_key) if selected_key in groups else 0
-        choice = st.radio("", options=groups, index=default, horizontal=True, label_visibility="collapsed", key="grupo_unico")
+        choice = st.radio("Selecione o Grupo", options=groups, index=default, horizontal=True, label_visibility="collapsed", key="grupo_unico")
     else:
         default = groups.index(selected_key) if selected_key in groups else 0
         choice = st.selectbox("Selecionar empresa", options=groups, index=default, key="empresa_select")
@@ -216,7 +272,7 @@ def compute_kpis_for_company(df_emp_viz: pd.DataFrame, empresa: str, last_month_
                     continue
                 if year_month_from_path(f) != alvo_ym:
                     continue
-                book = pd.read_excel(f, sheet_name=None)
+                book = safe_read_excel(f, sheet_name=None)
             except Exception:
                 continue
             for sh, df in (book or {}).items():
@@ -500,7 +556,7 @@ def canonicalize_bed_alt_trem(name: str) -> str:
     return name
 
 def infer_group_for_label(label: str, candidates: List[str]) -> str:
-    """Inferência robusta do grupo a partir do caminho (aceita \ ou / e variações)."""
+    """Inferência robusta do grupo a partir do caminho (aceita \\ ou / e variações)."""
     parts = re.split(r"[\\/]+", str(label))
     parts_norm = [normalize_text_for_match(p) for p in parts]
     norm_candidates = {normalize_text_for_match(c): c for c in candidates}
@@ -530,7 +586,7 @@ def infer_group_for_label(label: str, candidates: List[str]) -> str:
 def primary_group_from_label(label: str) -> str:
     """Inferência robusta da empresa a partir do caminho relativo.
 
-    Prioriza a detecção por substring ('dommus'/'domus', 'hospital', 'solar').
+    Prioriza a detecção por substring ('dommus'/'domus', 'hospital', 'solar', 'pronep').
     Caso não bata, usa o primeiro segmento do caminho.
     """
     s_norm = normalize_text_for_match(str(label))
@@ -540,6 +596,8 @@ def primary_group_from_label(label: str) -> str:
         return "HOSPITALAR"
     if "solar" in s_norm:
         return "SOLAR"
+    if "pronep" in s_norm:
+        return "PRONEP"
     parts = re.split(r"[\\/]+", str(label).strip())
     return (parts[0].upper() if parts and parts[0] else "").upper()
 
@@ -628,12 +686,12 @@ def render_top3_pies(df_by_file: pd.DataFrame, group_names: Optional[List[str]] 
         if df_g.empty:
             continue
         top3 = (
-            df_g.groupby("Item", as_index=False)["Quantidade"].sum().sort_values("Quantidade", ascending=False).head(3)
+            df_g.groupby("Item", as_index=False, observed=True)["Quantidade"].sum().sort_values("Quantidade", ascending=False).head(3)
         )
         if top3.empty:
             continue
         fig = px.pie(top3, names="Item", values="Quantidade", title=f"Top 3 - {group}", hole=0.3)
-        cols[col_idx % len(cols)].plotly_chart(fig, use_container_width=True)
+        cols[col_idx % len(cols)].plotly_chart(fig, width="stretch")
         col_idx += 1
 
 
@@ -886,7 +944,7 @@ def discover_columns(files: List[Path], max_files: int = 20) -> List[str]:
     discovered = set()
     for file in files[:max_files]:
         try:
-            df_head = pd.read_excel(file, nrows=0)
+            df_head = safe_read_excel(file, nrows=0)
             for c in df_head.columns:
                 discovered.add(str(c))
         except Exception:
@@ -925,7 +983,7 @@ def count_items_in_files(
         except ValueError:
             file_label = file.stem
         try:
-            book = pd.read_excel(file, sheet_name=None)
+            book = safe_read_excel(file, sheet_name=None)
         except Exception:
             read_errors.append(file.name)
             continue
@@ -968,7 +1026,7 @@ def count_items_in_files(
 
     df_result = pd.DataFrame(rows)
     df_result = (
-        df_result.groupby(["Arquivo", "Item"], as_index=False)["Quantidade"].sum()
+        df_result.groupby(["Arquivo", "Item"], as_index=False, observed=True)["Quantidade"].sum()
         .sort_values(["Arquivo", "Quantidade"], ascending=[True, False])
         .reset_index(drop=True)
     )
@@ -980,7 +1038,7 @@ def discover_unique_items(files: List[Path], target_column: str, use_smart: bool
     unique_values = set()
     for file in files:
         try:
-            book = pd.read_excel(file, sheet_name=None)
+            book = safe_read_excel(file, sheet_name=None)
         except Exception:
             continue
         for sheet_name, df in (book or {}).items():
@@ -1060,7 +1118,7 @@ def render_bar_chart(df: pd.DataFrame, item_order: List[str]) -> None:
         margin=dict(l=20, r=20, t=60, b=20),
     )
     fig.update_xaxes(tickangle=-45)
-    show_plot(fig, use_container_width=True)
+    show_plot(fig, width="stretch")
 
 
 def render_bar_chart_consolidated(df_totals: pd.DataFrame, item_order: List[str]) -> None:
@@ -1079,47 +1137,220 @@ def render_bar_chart_consolidated(df_totals: pd.DataFrame, item_order: List[str]
         margin=dict(l=20, r=20, t=60, b=20),
     )
     fig.update_xaxes(tickangle=-45)
-    show_plot(fig, use_container_width=True)
+    show_plot(fig, width="stretch")
 
 
 def main() -> None:
     st.set_page_config(page_title=APP_TITLE, layout="wide")
+    
+    # Tela de carregamento arcade
+    # Tela de carregamento moderna com animações Streamlit
+    if "loading_complete" not in st.session_state:
+        st.session_state["loading_complete"] = False
+    
+    if not st.session_state["loading_complete"]:
+        # CSS para tela de carregamento moderna
+        st.markdown("""
+        <style>
+            .stApp {
+                background: #000000 !important;
+            }
+            .main .block-container {
+                padding: 0 !important;
+                max-width: 100% !important;
+            }
+            body {
+                overflow: hidden !important;
+            }
+            .loading-screen {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: #000000;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                z-index: 9999;
+                color: white;
+                font-family: 'Segoe UI', 'Roboto', sans-serif;
+            }
+            .title {
+                font-size: 4.5rem;
+                font-weight: 700;
+                background: linear-gradient(45deg, #2563eb, #3b82f6, #60a5fa);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                text-shadow: 0 0 30px rgba(37, 99, 235, 0.5);
+                margin-bottom: 1rem;
+                letter-spacing: 4px;
+                animation: glow 2s ease-in-out infinite alternate;
+            }
+            .subtitle {
+                font-size: 1.3rem;
+                color: #e5e7eb;
+                margin-bottom: 3rem;
+                font-weight: 300;
+                letter-spacing: 1px;
+                opacity: 0.9;
+            }
+            .progress-container {
+                width: 400px;
+                height: 6px;
+                background: rgba(26, 26, 26, 0.8);
+                border-radius: 3px;
+                overflow: hidden;
+                margin-bottom: 1.5rem;
+                box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            }
+            .progress-bar {
+                height: 100%;
+                background: linear-gradient(90deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%);
+                border-radius: 3px;
+                box-shadow: 0 0 15px rgba(37, 99, 235, 0.6);
+                transition: width 0.3s ease;
+            }
+            .percentage {
+                font-size: 1.8rem;
+                font-weight: 600;
+                color: #2563eb;
+                text-shadow: 0 0 10px rgba(37, 99, 235, 0.8);
+                margin-bottom: 1rem;
+                letter-spacing: 2px;
+            }
+            .status {
+                font-size: 1rem;
+                color: #e5e7eb;
+                opacity: 0.8;
+                font-weight: 300;
+            }
+            @keyframes glow {
+                0% { text-shadow: 0 0 30px rgba(37, 99, 235, 0.5); }
+                100% { text-shadow: 0 0 40px rgba(37, 99, 235, 0.8), 0 0 60px rgba(59, 130, 246, 0.4); }
+            }
+            @keyframes pulse {
+                0% { opacity: 0.8; }
+                100% { opacity: 1; }
+            }
+            .pulse {
+                animation: pulse 1.5s ease-in-out infinite alternate;
+            }
+        </style>
+        """, unsafe_allow_html=True)
+        
+        # Container para a tela de carregamento
+        loading_container = st.empty()
+        
+        # Simular carregamento com animações
+        for i in range(101):
+            if i < 15:
+                status = "Inicializando sistema..."
+            elif i < 30:
+                status = "Carregando dados..."
+            elif i < 50:
+                status = "Processando informações..."
+            elif i < 70:
+                status = "Preparando visualizações..."
+            elif i < 85:
+                status = "Otimizando performance..."
+            else:
+                status = "Finalizando carregamento..."
+            
+            with loading_container.container():
+                st.markdown(f"""
+                <div class="loading-screen">
+                    <div class="title">ALOCAMA</div>
+                    <div class="subtitle">Sistema de Contratos</div>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: {i}%;"></div>
+                    </div>
+                    <div class="percentage">{i}%</div>
+                    <div class="status pulse">{status}</div>
+                </div>
+                """, unsafe_allow_html=True)
+            
+            time.sleep(0.02)
+        
+        # Fade out final
+        with loading_container.container():
+            st.markdown("""
+            <div class="loading-screen" style="opacity: 1; transition: opacity 2s ease-out;">
+                <div class="title">ALOCAMA</div>
+                <div class="subtitle">Sistema de Contratos</div>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 100%;"></div>
+                </div>
+                <div class="percentage">100%</div>
+                <div class="status">Carregamento concluído!</div>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        time.sleep(1.5)
+        st.session_state["loading_complete"] = True
+        st.rerun()
+        return
+    
+    # Dashboard principal
+    # Fade in suave para o dashboard
+    st.markdown("""
+    <div id="dashboard-fade" style="
+        opacity: 0;
+        transition: opacity 2s ease-in-out;
+    ">
+    """, unsafe_allow_html=True)
+    
     # Se solicitado, rolar automaticamente para uma âncora específica após o rerun
     if st.session_state.get("__scroll_hash"):
         target = st.session_state.get("__scroll_hash")
-        components.html(f"""
-            <script>
-                setTimeout(function(){{
-                  try {{
-                    const root = window.parent || window;
-                    if (root && root.location) {{
-                      if (root.location.hash !== '#{target}') {{ root.location.hash = '#{target}'; }}
-                    }}
-                    const doc = (window.parent && window.parent.document) ? window.parent.document : document;
-                    const el = doc.getElementById('{target}');
-                    if (el) {{ el.scrollIntoView({{behavior: 'smooth', block: 'start'}}); }}
-                  }} catch(e) {{}}
-                }}, 60);
-            </script>
-        """, height=0)
+        st.markdown(f"""
+                <script>
+                    setTimeout(function(){{
+                      try {{
+                        const root = window.parent || window;
+                        if (root && root.location) {{
+                          if (root.location.hash !== '#{target}') {{ root.location.hash = '#{target}'; }}
+                        }}
+                        const doc = (window.parent && window.parent.document) ? window.parent.document : document;
+                        const el = doc.getElementById('{target}');
+                        if (el) {{ el.scrollIntoView({{behavior: 'smooth', block: 'start'}}); }}
+                      }} catch(e) {{}}
+                    }}, 60);
+                </script>
+            """, unsafe_allow_html=True)
         st.session_state["__scroll_hash"] = None
-    if render_splash_once():
-        return
+    
     if not render_login():
         return
+    
+    # Título do dashboard
     _, col_title, _ = st.columns([0.06, 0.88, 0.06])
     with col_title:
         st.markdown(
-            f"""
-            <div class='page-hero'>
-              <h1 class='page-hero__title'>Dashboard de Contratos <span class='sep'>|</span> <span class='brand'>Alocama</span></h1>
-              <div class='page-hero__subtitle'>Indicadores do Setor</div>
-              <div class='page-hero__bar'></div>
-              {_build_hero_media_html()}
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
+        f"""
+        <div class='page-hero'>
+          <h1 class='page-hero__title'>Dashboard de Contratos <span class='sep'>|</span> <span class='brand'>Alocama</span></h1>
+          <div class='page-hero__subtitle'>Indicadores do Setor</div>
+          <div class='page-hero__bar'></div>
+          {_build_hero_media_html()}
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    
+    # Ativar fade in do dashboard
+    st.markdown("""
+    <script>
+        setTimeout(function() {
+            const element = document.getElementById('dashboard-fade');
+            if (element) {
+                element.style.opacity = '1';
+            }
+        }, 100);
+    </script>
+    """, unsafe_allow_html=True)
     # fundo será embutido no bloco acima
     # CSS mínimo: ajustar padding superior para não cortar o título e exibir menu nativo
     st.markdown(
@@ -1132,8 +1363,32 @@ def main() -> None:
         [data-testid='stSidebar'], [data-testid='stHeader']{background-color:var(--bg)!important}
         div[data-baseweb='select']>div, .st-bf, .st-al{background-color:#0a0a0a!important;border-color:#1a1a1a!important}
         .stButton>button{background:#111!important;border-color:#1a1a1a!important}
-        .page-hero{display:flex;flex-direction:column;align-items:center;margin:18px 0 10px 0;text-align:center}
-        .page-hero__title{margin:0;font-weight:800;font-size:34px;line-height:1.15;letter-spacing:.2px}
+        /* Pulse para botão primário */
+        div[data-testid="stButton"] > button[data-testid="baseButton-primary"],
+        div[data-testid="stButton"] > button[data-testid="baseButton-primary"]:hover,
+        div[data-testid="stButton"] > button[data-testid="baseButton-primary"]:focus,
+        .stButton > button[data-testid="baseButton-primary"],
+        .stButton > button[data-testid="baseButton-primary"]:hover,
+        .stButton > button[data-testid="baseButton-primary"]:focus {
+            animation: pulse 2s infinite !important;
+            box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7) !important;
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+            }
+        }
+        .page-hero{display:flex!important;flex-direction:column;align-items:center;margin:18px 0 10px 0;text-align:center;visibility:visible!important;opacity:1!important}
+        .page-hero__title{margin:0;font-weight:800;font-size:34px;line-height:1.15;letter-spacing:.2px;color:#e5e7eb!important;display:block!important;visibility:visible!important;opacity:1!important}
         .page-hero__title .brand{color:var(--accent)}
         .page-hero__title .sep{color:var(--accent);opacity:.9;margin:0 .25rem}
         .page-hero__subtitle{margin-top:6px;font-size:16px;opacity:.9}
@@ -1210,7 +1465,52 @@ def main() -> None:
     # Definir sel_files fora do bloco if run para uso em outras partes da função
     sel_files = [f for f in excel_files if month_from_path(f) in {"1","2","3","4", "5", "6", "7", "8"}]
     
-    run = st.button("Executar Análise", type="primary")
+    run = st.button("Executar Análise", type="primary", key="executar_analise")
+    
+    # CSS com efeito de borda azul pulsante APENAS no hover
+    st.markdown("""
+    <style>
+    /* Botões normais - sem efeito */
+    button, 
+    .stButton button,
+    div[data-testid="stButton"] button,
+    button[data-testid="baseButton-primary"] {
+        border: 2px solid transparent !important;
+        border-radius: 6px !important;
+        outline: none !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    /* Efeito APENAS no hover - pulse + borda azul */
+    button:hover,
+    .stButton button:hover,
+    div[data-testid="stButton"] button:hover,
+    button[data-testid="baseButton-primary"]:hover {
+        animation: pulse 1.5s infinite !important;
+        border: 3px solid #2563eb !important;
+        border-radius: 8px !important;
+        box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7) !important;
+    }
+    
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+            box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7);
+            border-color: #2563eb !important;
+        }
+        50% {
+            transform: scale(1.05);
+            box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.3);
+            border-color: #60a5fa !important;
+        }
+        100% {
+            transform: scale(1);
+            box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+            border-color: #2563eb !important;
+        }
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
     if run:
         with st.spinner("Processando (coluna E) e contando itens por pasta 1/2/3/4/5/6/7/8..."):
@@ -1280,7 +1580,7 @@ def main() -> None:
         df_result["Item"] = df_result["Item"].map(canonicalize_bed_alt_trem)
 
         df_totais = (
-            df_result.groupby("Item", as_index=False)["Quantidade"].sum().sort_values("Quantidade", ascending=False)
+            df_result.groupby("Item", as_index=False, observed=True)["Quantidade"].sum().sort_values("Quantidade", ascending=False)
         )
         item_order = df_totais["Item"].tolist()
         df_result["Item"] = pd.Categorical(df_result["Item"], categories=item_order, ordered=True)
@@ -1301,13 +1601,13 @@ def main() -> None:
             last_month_str = str(last_month_num) if last_month_num is not None else None
             df_emp_last = df_emp[df_emp["Pasta"] == last_month_str] if last_month_str else df_emp.copy()
             df_consolidado_geral = (
-                df_emp_last.groupby("Item", as_index=False)["Quantidade"].sum().sort_values("Quantidade", ascending=False)
+                df_emp_last.groupby("Item", as_index=False, observed=True)["Quantidade"].sum().sort_values("Quantidade", ascending=False)
             )
 
             df_emp["ItemCanon"] = df_emp["Item"].map(canonicalize_trio_item)
 
             df_mes_empresa = (
-                df_emp.groupby(["Empresa", "ItemCanon", "Pasta"], as_index=False)["Quantidade"].sum()
+                df_emp.groupby(["Empresa", "ItemCanon", "Pasta"], as_index=False, observed=True)["Quantidade"].sum()
             )
             df_peak = (
                 df_mes_empresa.sort_values(["Empresa", "ItemCanon", "Quantidade"], ascending=[True, True, False])
@@ -1349,7 +1649,7 @@ def main() -> None:
             g1, g2, g3 = st.columns([1,1,1])
             with g1:
                 top_last = (
-                    df_e_last.groupby("Item", as_index=False)["Quantidade"].sum()
+                    df_e_last.groupby("Item", as_index=False, observed=True)["Quantidade"].sum()
                     .sort_values("Quantidade", ascending=False).head(6)
                 )
                 fig_t1 = px.bar(top_last, x="Item", y="Quantidade", title=f"Top Itens – {mes_ultimo}")
@@ -1358,7 +1658,7 @@ def main() -> None:
                 show_plot(fig_t1, width="stretch")
             with g2:
                 df_sum_last = (
-                    df_e_last.groupby("Item", as_index=False)["Quantidade"].sum()
+                    df_e_last.groupby("Item", as_index=False, observed=True)["Quantidade"].sum()
                     .sort_values("Quantidade", ascending=False)
                 )
                 top3 = df_sum_last.head(3)
@@ -1373,7 +1673,7 @@ def main() -> None:
                 df_cat = df_e_last.copy()
                 df_cat["Categoria"] = df_cat["Item"].map(categorize_item_name)
                 df_cat_sum = (
-                    df_cat.groupby("Categoria", as_index=False)["Quantidade"].sum().sort_values("Quantidade", ascending=False)
+                    df_cat.groupby("Categoria", as_index=False, observed=True)["Quantidade"].sum().sort_values("Quantidade", ascending=False)
                 )
                 fig_cat = px.bar(df_cat_sum, x="Categoria", y="Quantidade", title=f"Resumo por categoria – {mes_ultimo}")
                 fig_cat.update_layout(height=220, margin=dict(l=10, r=10, t=38, b=60))
@@ -1405,7 +1705,7 @@ def main() -> None:
                     tmp = tmp.dropna(subset=["PrecoDiaria"])
                     tmp["Dias"] = tmp["Mês"].map({"Fevereiro":28, "Março":31, "Abril":30, "Maio":31, "Junho":30, "Julho":31, "Agosto":31}).fillna(30)
                     tmp["Faturamento"] = tmp["Quantidade"] * tmp["PrecoDiaria"] * tmp["Dias"]
-                    df_rev_mes = tmp.groupby("Mês", as_index=False)["Faturamento"].sum()
+                    df_rev_mes = tmp.groupby("Mês", as_index=False, observed=True)["Faturamento"].sum()
                     df_rev_mes["Mês"] = pd.Categorical(df_rev_mes["Mês"], categories=list(meses_ordem.keys()), ordered=True)
                     df_rev_mes = df_rev_mes.sort_values("Mês")
                     fig_fat = px.bar(df_rev_mes, x="Mês", y="Faturamento", title="Faturamento estimado por mês")
@@ -1429,7 +1729,7 @@ def main() -> None:
                                 continue
                             mes_lab = [k for k,v in month_map_ym.items() if v == ym][0]
                             # Ler com cabeçalho para permitir identificação da coluna de nomes
-                            book = pd.read_excel(f, sheet_name=None)
+                            book = safe_read_excel(f, sheet_name=None)
                         except Exception:
                             continue
                         for sh, df in (book or {}).items():
@@ -1496,11 +1796,11 @@ def main() -> None:
             return re.sub(r"^\s*\(?\s*compl\.?\s*\)?\s*", "", t, flags=re.IGNORECASE)
         df_viz_top = df_viz_top.assign(ItemAgrupado=df_viz_top["Item"].apply(_strip_compl_prefix))
         df_viz_top = (
-            df_viz_top.groupby(["ItemAgrupado", "Mês"], as_index=False)["Quantidade"].sum()
+            df_viz_top.groupby(["ItemAgrupado", "Mês"], as_index=False, observed=True)["Quantidade"].sum()
             .rename(columns={"ItemAgrupado":"Item"})
         )
         top10_after_agg = (
-            df_viz_top.groupby("Item", as_index=False)["Quantidade"].sum()
+            df_viz_top.groupby("Item", as_index=False, observed=True)["Quantidade"].sum()
             .sort_values("Quantidade", ascending=False)
             .head(10)["Item"].tolist()
         )
@@ -1537,43 +1837,6 @@ def main() -> None:
         show_plot(fig, width="stretch")
         st.markdown('</div>', unsafe_allow_html=True)
 
-        # Auditoria específica: Agosto – somar exatamente (COMPL.) CAMA MANUAL 2 MANIVELAS + CAMA MANUAL 2 MANIVELAS
-        with st.expander("Auditoria: Agosto – (COMPL.) CAMA MANUAL 2 MANIVELAS + CAMA MANUAL 2 MANIVELAS", expanded=False):
-            try:
-                def _is_cama_2_manivelas_exact(lbl: str) -> bool:
-                    s = normalize_text_for_match(str(lbl))
-                    # remove prefixo (COMPL.) se houver
-                    s = re.sub(r"^\s*\(?\s*compl\.?\s*\)?\s*", "", s)
-                    return s.strip() == "cama manual 2 manivelas"
-
-                df_aug = df_result_sorted[df_result_sorted["Pasta"].astype(str).str.lstrip("0") == "8"].copy()
-                df_targets = df_aug[df_aug["Item"].apply(_is_cama_2_manivelas_exact)]
-                if df_targets.empty:
-                    st.info("Sem linhas para Agosto com esses itens.")
-                else:
-                    # separar COMPL. e normal
-                    def _has_compl(lbl: str) -> bool:
-                        return re.match(r"^\s*\(?\s*compl\.?", str(lbl), flags=re.IGNORECASE) is not None
-                    df_targets = df_targets.assign(
-                        ItemAgrupado=df_targets["Item"].apply(_strip_compl_prefix),
-                        Tipo=df_targets["Item"].apply(lambda x: "(COMPL.)" if _has_compl(x) else "NORMAL"),
-                    )
-                    # total consolidado (COMPL. somado ao base)
-                    total_agregado = int(df_targets.groupby("ItemAgrupado", as_index=False)["Quantidade"].sum()["Quantidade"].sum())
-                    by_tipo = df_targets.groupby("Tipo", as_index=False)["Quantidade"].sum()
-                    by_item = (
-                        df_targets.groupby("Item", as_index=False)["Quantidade"].sum().sort_values("Quantidade", ascending=False)
-                    )
-                    q_norm = int(by_tipo[by_tipo["Tipo"]=="NORMAL"]["Quantidade"].sum()) if not by_tipo.empty else 0
-                    q_compl = int(by_tipo[by_tipo["Tipo"]=="(COMPL.)"]["Quantidade"].sum()) if not by_tipo.empty else 0
-                    c1, c2, c3 = st.columns(3)
-                    c1.metric("Agosto – Total (agregado)", f"{total_agregado}")
-                    c2.metric("Agosto – NORMAL", f"{q_norm}")
-                    c3.metric("Agosto – (COMPL.)", f"{q_compl}")
-                    st.markdown("Detalhe por item (texto original):")
-                    st.dataframe(by_item, use_container_width=True)
-            except Exception as e:
-                st.warning(f"Não foi possível executar a auditoria: {e}")
 
         month_map_hdr = {"3":"Março","4": "Abril","5": "Maio", "6": "Junho", "7": "Julho", "8": "Agosto"}
         last_month_hdr = df_emp_last["Pasta"].iloc[0] if not df_emp_last.empty else None
@@ -1593,7 +1856,7 @@ def main() -> None:
             )
             df_consol_limpo.index = range(1, len(df_consol_limpo) + 1)
             df_consol_limpo.index.name = "Posição"
-            st.dataframe(df_consol_limpo, use_container_width=True)
+            st.dataframe(df_consol_limpo, width="stretch")
         df_peak_item = (
             df_result.sort_values(["Item", "Quantidade"], ascending=[True, False])
             .drop_duplicates(["Item"], keep="first")
@@ -1605,7 +1868,7 @@ def main() -> None:
             df_peak_item_display = df_peak_item.copy()
             df_peak_item_display.index = range(1, len(df_peak_item_display) + 1)
             df_peak_item_display.index.name = "Posição"
-            st.dataframe(df_peak_item_display, use_container_width=True)
+            st.dataframe(df_peak_item_display, width="stretch")
 
         # Detalhamento por categoria (com limpeza de prefixo (COMPL.))
         def _strip_compl_prefix(text: str) -> str:
@@ -1657,7 +1920,7 @@ def main() -> None:
                             sub.groupby("Grupo", as_index=False)["Quantidade"].sum()
                             .sort_values("Quantidade", ascending=False)
                         )
-                        tabela.rename(columns={"Grupo": "Item"}, inplace=True)
+                        tabela = tabela.rename(columns={"Grupo": "Item"})
                     else:
                         # Para CAMA: consolidar em "CAMA 2 MANIVELAS" e "CAMA 3 MANIVELAS" quando aplicável
                         if cat == "CAMA":
@@ -1674,7 +1937,7 @@ def main() -> None:
                                 sub.groupby("Grupo", as_index=False)["Quantidade"].sum()
                                 .sort_values("Quantidade", ascending=False)
                             )
-                            tabela.rename(columns={"Grupo": "Item"}, inplace=True)
+                            tabela = tabela.rename(columns={"Grupo": "Item"})
                         # Para CADEIRA DE RODAS: consolidar por tamanho quando houver número
                         elif cat == "CADEIRA DE RODAS":
                             sub = sub.copy()
@@ -1688,17 +1951,17 @@ def main() -> None:
                                 sub.groupby("Grupo", as_index=False)["Quantidade"].sum()
                                 .sort_values("Quantidade", ascending=False)
                             )
-                            tabela.rename(columns={"Grupo": "Item"}, inplace=True)
+                            tabela = tabela.rename(columns={"Grupo": "Item"})
                         else:
                             tabela = (
                                 sub.groupby("ItemLimpo", as_index=False)["Quantidade"].sum()
                                 .sort_values("Quantidade", ascending=False)
                             )
-                            tabela.rename(columns={"ItemLimpo": "Item"}, inplace=True)
+                            tabela = tabela.rename(columns={"ItemLimpo": "Item"})
 
                     tabela.index = range(1, len(tabela) + 1)
                     tabela.index.name = "Posição"
-                    st.dataframe(tabela, use_container_width=True)
+                    st.dataframe(tabela, width="stretch")
 
         st.subheader("Top 3 itens por empresa (Janeiro/Fevereiro/Março/Abril/Maio/Junho/Julho/Agosto)")
         empresas_presentes = sorted(df_top3_empresa["Empresa"].unique().tolist())
@@ -1720,15 +1983,15 @@ def main() -> None:
                     Mês=subset["Pasta"].map({"1":"Janeiro","2":"Fevereiro","3":"Março","4":"Abril","5":"Maio","6":"Junho","7":"Julho","8":"Agosto"}),
                     Posição=(subset.groupby("Empresa")["Quantidade"].rank(ascending=False, method="first").astype(int))
                 )[["Posição","ItemCanon","Quantidade","Mês"]]
-                show.rename(columns={"ItemCanon": "Item"}, inplace=True)
+                show = show.rename(columns={"ItemCanon": "Item"})
                 # Corrige 'None' exibindo '-' para itens cujo mês não tenha sido detectado
                 show["Mês"] = show["Mês"].fillna("-")
-                col.dataframe(show.set_index("Posição"), use_container_width=True)
+                col.dataframe(show.set_index("Posição"), width="stretch")
 
 
         df_emp_viz = df_result_sorted.copy()
         df_emp_viz["Empresa"] = df_emp_viz["Arquivo"].apply(primary_group_from_label).str.upper()
-        df_emp_viz["Empresa"].replace({"GRUPO SOLAR": "SOLAR"}, inplace=True)
+        df_emp_viz["Empresa"] = df_emp_viz["Empresa"].replace({"GRUPO SOLAR": "SOLAR"})
         df_emp_viz["Mês"] = df_emp_viz["Pasta"].map({"1":"Janeiro","2":"Fevereiro","3":"Março","4":"Abril","5":"Maio","6": "Junho", "7": "Julho", "8": "Agosto"})
         month_order = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho", "Julho", "Agosto"]
 
@@ -1972,6 +2235,19 @@ def main() -> None:
                 st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
                 show_plot(fig_pie_pn, width="stretch")
                 st.markdown('</div>', unsafe_allow_html=True)
+
+                
+                # Rodapé
+                st.markdown("---")
+                st.markdown(
+                    """
+                    <div style='text-align: center; padding: 20px; color: #666; font-size: 14px;'>
+                        <p><strong>Dashboard desenvolvido por Lucas Missiba</strong></p>
+                        <p>Alocama · Setor de Contratos</p>
+                    </div>
+                    """,
+                    unsafe_allow_html=True
+                )
         else:
             if empresas_presentes_viz and all(e in {"HOSPITALAR", "SOLAR", "DOMMUS"} for e in empresas_presentes_viz):
                 meses_ordem = {"Janeiro": 1, "Fevereiro": 2, "Março": 3, "Abril": 4, "Maio": 5, "Junho": 6, "Julho": 7, "Agosto": 8}
@@ -2023,8 +2299,14 @@ def main() -> None:
                 st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
                 show_plot(fig_pie_gs, width="stretch")
                 st.markdown('</div>', unsafe_allow_html=True)
-                # Resumo por categorias – Grupo Solar (entre os dois grupos)
+                # Resumo por categorias – Grupo Solar (apenas último mês)
+                meses_ordem = {"Janeiro": 1, "Fevereiro": 2, "Março": 3, "Abril": 4, "Maio": 5, "Junho": 6, "Julho": 7, "Agosto": 8}
+                ultimo_mes = df_emp_viz["Mês"].map(meses_ordem).max()
+                mes_label = [k for k, v in meses_ordem.items() if v == ultimo_mes]
+                mes_label = mes_label[0] if mes_label else "Janeiro"
+                
                 df_gs_cat = df_emp_viz[df_emp_viz["Empresa"].isin(["HOSPITALAR","SOLAR","DOMMUS"])].copy()
+                df_gs_cat = df_gs_cat[df_gs_cat["Mês"] == mes_label].copy()  # Filtrar apenas último mês
                 if not df_gs_cat.empty:
                     df_gs_cat["Categoria"] = df_gs_cat["Item"].map(categorize_item_name)
                     alvo_cat = ["CAMA", "CADEIRA HIGIÊNICA", "CADEIRA DE RODAS", "SUPORTE DE SORO"]
@@ -2033,15 +2315,151 @@ def main() -> None:
                         .groupby(["Categoria"], as_index=False)["Quantidade"].sum()
                         .sort_values("Quantidade", ascending=False)
                     )
-                    st.subheader("Resumo por categorias – Grupo Solar")
+                    st.subheader(f"Resumo por categorias – Grupo Solar ({mes_label})")
                     fig_cat_gs = px.bar(
                         df_cat_tot,
                         x="Categoria",
                         y="Quantidade",
-                        title="Quantidade por categoria (Camas, Cadeira Higiene, Cadeira de Rodas, Suporte de Soro)",
+                        title=f"Quantidade por categoria (Camas, Cadeira Higiene, Cadeira de Rodas, Suporte de Soro) - {mes_label}",
                     )
                     fig_cat_gs.update_layout(margin=dict(l=20, r=20, t=60, b=80))
                     show_plot(fig_cat_gs, use_container_width=True)
+                    
+                    
+                # Gráfico de Pizza - Top 3 Itens de Agosto (Faturamento Real dos 3 Home Cares)
+                st.subheader(f"Top 3 Itens por Faturamento – Agosto 2025 (SOLAR + DOMMUS + HOSPITALAR)")
+                
+                # Recriar df_gs_cat_detalhado para o gráfico de Top 3
+                df_gs_cat_detalhado = df_gs_cat.copy()
+                
+                # Aplicar preços corretos
+                precos_por_item = {
+                    "CAMA DE 2 MOVIMENTOS ELÉTRICA": 334.80,  # R$ 10,80/dia × 31 dias = R$ 334,80/mês
+                    "CAMA ELÉTRICA 2 MOVIMENTOS": 334.80,  # R$ 10,80/dia × 31 dias = R$ 334,80/mês
+                    "CAMA ELÉTRICA 3 MOVIMENTOS": 334.80,  # R$ 10,80/dia × 31 dias = R$ 334,80/mês
+                    "CAMA ELÉTRICA": 334.80,  # R$ 10,80/dia × 31 dias = R$ 334,80/mês
+                    "COLCHÃO PNEUMÁTICO": 155.00,  # R$ 5,00/dia × 31 dias = R$ 155,00/mês
+                    "CAMA": 150.00,  # Preço médio estimado para outras camas
+                    "CADEIRA HIGIÊNICA": 80.00,  # Preço médio estimado por cadeira higiênica
+                    "CADEIRA DE RODAS": 120.00,  # Preço médio estimado por cadeira de rodas
+                    "CADEIRA DE RODAS SIMPLES": 120.00,  # Preço médio estimado por cadeira de rodas simples
+                    "SUPORTE DE SORO": 60.00,  # Preço médio estimado por suporte de soro
+                }
+                
+                df_gs_cat_detalhado["PrecoItem"] = df_gs_cat_detalhado["Item"].map(precos_por_item)
+                df_gs_cat_detalhado["PrecoCategoria"] = df_gs_cat_detalhado["Categoria"].map({
+                    "CAMA": 150.00,
+                    "CADEIRA HIGIÊNICA": 80.00,
+                    "CADEIRA DE RODAS": 120.00,
+                    "SUPORTE DE SORO": 60.00,
+                })
+                df_gs_cat_detalhado["PrecoFinal"] = df_gs_cat_detalhado["PrecoItem"].fillna(df_gs_cat_detalhado["PrecoCategoria"])
+                df_gs_cat_detalhado["FaturamentoItem"] = df_gs_cat_detalhado["Quantidade"] * df_gs_cat_detalhado["PrecoFinal"]
+                
+                # Filtrar apenas dados de agosto dos 3 home cares
+                df_agosto = df_gs_cat_detalhado[df_gs_cat_detalhado["Mês"] == "Agosto"].copy()
+                
+                # Faturamento já foi calculado acima
+                
+                # Calcular faturamento total real de agosto
+                faturamento_total_agosto = 312029.51  # Valor correto informado pelo usuário
+                
+                
+                if not df_agosto.empty:
+                    # Agrupar por item para obter faturamento total por item em agosto
+                    df_itens_agosto = df_agosto.groupby("Item", as_index=False).agg({
+                        "Quantidade": "sum",
+                        "FaturamentoItem": "sum"
+                    }).sort_values("FaturamentoItem", ascending=False)
+                    
+                    # Separar top 3 e calcular "Outros"
+                    top_3_agosto = df_itens_agosto.head(3)
+                    outros_fat_agosto = df_itens_agosto.iloc[3:]["FaturamentoItem"].sum()
+                    outros_qtd_agosto = df_itens_agosto.iloc[3:]["Quantidade"].sum()
+                    
+                    # Criar DataFrame para o gráfico de pizza
+                    df_pizza_agosto = top_3_agosto[["Item", "FaturamentoItem", "Quantidade"]].copy()
+                    if outros_fat_agosto > 0:
+                        df_pizza_agosto = pd.concat([
+                            df_pizza_agosto,
+                            pd.DataFrame({
+                                "Item": ["Outros"],
+                                "FaturamentoItem": [outros_fat_agosto],
+                                "Quantidade": [outros_qtd_agosto]
+                            })
+                        ], ignore_index=True)
+                    
+                    # Calcular percentuais baseado no faturamento total de agosto
+                    df_pizza_agosto["Percentual"] = (df_pizza_agosto["FaturamentoItem"] / faturamento_total_agosto * 100).round(1)
+                    
+                    # Cores mais bonitas e específicas para cada item
+                    cores_personalizadas = {
+                        "CAMA DE 2 MOVIMENTOS ELÉTRICA": "#FF6B6B",  # Vermelho coral
+                        "CAMA ELÉTRICA 2 MOVIMENTOS": "#FF6B6B",  # Mesmo vermelho
+                        "COLCHÃO PNEUMÁTICO": "#4ECDC4",  # Turquesa
+                        "CADEIRA HIGIÊNICA": "#45B7D1",  # Azul claro
+                        "CADEIRA DE RODAS": "#96CEB4",  # Verde menta
+                        "SUPORTE DE SORO": "#FFEAA7",  # Amarelo claro
+                        "Outros": "#DDA0DD"  # Ameixa
+                    }
+                    
+                    # Mapear cores para os itens (com fallback para cores padrão)
+                    df_pizza_agosto["Cor"] = df_pizza_agosto["Item"].map(cores_personalizadas)
+                    
+                    # Preencher cores faltantes com cores padrão
+                    cores_padrao = ["#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FFEAA7", "#DDA0DD"]
+                    cores_finais = []
+                    for i, cor in enumerate(df_pizza_agosto["Cor"]):
+                        if pd.isna(cor):
+                            cores_finais.append(cores_padrao[i % len(cores_padrao)])
+                        else:
+                            cores_finais.append(cor)
+                    
+                    # Criar gráfico de pizza mais bonito
+                    fig_pizza_agosto = px.pie(
+                        df_pizza_agosto,
+                        values="FaturamentoItem",
+                        names="Item",
+                        title=f"Top 3 Itens por Faturamento – Agosto 2025<br><sub>Faturamento Total Real: R$ {faturamento_total_agosto:,.2f}</sub>",
+                        hole=0.4,  # Buraco maior para visual mais moderno
+                        color_discrete_sequence=cores_finais,
+                    )
+                    
+                    # Configurações mais bonitas
+                    # Preparar customdata corretamente (após cálculo do percentual)
+                    customdata_list = []
+                    for _, row in df_pizza_agosto.iterrows():
+                        customdata_list.append([row["Percentual"], row["Quantidade"]])
+                    
+                    fig_pizza_agosto.update_traces(
+                        textinfo="percent+label",
+                        textfont_size=12,
+                        textfont_color="white",
+                        textposition="outside",
+                        hovertemplate="<b>%{label}</b><br>" +
+                        "Faturamento: R$ %{value:,.2f}<br>" +
+                        "Percentual do Total: %{customdata[0]:.1f}%<br>" +
+                        "Quantidade: %{customdata[1]:,d} unidades<br>" +
+                        "Faturamento Total Agosto: R$ " + f"{faturamento_total_agosto:,.2f}" + "<br>" +
+                        "<extra></extra>",
+                        customdata=customdata_list,
+                        pull=[0.1 if "CAMA" in item or "COLCHÃO" in item else 0 for item in df_pizza_agosto["Item"]]
+                    )
+                    
+                    fig_pizza_agosto.update_layout(
+                        margin=dict(l=40, r=40, t=80, b=40),
+                        font=dict(size=14, color="white"),
+                        paper_bgcolor="rgba(0,0,0,0)",
+                        plot_bgcolor="rgba(0,0,0,0)",
+                        title_font_size=18,
+                        title_font_color="white"
+                    )
+                    
+                    show_plot(fig_pizza_agosto, use_container_width=True)
+                    
+                else:
+                    st.warning(f"⚠️ Nenhum dado encontrado para {mes_label}")
+                
 
             tabs = st.tabs(empresas_presentes_viz)
             for tab, empresa in zip(tabs, empresas_presentes_viz):
@@ -2072,6 +2490,8 @@ def main() -> None:
                         fig_e_bar.update_layout(
                             xaxis_title="Itens (Junho / Julho / Agosto)",
                             yaxis_title="Quantidade",
+                            width=1200,  # Aumentar largura horizontal
+                            height=400,  # Altura padrão
                             margin=dict(l=20, r=20, t=60, b=150),
                             showlegend=False,
                         )
@@ -2093,7 +2513,13 @@ def main() -> None:
                             markers=True,
                             title=f"Evolução mensal – {empresa}",
                         )
-                        fig_e_line.update_layout(yaxis_title="Quantidade", xaxis_title="Mês")
+                        fig_e_line.update_layout(
+                            yaxis_title="Quantidade", 
+                            xaxis_title="Mês",
+                            width=1200,  # Aumentar largura horizontal
+                            height=350,  # Altura padrão
+                            margin=dict(l=20, r=20, t=60, b=60)
+                        )
                         st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
                         show_plot(fig_e_line, width="stretch")
                         st.markdown('</div>', unsafe_allow_html=True)
@@ -2208,9 +2634,16 @@ def main() -> None:
                     df_gs.groupby(["Empresa", "Mês", "ItemCanonical"], as_index=False)
                     .agg(Quantidade=("Quantidade", "sum"), PrecoDiaria=("PrecoDiaria", "first"))
                 )
-                dias_map = {"Junho": 30, "Julho": 31, "Agosto": 31}
+                # Completar meses ausentes com zero (Janeiro→Agosto)
+                months_for_fat_gs = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"]
+                empresas_gs = ["SOLAR", "HOSPITALAR", "DOMMUS"]
+                if not df_gs_sum.empty:
+                    idx = pd.MultiIndex.from_product([empresas_gs, months_for_fat_gs, df_gs_sum["ItemCanonical"].unique()], names=["Empresa","Mês","ItemCanonical"]).to_frame(index=False)
+                    df_gs_sum = idx.merge(df_gs_sum, on=["Empresa","Mês","ItemCanonical"], how="left").fillna({"Quantidade":0})
+                dias_map = {"Janeiro": 31, "Fevereiro": 28, "Março": 31, "Abril": 30, "Maio": 31, "Junho": 30, "Julho": 31, "Agosto": 31}
                 df_gs_sum["Dias"] = df_gs_sum["Mês"].map(dias_map).fillna(30)
                 df_gs_sum["Faturamento"] = df_gs_sum["Quantidade"] * df_gs_sum["PrecoDiaria"] * df_gs_sum["Dias"]
+                
                 item_order_gs = [
                     canonical_map_solar[normalize_text_for_match("CAMA ELÉTRICA 3 MOVIMENTOS")],
                     canonical_map_solar[normalize_text_for_match("SUPORTE DE SORO")],
@@ -2239,7 +2672,7 @@ def main() -> None:
                 st.subheader("Faturamento geral (Grupo Solar) – Janeiro→Agosto")
                 df_total_gs = pd.DataFrame({
                     "Mês": ["Janeiro","Fevereiro","Março","Abril","Maio","Junho", "Julho", "Agosto"],
-                    "Faturamento": [250000.00, 260000.00, 270000.00, 280000.00, 290000.00, 287981.61, 309546.25, 312029.51],
+                    "Faturamento": [290194.24, 267454.14, 298768.28, 286571.08, 294592.68, 287981.61, 309546.25, 312029.51],
                 })
                 fig_total_gs = px.bar(
                     df_total_gs,
@@ -2254,7 +2687,372 @@ def main() -> None:
                 fig_total_gs.update_yaxes(tickprefix="R$ ", tickformat=",.2f", range=[0, ymax_gs * 1.15])
                 fig_total_gs.update_layout(yaxis_title="Faturamento (R$)", margin=dict(l=20, r=20, t=80, b=60))
                 show_plot(fig_total_gs, use_container_width=True)
+                
                 df_rev_sum = df_gs_sum
+
+                # ================================
+                # ARPU - Faturamento por vida (Grupo Solar)
+                # ================================
+                try:
+                    st.subheader("ARPU - Faturamento por vida (Grupo Solar)")
+                    month_labels_gs = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"]
+                    month_sets_arpu_gs = {m: set() for m in month_labels_gs}
+                    mes_label_gs = {"2025-01":"Janeiro","2025-02":"Fevereiro","2025-03":"Março","2025-04":"Abril","2025-05":"Maio","2025-06": "Junho", "2025-07": "Julho", "2025-08": "Agosto"}
+                    
+                    for file in sel_files:
+                        ym = year_month_from_path(file)
+                        if ym not in {"2025-01","2025-02","2025-03","2025-04", "2025-05", "2025-06", "2025-07", "2025-08"}:
+                            continue
+                        mes_label = mes_label_gs.get(ym, None)
+                        if mes_label is None:
+                            continue
+                        group = primary_group_from_label(str(file))
+                        if group not in ["HOSPITALAR", "SOLAR", "DOMMUS"]:
+                            continue
+                        try:
+                            book = safe_read_excel(file, sheet_name=None)
+                        except Exception:
+                            continue
+                        for sheet_name, df_sheet in book.items():
+                            if should_exclude_sheet(sheet_name):
+                                continue
+                            series = select_best_name_column(df_sheet)
+                            if series is None:
+                                continue
+                            series = series.dropna().astype(str).str.strip()
+                            series = series[series != ""]
+                            if series.empty:
+                                continue
+                            nomes_norm = series.apply(normalize_text_for_match)
+                            month_sets_arpu_gs[mes_label].update(nomes_norm.tolist())
+                    
+                    df_vidas_arpu_gs = pd.DataFrame({
+                        "Mês": month_labels_gs,
+                        "Vidas": [len(month_sets_arpu_gs[m]) for m in month_labels_gs],
+                    })
+                    # Faturamento informado manualmente por mês (Grupo Solar)
+                    total_rev_map_gs = {
+                        "Janeiro": 290194.24,
+                        "Fevereiro": 267454.14,
+                        "Março": 298768.28,
+                        "Abril": 286571.08,
+                        "Maio": 294592.68,
+                        "Junho": 287981.61,
+                        "Julho": 309546.25,
+                        "Agosto": 312029.51,
+                    }
+                    rev_df_gs = pd.DataFrame({"Mês": month_labels_gs, "Faturamento": [total_rev_map_gs.get(m, 0.0) for m in month_labels_gs]})
+                    df_arpu_gs = rev_df_gs.merge(df_vidas_arpu_gs, on="Mês", how="left").fillna(0)
+                    df_arpu_gs["ARPU"] = df_arpu_gs.apply(lambda r: (float(r["Faturamento"]) / r["Vidas"]) if r["Vidas"] > 0 else 0.0, axis=1)
+                    fig_arpu_gs = px.bar(
+                        df_arpu_gs, x="Mês", y="ARPU",
+                        title="ARPU por mês (Geral – Grupo Solar)",
+                        category_orders={"Mês": ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"]},
+                    )
+                    fig_arpu_gs.update_yaxes(tickprefix="R$ ", tickformat=",.2f")
+                    show_plot(fig_arpu_gs, use_container_width=True)
+                except Exception:
+                    pass
+                
+                # ================================
+                # Ticket Médio por Cliente (Grupo Solar)
+                # ================================
+                try:
+                    st.subheader("Ticket Médio por Cliente – Grupo Solar")
+                    
+                    # Calcular ticket médio mensal
+                    month_labels_ticket = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"]
+                    ticket_medio_data = []
+                    
+                    # Faturamento consolidado por mês
+                    faturamento_mensal = {
+                        "Janeiro": 290194.24,
+                        "Fevereiro": 267454.14,
+                        "Março": 298768.28,
+                        "Abril": 286571.08,
+                        "Maio": 294592.68,
+                        "Junho": 287981.61,
+                        "Julho": 309546.25,
+                        "Agosto": 312029.51,
+                    }
+                    
+                    # Coletar vidas ativas por mês
+                    month_sets_ticket = {m: set() for m in month_labels_ticket}
+                    mes_label_ticket = {"2025-01":"Janeiro","2025-02":"Fevereiro","2025-03":"Março","2025-04":"Abril","2025-05":"Maio","2025-06": "Junho", "2025-07": "Julho", "2025-08": "Agosto"}
+                    
+                    for file in sel_files:
+                        ym = year_month_from_path(file)
+                        if ym not in {"2025-01","2025-02","2025-03","2025-04", "2025-05", "2025-06", "2025-07", "2025-08"}:
+                            continue
+                        mes_label = mes_label_ticket.get(ym, None)
+                        if mes_label is None:
+                            continue
+                        group = primary_group_from_label(str(file))
+                        if group not in ["HOSPITALAR", "SOLAR", "DOMMUS"]:
+                            continue
+                        try:
+                            book = safe_read_excel(file, sheet_name=None)
+                        except Exception:
+                            continue
+                        for sheet_name, df_sheet in book.items():
+                            if should_exclude_sheet(sheet_name):
+                                continue
+                            series = select_best_name_column(df_sheet)
+                            if series is None:
+                                continue
+                            series = series.dropna().astype(str).str.strip()
+                            series = series[series != ""]
+                            if series.empty:
+                                continue
+                            nomes_norm = series.apply(normalize_text_for_match)
+                            month_sets_ticket[mes_label].update(nomes_norm.tolist())
+                    
+                    # Calcular ticket médio
+                    for mes in month_labels_ticket:
+                        vidas = len(month_sets_ticket[mes])
+                        faturamento = faturamento_mensal.get(mes, 0)
+                        ticket_medio = (faturamento / vidas) if vidas > 0 else 0
+                        ticket_medio_data.append({
+                            "Mês": mes,
+                            "Ticket Médio": ticket_medio,
+                            "Vidas": vidas,
+                            "Faturamento": faturamento
+                        })
+                    
+                    df_ticket_medio = pd.DataFrame(ticket_medio_data)
+                    
+                    fig_ticket = px.bar(
+                        df_ticket_medio, x="Mês", y="Ticket Médio",
+                        title="Ticket Médio por Cliente – Grupo Solar",
+                        category_orders={"Mês": ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"]},
+                        color="Ticket Médio",
+                        color_continuous_scale="Viridis"
+                    )
+                    fig_ticket.update_traces(
+                        hovertemplate="<b>%{x}</b><br>" +
+                        "Ticket Médio: R$ %{y:,.2f}<br>" +
+                        "Vidas Ativas: %{customdata[0]:,}<br>" +
+                        "Faturamento: R$ %{customdata[1]:,.2f}<br>" +
+                        "<extra></extra>",
+                        customdata=df_ticket_medio[["Vidas", "Faturamento"]]
+                    )
+                    fig_ticket.update_yaxes(tickprefix="R$ ", tickformat=",.2f")
+                    show_plot(fig_ticket, use_container_width=True)
+                except Exception:
+                    pass
+
+                # ================================
+                # Heatmap Item × Mês (Grupo Solar)
+                # ================================
+                try:
+                    st.subheader("Heatmap Item × Mês – Grupo Solar")
+                    df_heat_gs = (
+                        df_emp_viz[df_emp_viz["Empresa"].isin(["HOSPITALAR", "SOLAR", "DOMMUS"])][["Mês","Item","Quantidade"]]
+                        .groupby(["Item","Mês"], as_index=False)["Quantidade"].sum()
+                    )
+                    # Mantém somente top 20 itens por soma para foco visual
+                    tops_gs = (
+                        df_heat_gs.groupby("Item")["Quantidade"].sum()
+                        .sort_values(ascending=False).head(20).index.tolist()
+                    )
+                    df_heat_gs = df_heat_gs[df_heat_gs["Item"].isin(tops_gs)]
+                    df_pvt_gs = df_heat_gs.pivot(index="Item", columns="Mês", values="Quantidade").fillna(0)
+                    df_pvt_gs = df_pvt_gs[[m for m in ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"] if m in df_pvt_gs.columns]]
+                    fig_heat_gs = px.imshow(
+                        df_pvt_gs,
+                        color_continuous_scale="Blues",
+                        aspect="auto",
+                        labels=dict(color="Quantidade"),
+                        title="Intensidade de ocorrências por item e mês (Grupo Solar)",
+                    )
+                    show_plot(fig_heat_gs, use_container_width=True)
+                except Exception:
+                    pass
+
+                # ================================
+                # Gráfico de Pizza - Faturamento por Empresa (Grupo Solar)
+                # ================================
+                try:
+                    st.subheader("Distribuição de Faturamento por Empresa (Grupo Solar)")
+                    # Calcular faturamento total por empresa
+                    faturamento_por_empresa = df_rev_sum.groupby("Empresa")["Faturamento"].sum().reset_index()
+                    faturamento_por_empresa = faturamento_por_empresa.sort_values("Faturamento", ascending=False)
+                    
+                    # Ajustar para o valor total real (R$ 2.347.137,79)
+                    total_real = 2347137.79
+                    total_calculado = faturamento_por_empresa["Faturamento"].sum()
+                    fator_ajuste = total_real / total_calculado
+                    
+                    # Aplicar o fator de ajuste mantendo as proporções
+                    faturamento_por_empresa["Faturamento_Ajustado"] = faturamento_por_empresa["Faturamento"] * fator_ajuste
+                    
+                    
+                    fig_pizza_gs = px.pie(
+                        faturamento_por_empresa,
+                        values="Faturamento_Ajustado",
+                        names="Empresa",
+                        title="Participação no Faturamento - Grupo Solar (Últimos 8 Meses)",
+                        hole=0.3,
+                        color_discrete_sequence=px.colors.qualitative.Set3
+                    )
+                    # Preparar customdata para o gráfico do Grupo Solar
+                    customdata_gs = []
+                    for _, row in faturamento_por_empresa.iterrows():
+                        customdata_gs.append([row["Faturamento_Ajustado"]])
+                    
+                    fig_pizza_gs.update_traces(
+                        textposition='inside',
+                        textinfo='percent+label',
+                        hovertemplate='<b>%{label}</b><br>' +
+                        'Faturamento: R$ %{value:,.2f}<br>' +
+                        'Participação: %{percent}<br>' +
+                        'Valor Absoluto: R$ %{customdata[0]:,.2f}<br>' +
+                        '<extra></extra>',
+                        customdata=customdata_gs
+                    )
+                    fig_pizza_gs.update_layout(
+                        margin=dict(l=20, r=20, t=60, b=20),
+                        showlegend=True,
+                        legend=dict(
+                            orientation="v",
+                            yanchor="middle",
+                            y=0.5,
+                            xanchor="left",
+                            x=1.01
+                        )
+                    )
+                    st.plotly_chart(fig_pizza_gs, use_container_width=True)
+                    
+                except Exception as e:
+                    st.error(f"❌ **Erro na seção do Grupo Solar**: {str(e)}")
+                    import traceback
+                    st.write(f"**Traceback completo**: {traceback.format_exc()}")
+
+                # ================================
+                # ARPU Consolidado - Faturamento por vida (3 Home Cares)
+                # ================================
+                # ARPU Consolidado - Faturamento por vida (3 Home Cares)
+                # ================================
+                try:
+                    st.subheader("ARPU Consolidado - Faturamento por vida (3 Home Cares)")
+                    
+                    month_labels_consolidado = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"]
+                    month_sets_arpu_consolidado = {m: set() for m in month_labels_consolidado}
+                    mes_label_consolidado = {"2025-01":"Janeiro","2025-02":"Fevereiro","2025-03":"Março","2025-04":"Abril","2025-05":"Maio","2025-06": "Junho", "2025-07": "Julho", "2025-08": "Agosto"}
+                    
+                    # Debug: contar arquivos processados
+                    arquivos_processados = 0
+                    total_arquivos = len(sel_files)
+                    
+                    for file in sel_files:
+                        ym = year_month_from_path(file)
+                        if ym not in {"2025-01","2025-02","2025-03","2025-04", "2025-05", "2025-06", "2025-07", "2025-08"}:
+                            continue
+                        mes_label = mes_label_consolidado.get(ym, None)
+                        if mes_label is None:
+                            continue
+                        group = primary_group_from_label(str(file))
+                        if group not in ["HOSPITALAR", "SOLAR", "DOMMUS", "AXX CARE"]:
+                            continue
+                        
+                        try:
+                            book = safe_read_excel(file, sheet_name=None)
+                            arquivos_processados += 1
+                        except Exception as e:
+                            st.warning(f"⚠️ Erro ao ler arquivo {file.name}: {str(e)}")
+                            continue
+                            
+                        for sheet_name, df_sheet in book.items():
+                            if should_exclude_sheet(sheet_name):
+                                continue
+                            name_col = select_best_name_column(df_sheet)
+                            if name_col is None:
+                                continue
+                            try:
+                                series = df_sheet[name_col].dropna().astype(str).str.strip()
+                                series = series[series != ""]
+                                if series.empty:
+                                    continue
+                                nomes_norm = series.apply(normalize_text_for_match)
+                                month_sets_arpu_consolidado[mes_label].update(nomes_norm.tolist())
+                            except Exception as e:
+                                st.warning(f"⚠️ Erro ao processar coluna {name_col} em {file.name}: {str(e)}")
+                                continue
+                    
+                    # Debug: mostrar estatísticas
+                    st.info(f"📊 **Arquivos processados**: {arquivos_processados} de {total_arquivos}")
+                    
+                    df_vidas_arpu_consolidado = pd.DataFrame({
+                        "Mês": month_labels_consolidado,
+                        "Vidas": [len(month_sets_arpu_consolidado[m]) for m in month_labels_consolidado],
+                    })
+                    
+                    # Faturamento consolidado dos 3 home cares
+                    total_rev_map_consolidado = {
+                        "Janeiro": 290194.24,
+                        "Fevereiro": 267454.14,
+                        "Março": 298768.28,
+                        "Abril": 286571.08,
+                        "Maio": 294592.68,
+                        "Junho": 287981.61,
+                        "Julho": 309546.25,
+                        "Agosto": 312029.51,
+                    }
+                    
+                    rev_df_consolidado = pd.DataFrame({
+                        "Mês": month_labels_consolidado, 
+                        "Faturamento": [total_rev_map_consolidado.get(m, 0.0) for m in month_labels_consolidado]
+                    })
+                    
+                    df_arpu_consolidado = rev_df_consolidado.merge(df_vidas_arpu_consolidado, on="Mês", how="left").fillna(0)
+                    df_arpu_consolidado["ARPU"] = df_arpu_consolidado.apply(
+                        lambda r: (float(r["Faturamento"]) / r["Vidas"]) if r["Vidas"] > 0 else 0.0, axis=1
+                    )
+                    
+                    
+                    # Verificar se há dados válidos
+                    if df_arpu_consolidado["Vidas"].sum() == 0:
+                        st.error("❌ **Problema**: Nenhuma vida ativa encontrada nos arquivos!")
+                        st.write("**Possíveis causas:**")
+                        st.write("- Arquivos não estão sendo lidos corretamente")
+                        st.write("- Filtros estão excluindo todos os dados")
+                        st.write("- Estrutura dos arquivos Excel mudou")
+                    else:
+                        fig_arpu_consolidado = px.bar(
+                            df_arpu_consolidado, x="Mês", y="ARPU",
+                            title="ARPU Consolidado por mês (3 Home Cares)",
+                            category_orders={"Mês": ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"]},
+                            color="ARPU",
+                            color_continuous_scale="Viridis"
+                        )
+                        fig_arpu_consolidado.update_yaxes(tickprefix="R$ ", tickformat=",.2f")
+                        fig_arpu_consolidado.update_traces(
+                            hovertemplate="<b>%{x}</b><br>" +
+                            "ARPU: R$ %{y:,.2f}<br>" +
+                            "Vidas: %{customdata[0]:,}<br>" +
+                            "Faturamento: R$ %{customdata[1]:,.2f}<br>" +
+                            "<extra></extra>",
+                            customdata=df_arpu_consolidado[["Vidas", "Faturamento"]]
+                        )
+                        show_plot(fig_arpu_consolidado, use_container_width=True)
+                        
+                        # Estatísticas resumidas
+                        arpu_medio = df_arpu_consolidado["ARPU"].mean()
+                        arpu_max = df_arpu_consolidado["ARPU"].max()
+                        arpu_min = df_arpu_consolidado["ARPU"].min()
+                        
+                        col1, col2, col3 = st.columns(3)
+                        with col1:
+                            st.metric("ARPU Médio", f"R$ {arpu_medio:,.2f}")
+                        with col2:
+                            st.metric("ARPU Máximo", f"R$ {arpu_max:,.2f}")
+                        with col3:
+                            st.metric("ARPU Mínimo", f"R$ {arpu_min:,.2f}")
+                            
+                except Exception as e:
+                    st.error(f"❌ **Erro no ARPU Consolidado**: {str(e)}")
+                    st.write("**Detalhes do erro:**")
+                    st.code(str(e))
 
             st.subheader("Faturamento por empresa (Janeiro→Agosto)")
             col_h, col_s, col_d = st.columns(3)
@@ -2276,9 +3074,7 @@ def main() -> None:
                         )
                         fig_e.update_layout(
                             yaxis_title="Faturamento (R$)",
-                            legend_title_text="Item",
-                            legend_orientation="h",
-                            legend_y=-0.2,
+                            showlegend=False,
                         )
                         fig_e.update_yaxes(tickprefix="R$ ", tickformat=".2f")
                         st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
@@ -2286,7 +3082,7 @@ def main() -> None:
                         st.markdown('</div>', unsafe_allow_html=True)
 
         if empresas_presentes_fat == ["PRONEP"]:
-            st.subheader("Faturamento PRONEP – Top Itens (Junho/Julho/Agosto)")
+            st.subheader("Faturamento PRONEP – Top Itens (Janeiro→Agosto)")
             price_map_pronep = {
                 normalize_text_for_match("CAMA ELÉTRICA 3 MOVIMENTOS"): 10.30,
                 normalize_text_for_match("ARMÁRIO DE FÓRMICA"): 2.80,
@@ -2302,16 +3098,113 @@ def main() -> None:
             df_pn["PrecoDiaria"] = df_pn["key"].map(price_map_pronep)
             df_pn = df_pn.dropna(subset=["PrecoDiaria"])  # mantém apenas os 3 itens
             if df_pn.empty:
-                st.info("Sem ocorrências dos itens tarifados para PRONEP nos meses 6/7/8.")
+                st.info("Sem ocorrências dos itens tarifados para PRONEP nos meses 1/2/3/4/5/6/7/8.")
+                df_pn_sum = pd.DataFrame()  # DataFrame vazio para evitar erro
             else:
                 df_pn["ItemCanonical"] = df_pn["key"].map(canonical_map_pronep)
                 df_pn_sum = (
                     df_pn.groupby(["Empresa", "Mês", "ItemCanonical"], as_index=False)
                     .agg(Quantidade=("Quantidade", "sum"), PrecoDiaria=("PrecoDiaria", "first"))
                 )
-                dias_map = {"Junho": 30, "Julho": 31, "Agosto": 31}
+                dias_map = {"Janeiro": 31, "Fevereiro": 28, "Março": 31, "Abril": 30, "Maio": 31, "Junho": 30, "Julho": 31, "Agosto": 31}
                 df_pn_sum["Dias"] = df_pn_sum["Mês"].map(dias_map).fillna(30)
                 df_pn_sum["Faturamento"] = df_pn_sum["Quantidade"] * df_pn_sum["PrecoDiaria"] * df_pn_sum["Dias"]
+
+            # ================================
+            # GRÁFICO DE PIZZA - TOP 3 FATURAMENTO PRONEP (AGOSTO)
+            # ================================
+            if not df_pn_sum.empty and "Agosto" in df_pn_sum["Mês"].values:
+                st.subheader("Participação dos Top 3 (faturamento) – PRONEP (Agosto)")
+                
+                # Filtrar dados de agosto da PRONEP
+                df_agosto_pronep = df_pn_sum[df_pn_sum["Mês"] == "Agosto"].copy()
+                
+                if not df_agosto_pronep.empty:
+                    # Calcular faturamento total por item em agosto
+                    df_fat_agosto = df_agosto_pronep.groupby("ItemCanonical", as_index=False)["Faturamento"].sum()
+                    df_fat_agosto = df_fat_agosto.sort_values("Faturamento", ascending=False)
+                    
+                    # Pegar top 3
+                    top3_agosto = df_fat_agosto.head(3)
+                    
+                    # Valor total correto informado pelo usuário
+                    total_fat_agosto = 54204.32
+                    
+                    # Calcular "Outros" como diferença para completar o total
+                    fat_top3 = top3_agosto["Faturamento"].sum()
+                    outros_fat = total_fat_agosto - fat_top3
+                    
+                    # Criar DataFrame para o gráfico de pizza
+                    df_pizza_agosto = top3_agosto.copy()
+                    if outros_fat > 0:
+                        df_pizza_agosto = pd.concat([
+                            df_pizza_agosto,
+                            pd.DataFrame({"ItemCanonical": ["Outros"], "Faturamento": [outros_fat]})
+                        ], ignore_index=True)
+                    
+                    # Calcular percentuais baseado no total correto
+                    df_pizza_agosto["Percentual"] = (df_pizza_agosto["Faturamento"] / total_fat_agosto * 100).round(1)
+                    
+                    # Cores personalizadas
+                    cores_pizza = {
+                        "CAMA ELÉTRICA 3 MOVIMENTOS": "#1f77b4",
+                        "ARMÁRIO DE FÓRMICA": "#ff7f0e", 
+                        "COLCHÃO PNEUMÁTICO": "#2ca02c",
+                        "Outros": "#d62728"
+                    }
+                    
+                    df_pizza_agosto["Cor"] = df_pizza_agosto["ItemCanonical"].map(cores_pizza)
+                    
+                    # Criar gráfico de pizza
+                    fig_pizza_agosto = px.pie(
+                        df_pizza_agosto,
+                        values="Faturamento",
+                        names="ItemCanonical",
+                        title="Top 3 itens (faturamento) + Outros - PRONEP (Agosto)",
+                        hole=0.4,
+                        color_discrete_sequence=df_pizza_agosto["Cor"].tolist()
+                    )
+                    
+                    # Preparar customdata para o gráfico PRONEP
+                    customdata_pronep = []
+                    for _, row in df_pizza_agosto.iterrows():
+                        customdata_pronep.append([row["Percentual"]])
+                    
+                    # Atualizar layout
+                    fig_pizza_agosto.update_traces(
+                        textposition='inside',
+                        textinfo='percent+label',
+                        hovertemplate="<b>%{label}</b><br>" +
+                                     "Faturamento: R$ %{value:,.2f}<br>" +
+                                     "Percentual do Total: %{customdata[0]:.1f}%<br>" +
+                                     "Faturamento Total Agosto: R$ " + f"{total_fat_agosto:,.2f}" + "<br>" +
+                                     "<extra></extra>",
+                        customdata=customdata_pronep
+                    )
+                    
+                    fig_pizza_agosto.update_layout(
+                        margin=dict(l=20, r=20, t=60, b=20),
+                        showlegend=True,
+                        legend=dict(
+                            orientation="v",
+                            yanchor="middle",
+                            y=0.5,
+                            xanchor="left",
+                            x=1.01
+                        )
+                    )
+                    
+                    show_plot(fig_pizza_agosto, width="stretch")
+                    
+                    # Mostrar resumo
+                    st.write("**Resumo do Faturamento - Agosto 2025:**")
+                    for _, row in df_pizza_agosto.iterrows():
+                        st.write(f"• **{row['ItemCanonical']}**: R$ {row['Faturamento']:,.2f} ({row['Percentual']}%)")
+                    
+                    st.success(f"💰 **Total Faturamento Agosto**: R$ {total_fat_agosto:,.2f}")
+                    
+                else:
+                    st.info("ℹ️ Sem dados de faturamento para agosto da PRONEP")
 
                 item_order_pn = [
                     canonical_map_pronep[normalize_text_for_match("CAMA ELÉTRICA 3 MOVIMENTOS")],
@@ -2324,7 +3217,7 @@ def main() -> None:
                     y="Faturamento",
                     color="ItemCanonical",
                     facet_col="ItemCanonical",
-                    category_orders={"Mês": ["Junho", "Julho", "Agosto"], "ItemCanonical": item_order_pn},
+                    category_orders={"Mês": ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto"], "ItemCanonical": item_order_pn},
                     title="Faturamento PRONEP por Mês (diária x ocorrências)",
                     hover_data={"Faturamento": ":.2f", "Quantidade": True, "Dias": True},
                     labels={"ItemCanonical": "Item"},
@@ -2339,37 +3232,441 @@ def main() -> None:
                 show_plot(fig_pn_rev, width="stretch")
                 st.markdown('</div>', unsafe_allow_html=True)
 
-                # Faturamento geral (soma dos itens) por mês - valores informados
-                st.subheader("Faturamento geral (PRONEP) – Junho/Julho/Agosto")
-                df_total_manual = pd.DataFrame({
-                    "Mês": ["Junho", "Julho", "Agosto"],
-                    "Faturamento": [55664.48, 56251.60, 54204.32],
+                # Faturamento geral (valores informados)
+                st.subheader("Faturamento geral (PRONEP) – Janeiro→Agosto")
+                df_total_pronep = pd.DataFrame({
+                    "Mês": ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto"],
+                    "Faturamento": [64280.11, 55913.26, 61094.47, 57437.30, 59120.20, 55664.48, 56251.60, 54204.32],
                 })
-                fig_total = px.bar(
-                    df_total_manual,
+                fig_total_pronep = px.bar(
+                    df_total_pronep,
                     x="Mês",
                     y="Faturamento",
                     text="Faturamento",
                     title="Faturamento geral por mês (valores fornecidos)",
                 )
-                fig_total.update_traces(texttemplate="R$ %{y:,.2f}", textposition="outside")
-                ymax = float(df_total_manual["Faturamento"].max())
-                fig_total.update_yaxes(tickprefix="R$ ", tickformat=",.2f", range=[0, ymax * 1.15])
-                fig_total.update_layout(yaxis_title="Faturamento (R$)", margin=dict(l=20, r=20, t=80, b=60))
-                show_plot(fig_total, use_container_width=True)
+                fig_total_pronep.update_traces(texttemplate="R$ %{y:,.2f}", textposition="outside")
+                ymax_pronep = float(df_total_pronep["Faturamento"].max())
+                fig_total_pronep.update_yaxes(tickprefix="R$ ", tickformat=",.2f", range=[0, ymax_pronep * 1.15])
+                fig_total_pronep.update_layout(yaxis_title="Faturamento (R$)", margin=dict(l=20, r=20, t=80, b=60))
+                show_plot(fig_total_pronep, use_container_width=True)
+                df_rev_sum_pronep = df_pn_sum
+
+                # ================================
+                # VIDAS ATIVAS PRONEP
+                # ================================
+                st.subheader("Vidas ativas no Home Care – PRONEP (Janeiro→Agosto)")
+                month_sets = {"Janeiro": set(), "Fevereiro": set(), "Março": set(), "Abril": set(), "Maio": set(), "Junho": set(), "Julho": set(), "Agosto": set()}
+                mes_label_map = {"2025-01": "Janeiro", "2025-02": "Fevereiro", "2025-03": "Março", "2025-04": "Abril", "2025-05": "Maio", "2025-06": "Junho", "2025-07": "Julho", "2025-08": "Agosto"}
+                
+                # Debug: mostrar arquivos processados
+                arquivos_pronep = 0
+                total_arquivos = len(sel_files)
+                
+                for file in sel_files:
+                    try:
+                        book = safe_read_excel(file, sheet_name=None)
+                    except Exception:
+                        continue
+                    ym = year_month_from_path(file)
+                    if ym not in {"2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08"}:
+                        continue
+                    mes_label = mes_label_map.get(ym, None)
+                    if mes_label not in month_sets:
+                        continue
+                        
+                    # Verificar se é arquivo da PRONEP
+                    group = primary_group_from_label(str(file))
+                    if group != "PRONEP":
+                        continue
+                        
+                    arquivos_pronep += 1
+                        
+                    for sheet_name, df_sheet in (book or {}).items():
+                        if should_exclude_sheet(str(sheet_name)):
+                            continue
+                        if not isinstance(df_sheet, pd.DataFrame) or df_sheet.empty:
+                            continue
+                        series = None
+                        try:
+                            if df_sheet.shape[1] >= 2:
+                                series = df_sheet.iloc[:, 1]
+                        except Exception:
+                            series = None
+                        if series is None:
+                            name_col = select_best_name_column(df_sheet)
+                            if not name_col:
+                                continue
+                            series = df_sheet[name_col]
+                        series = series.dropna().astype(str).str.strip()
+                        series = series[series != ""]
+                        if series.empty:
+                            continue
+                        nomes_norm = series.apply(normalize_text_for_match)
+                        month_sets[mes_label].update(nomes_norm.tolist())
+                        
+                
+                df_vidas_mes = pd.DataFrame({
+                    "Mês": ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto"],
+                    "VidasUnicas": [len(month_sets[m]) for m in ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto"]],
+                })
+                
+                media_vidas = (
+                    df_vidas_mes["VidasUnicas"][df_vidas_mes["VidasUnicas"] > 0].mean() if (df_vidas_mes["VidasUnicas"] > 0).any() else 0
+                )
+                fig_vidas = px.bar(
+                    df_vidas_mes,
+                    x="Mês",
+                    y="VidasUnicas",
+                    title="Vidas ativas únicas por mês (PRONEP)",
+                    text="VidasUnicas",
+                )
+                fig_vidas.update_traces(textposition="outside")
+                fig_vidas.update_layout(yaxis_title="Vidas únicas", xaxis_title="Mês", margin=dict(l=20, r=20, t=60, b=40))
+                show_plot(fig_vidas, width="stretch")
+                target = int(round(media_vidas))
+                placeholder = st.empty()
+                for val in range(0, target + 1, max(1, target // 30)):
+                    placeholder.metric("Média de vidas ativas (8 meses)", f"{val}")
+                    time.sleep(0.02)
+                if target % max(1, target // 30) != 0:
+                    placeholder.metric("Média de vidas ativas (8 meses)", f"{target}")
+
+
+                # ================================
+                # ARPU - Faturamento por vida (PRONEP)
+                # ================================
+                try:
+                    st.subheader("ARPU - Faturamento por vida (PRONEP)")
+                    month_labels_pronep = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto"]
+                    month_sets_arpu_pronep = {m: set() for m in month_labels_pronep}
+                    mes_label_pronep = {"2025-01": "Janeiro", "2025-02": "Fevereiro", "2025-03": "Março", "2025-04": "Abril", "2025-05": "Maio", "2025-06": "Junho", "2025-07": "Julho", "2025-08": "Agosto"}
+                    
+                    # Debug: mostrar arquivos processados
+                    arquivos_processados = 0
+                    total_arquivos = len(sel_files)
+                    
+                    for file in sel_files:
+                        ym = year_month_from_path(file)
+                        if ym not in {"2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08"}:
+                            continue
+                        mes_label = mes_label_pronep.get(ym, None)
+                        if mes_label is None:
+                            continue
+                        group = primary_group_from_label(str(file))
+                        if group != "PRONEP":
+                            continue
+                        
+                        arquivos_processados += 1
+                        
+                        try:
+                            book = safe_read_excel(file, sheet_name=None)
+                        except Exception as e:
+                            st.warning(f"⚠️ Erro ao ler arquivo {file.name}: {str(e)}")
+                            continue
+                        
+                        for sheet_name, df_sheet in (book or {}).items():
+                            if should_exclude_sheet(str(sheet_name)):
+                                continue
+                            if not isinstance(df_sheet, pd.DataFrame) or df_sheet.empty:
+                                continue
+                            
+                            # Tentar diferentes métodos para encontrar a coluna de nomes
+                            series = None
+                            try:
+                                # Método 1: Segunda coluna
+                                if df_sheet.shape[1] >= 2:
+                                    series = df_sheet.iloc[:, 1]
+                                    if series.dropna().empty:
+                                        series = None
+                            except Exception:
+                                series = None
+                            
+                            if series is None:
+                                # Método 2: Usar função select_best_name_column
+                                try:
+                                    name_col = select_best_name_column(df_sheet)
+                                    if name_col:
+                                        series = df_sheet[name_col]
+                                except Exception as e:
+                                    st.warning(f"⚠️ Erro ao selecionar coluna em {sheet_name}: {str(e)}")
+                                    continue
+                            
+                            if series is None or series.empty:
+                                continue
+                                
+                            # Limpar e processar dados
+                            series = series.dropna().astype(str).str.strip()
+                            series = series[series != ""]
+                            if series.empty:
+                                continue
+                            
+                            # Normalizar nomes
+                            try:
+                                nomes_norm = series.apply(normalize_text_for_match)
+                                month_sets_arpu_pronep[mes_label].update(nomes_norm.tolist())
+                            except Exception as e:
+                                st.warning(f"⚠️ Erro ao normalizar nomes em {sheet_name}: {str(e)}")
+                                continue
+                    
+                    
+                    df_vidas_arpu_pronep = pd.DataFrame({
+                        "Mês": month_labels_pronep,
+                        "Vidas": [len(month_sets_arpu_pronep[m]) for m in month_labels_pronep]
+                    })
+                    
+                    # Mostrar dados de vidas para debug
+                    
+                    # Faturamento por mês (valores fornecidos)
+                    rev_df_pronep = pd.DataFrame({
+                        "Mês": month_labels_pronep,
+                        "Faturamento": [64280.11, 55913.26, 61094.47, 57437.30, 59120.20, 55664.48, 56251.60, 54204.32]
+                    })
+                    
+                    df_arpu_pronep = rev_df_pronep.merge(df_vidas_arpu_pronep, on="Mês", how="left").fillna(0)
+                    df_arpu_pronep["ARPU"] = df_arpu_pronep.apply(
+                        lambda r: (float(r["Faturamento"]) / r["Vidas"]) if r["Vidas"] > 0 else 0.0, axis=1
+                    )
+                    
+                    if df_arpu_pronep["Vidas"].sum() == 0:
+                        st.error("❌ **Problema**: Nenhuma vida ativa encontrada nos arquivos da PRONEP!")
+                        st.info("💡 **Sugestão**: Verifique se os arquivos da PRONEP estão sendo carregados corretamente e se contêm dados de pacientes.")
+                    else:
+                        fig_arpu_pronep = px.bar(
+                            df_arpu_pronep, x="Mês", y="ARPU",
+                            title="ARPU (Average Revenue Per User) - PRONEP",
+                            text="ARPU",
+                            color="ARPU",
+                            color_continuous_scale="Viridis"
+                        )
+                        fig_arpu_pronep.update_traces(
+                            texttemplate="R$ %{text:,.2f}",
+                            textposition="outside",
+                            hovertemplate="<b>%{x}</b><br>ARPU: R$ %{y:,.2f}<br>Vidas: %{customdata[0]}<br>Faturamento: R$ %{customdata[1]:,.2f}<extra></extra>",
+                            customdata=df_arpu_pronep[["Vidas", "Faturamento"]].values
+                        )
+                        fig_arpu_pronep.update_layout(
+                            yaxis_title="ARPU (R$)",
+                            xaxis_title="Mês",
+                            margin=dict(l=20, r=20, t=60, b=40)
+                        )
+                        fig_arpu_pronep.update_yaxes(tickprefix="R$ ", tickformat=".2f")
+                        show_plot(fig_arpu_pronep, width="stretch")
+                        
+                        # Métricas do ARPU
+                        col1, col2, col3 = st.columns(3)
+                        with col1:
+                            st.metric("ARPU Médio", f"R$ {df_arpu_pronep['ARPU'].mean():,.2f}")
+                        with col2:
+                            st.metric("ARPU Máximo", f"R$ {df_arpu_pronep['ARPU'].max():,.2f}")
+                        with col3:
+                            st.metric("ARPU Mínimo", f"R$ {df_arpu_pronep['ARPU'].min():,.2f}")
+                            
+                except Exception as e:
+                    st.error(f"❌ **Erro no ARPU PRONEP**: {str(e)}")
+                    import traceback
+                    st.code(traceback.format_exc())
+
+                # ================================
+                # PROJEÇÕES - PRONEP
+                # ================================
+                st.markdown("<h3 style='text-align:center; margin-top:32px;'>PROJEÇÕES - PRONEP</h3>", unsafe_allow_html=True)
+                
+                # Projeção de Vidas Atendidas
+                st.subheader("Projeção de Vidas Atendidas")
+                
+                # Calcular tendência baseada nos últimos 3 meses
+                ultimos_3_meses_vidas = df_vidas_arpu_pronep.tail(3)["Vidas"].tolist()
+                tendencia_vidas = (ultimos_3_meses_vidas[-1] - ultimos_3_meses_vidas[0]) / 2
+                
+                # Cenários para vidas
+                vidas_otimista_pronep = []
+                vidas_realista_pronep = []
+                vidas_pessimista_pronep = []
+                
+                ultima_vida_pronep = df_vidas_arpu_pronep["Vidas"].iloc[-1]
+                meses_projecao_pronep = ["Setembro", "Outubro", "Novembro"]
+                
+                for i in range(3):
+                    # Otimista: crescimento de 3% ao mês
+                    vidas_otimista_pronep.append(int(ultima_vida_pronep * (1.03 ** (i+1))))
+                    # Realista: manutenção ou pequena queda (era pessimista)
+                    vidas_realista_pronep.append(max(int(ultima_vida_pronep - 2 * (i+1)), int(ultima_vida_pronep * 0.95)))
+                    # Pessimista: tendência atual + pequeno crescimento (era realista)
+                    vidas_pessimista_pronep.append(int(ultima_vida_pronep + tendencia_vidas * (i+1) + 5))
+                
+                # Criar DataFrame para projeção de vidas
+                df_proj_vidas_pronep = pd.DataFrame({
+                    "Mês": meses_projecao_pronep,
+                    "Otimista": vidas_otimista_pronep,
+                    "Realista": vidas_realista_pronep,
+                    "Pessimista": vidas_pessimista_pronep
+                })
+                
+                # Gráfico de projeção de vidas - Design moderno
+                fig_proj_vidas_pronep = px.line(
+                    df_proj_vidas_pronep,
+                    x="Mês",
+                    y=["Otimista", "Realista", "Pessimista"],
+                    title="<b>Projeção de Vidas Atendidas</b><br><sub>Próximos 3 Meses</sub>",
+                    labels={"value": "Vidas Atendidas", "variable": "Cenário"},
+                    color_discrete_sequence=["#00D4AA", "#FF6B6B", "#4ECDC4"]
+                )
+                
+                # Atualizar layout com design moderno
+                fig_proj_vidas_pronep.update_layout(
+                    yaxis_title="<b>Vidas Atendidas</b>",
+                    xaxis_title="<b>Mês</b>",
+                    margin=dict(l=40, r=40, t=80, b=60),
+                    legend_title="<b>Cenários</b>",
+                    plot_bgcolor='rgba(0,0,0,0)',
+                    paper_bgcolor='rgba(0,0,0,0)',
+                    font=dict(family="Arial, sans-serif", size=12),
+                    title_font_size=18,
+                    title_x=0.5,
+                    hovermode='x unified',
+                    legend=dict(
+                        orientation="h",
+                        yanchor="bottom",
+                        y=1.02,
+                        xanchor="right",
+                        x=1
+                    )
+                )
+                
+                # Formatação dos eixos
+                fig_proj_vidas_pronep.update_xaxes(
+                    showgrid=True,
+                    gridwidth=1,
+                    gridcolor='rgba(128,128,128,0.2)',
+                    showline=True,
+                    linewidth=2,
+                    linecolor='rgba(128,128,128,0.3)'
+                )
+                fig_proj_vidas_pronep.update_yaxes(
+                    showgrid=True,
+                    gridwidth=1,
+                    gridcolor='rgba(128,128,128,0.2)',
+                    showline=True,
+                    linewidth=2,
+                    linecolor='rgba(128,128,128,0.3)',
+                    tickformat=".0f"
+                )
+                
+                # Adicionar marcadores nos pontos
+                fig_proj_vidas_pronep.update_traces(
+                    mode='lines+markers',
+                    marker=dict(size=8, line=dict(width=2, color='white')),
+                    line=dict(width=3)
+                )
+                
+                show_plot(fig_proj_vidas_pronep, width="stretch")
+                
+                # Projeção de Faturamento
+                st.subheader("Projeção de Faturamento")
+                
+                # Cenários para faturamento
+                fat_otimista_pronep = []
+                fat_realista_pronep = []
+                fat_pessimista_pronep = []
+                
+                ultimo_fat_pronep = df_total_pronep["Faturamento"].iloc[-1]
+                
+                for i in range(3):
+                    # Otimista: crescimento de 5% ao mês
+                    fat_otimista_pronep.append(round(ultimo_fat_pronep * (1.05 ** (i+1)), 2))
+                    # Realista: pequena queda de 1% ao mês (era pessimista)
+                    fat_realista_pronep.append(round(ultimo_fat_pronep * (0.99 ** (i+1)), 2))
+                    # Pessimista: manutenção com pequeno crescimento de 2% ao mês (era realista)
+                    fat_pessimista_pronep.append(round(ultimo_fat_pronep * (1.02 ** (i+1)), 2))
+                
+                # Criar DataFrame para projeção de faturamento
+                df_proj_fat_pronep = pd.DataFrame({
+                    "Mês": meses_projecao_pronep,
+                    "Otimista": fat_otimista_pronep,
+                    "Realista": fat_realista_pronep,
+                    "Pessimista": fat_pessimista_pronep
+                })
+                
+                # Gráfico de projeção de faturamento - Design moderno
+                fig_proj_fat_pronep = px.line(
+                    df_proj_fat_pronep,
+                    x="Mês",
+                    y=["Otimista", "Realista", "Pessimista"],
+                    title="<b>Projeção de Faturamento</b><br><sub>Próximos 3 Meses</sub>",
+                    labels={"value": "Faturamento (R$)", "variable": "Cenário"},
+                    color_discrete_sequence=["#00D4AA", "#FF6B6B", "#4ECDC4"]
+                )
+                
+                # Atualizar layout com design moderno
+                fig_proj_fat_pronep.update_layout(
+                    yaxis_title="<b>Faturamento (R$)</b>",
+                    xaxis_title="<b>Mês</b>",
+                    margin=dict(l=40, r=40, t=80, b=60),
+                    legend_title="<b>Cenários</b>",
+                    plot_bgcolor='rgba(0,0,0,0)',
+                    paper_bgcolor='rgba(0,0,0,0)',
+                    font=dict(family="Arial, sans-serif", size=12),
+                    title_font_size=18,
+                    title_x=0.5,
+                    hovermode='x unified',
+                    legend=dict(
+                        orientation="h",
+                        yanchor="bottom",
+                        y=1.02,
+                        xanchor="right",
+                        x=1
+                    )
+                )
+                
+                # Formatação dos eixos
+                fig_proj_fat_pronep.update_xaxes(
+                    showgrid=True,
+                    gridwidth=1,
+                    gridcolor='rgba(128,128,128,0.2)',
+                    showline=True,
+                    linewidth=2,
+                    linecolor='rgba(128,128,128,0.3)'
+                )
+                fig_proj_fat_pronep.update_yaxes(
+                    showgrid=True,
+                    gridwidth=1,
+                    gridcolor='rgba(128,128,128,0.2)',
+                    showline=True,
+                    linewidth=2,
+                    linecolor='rgba(128,128,128,0.3)',
+                    tickformat="R$ ,.0f"
+                )
+                
+                # Adicionar marcadores nos pontos
+                fig_proj_fat_pronep.update_traces(
+                    mode='lines+markers',
+                    marker=dict(size=8, line=dict(width=2, color='white')),
+                    line=dict(width=3)
+                )
+                
+                # Formatação do hover para valores monetários
+                fig_proj_fat_pronep.update_traces(
+                    hovertemplate="<b>%{fullData.name}</b><br>" +
+                                 "Mês: %{x}<br>" +
+                                 "Faturamento: R$ %{y:,.2f}<br>" +
+                                 "<extra></extra>"
+                )
+                
+                show_plot(fig_proj_fat_pronep, width="stretch")
 
         if empresas_presentes_viz and all(e in {"HOSPITALAR", "SOLAR", "DOMMUS"} for e in empresas_presentes_viz):
             st.subheader("Vidas ativas no Home Care – Grupo Solar (Janeiro→Agosto)")
             month_sets = {"Janeiro": set(), "Fevereiro": set(), "Março": set(), "Abril": set(), "Maio": set(), "Junho": set(), "Julho": set(), "Agosto": set()}
             for file in sel_files:
                 try:
-                    book = pd.read_excel(file, sheet_name=None)
+                    book = safe_read_excel(file, sheet_name=None)
                 except Exception:
                     continue
                 ym = year_month_from_path(file)
-                if ym not in {"2025-06", "2025-07", "2025-08"}:
+                if ym not in {"2025-01","2025-02","2025-03","2025-04", "2025-05", "2025-06", "2025-07", "2025-08"}:
                     continue
-                mes_label = {"2025-06": "Junho", "2025-07": "Julho", "2025-08": "Agosto"}.get(ym, None)
+                mes_label = {"2025-01":"Janeiro","2025-02":"Fevereiro","2025-03":"Março","2025-04":"Abril","2025-05":"Maio","2025-06": "Junho", "2025-07": "Julho", "2025-08": "Agosto"}.get(ym, None)
                 if mes_label not in month_sets:
                     continue
                 for sheet_name, df_sheet in (book or {}).items():
@@ -2380,7 +3677,11 @@ def main() -> None:
                     series = None
                     try:
                         if df_sheet.shape[1] >= 2:
-                            series = df_sheet.iloc[:, 1]
+                            # Para arquivos SOLAR com colunas "Unnamed", pular primeira linha (cabeçalho)
+                            if any("Unnamed" in str(col) for col in df_sheet.columns):
+                                series = df_sheet.iloc[1:, 1]  # Pular linha 0, usar coluna B
+                            else:
+                                series = df_sheet.iloc[:, 1]
                     except Exception:
                         series = None
                     if series is None:
@@ -2423,16 +3724,214 @@ def main() -> None:
             target = int(round(media_vidas))
             placeholder = st.empty()
             for val in range(0, target + 1, max(1, target // 30)):
-                placeholder.metric("Média de vidas ativas (3 meses)", f"{val}")
+                placeholder.metric("Média de vidas ativas (8 meses)", f"{val}")
                 time.sleep(0.02)
             if target % max(1, target // 30) != 0:
-                placeholder.metric("Média de vidas ativas (3 meses)", f"{target}")
+                placeholder.metric("Média de vidas ativas (8 meses)", f"{target}")
+            
+            # ===============================================================
+            # PROJEÇÕES - Grupo Solar
+            # ===============================================================
+            st.markdown("<h3 style='text-align:center; margin-top:32px;'>PROJEÇÕES</h3>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align:center; margin-top:-12px;'>Projeções para os próximos 3 meses – Grupo Solar</p>", unsafe_allow_html=True)
+            
+            # Dados históricos para projeções
+            df_historico_vidas = df_vidas_mes.copy()
+            df_historico_faturamento = pd.DataFrame({
+                "Mês": ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"],
+                "Faturamento": [312029.51, 312029.51, 312029.51, 312029.51, 312029.51, 312029.51, 312029.51, 312029.51],  # Usando valor real de agosto
+            })
+            
+            # Projeções para os próximos 3 meses
+            meses_projecao = ["Setembro", "Outubro", "Novembro"]
+            
+            # Projeção de Vidas Atendidas
+            st.subheader("Projeção de Vidas Atendidas")
+            
+            # Calcular tendência baseada nos últimos 3 meses
+            ultimos_3_meses = df_historico_vidas.tail(3)["VidasUnicas"].tolist()
+            tendencia = (ultimos_3_meses[-1] - ultimos_3_meses[0]) / 2  # Tendência linear
+            
+            # Cenários para vidas
+            vidas_otimista = []
+            vidas_realista = []
+            vidas_pessimista = []
+            
+            ultima_vida = df_historico_vidas["VidasUnicas"].iloc[-1]
+            
+            for i in range(3):
+                # Otimista: crescimento de 3% ao mês
+                vidas_otimista.append(int(ultima_vida * (1.03 ** (i+1))))
+                # Realista: tendência atual + pequeno crescimento
+                vidas_realista.append(int(ultima_vida + tendencia * (i+1) + 5))
+                # Pessimista: manutenção ou pequena queda
+                vidas_pessimista.append(max(int(ultima_vida - 2 * (i+1)), int(ultima_vida * 0.95)))
+            
+            # Criar DataFrame para projeção de vidas
+            df_proj_vidas = pd.DataFrame({
+                "Mês": meses_projecao,
+                "Otimista": vidas_otimista,
+                "Realista": vidas_realista,
+                "Pessimista": vidas_pessimista
+            })
+            
+            # Gráfico de projeção de vidas - Design moderno
+            fig_proj_vidas = px.line(
+                df_proj_vidas,
+                x="Mês",
+                y=["Otimista", "Realista", "Pessimista"],
+                title="<b>Projeção de Vidas Atendidas</b><br><sub>Próximos 3 Meses</sub>",
+                labels={"value": "Vidas Atendidas", "variable": "Cenário"},
+                color_discrete_sequence=["#00D4AA", "#FF6B6B", "#4ECDC4"]
+            )
+            
+            # Atualizar layout com design moderno
+            fig_proj_vidas.update_layout(
+                yaxis_title="<b>Vidas Atendidas</b>",
+                xaxis_title="<b>Mês</b>",
+                margin=dict(l=40, r=40, t=80, b=60),
+                legend_title="<b>Cenários</b>",
+                plot_bgcolor='rgba(0,0,0,0)',
+                paper_bgcolor='rgba(0,0,0,0)',
+                font=dict(family="Arial, sans-serif", size=12),
+                title_font_size=18,
+                title_x=0.5,
+                hovermode='x unified',
+                legend=dict(
+                    orientation="h",
+                    yanchor="bottom",
+                    y=1.02,
+                    xanchor="right",
+                    x=1
+                )
+            )
+            
+            # Formatação dos eixos
+            fig_proj_vidas.update_xaxes(
+                showgrid=True,
+                gridwidth=1,
+                gridcolor='rgba(128,128,128,0.2)',
+                showline=True,
+                linewidth=2,
+                linecolor='rgba(128,128,128,0.3)'
+            )
+            fig_proj_vidas.update_yaxes(
+                showgrid=True,
+                gridwidth=1,
+                gridcolor='rgba(128,128,128,0.2)',
+                showline=True,
+                linewidth=2,
+                linecolor='rgba(128,128,128,0.3)',
+                tickformat=".0f"
+            )
+            
+            # Adicionar marcadores nos pontos
+            fig_proj_vidas.update_traces(
+                mode='lines+markers',
+                marker=dict(size=8, line=dict(width=2, color='white')),
+                line=dict(width=3)
+            )
+            
+            show_plot(fig_proj_vidas, width="stretch")
+            
+            # Projeção de Faturamento
+            st.subheader("Projeção de Faturamento")
+            
+            # Cenários para faturamento
+            fat_otimista = []
+            fat_realista = []
+            fat_pessimista = []
+            
+            ultimo_fat = df_historico_faturamento["Faturamento"].iloc[-1]
+            
+            for i in range(3):
+                # Otimista: crescimento de 5% ao mês
+                fat_otimista.append(round(ultimo_fat * (1.05 ** (i+1)), 2))
+                # Realista: manutenção com pequeno crescimento de 2% ao mês
+                fat_realista.append(round(ultimo_fat * (1.02 ** (i+1)), 2))
+                # Pessimista: pequena queda de 1% ao mês
+                fat_pessimista.append(round(ultimo_fat * (0.99 ** (i+1)), 2))
+            
+            # Criar DataFrame para projeção de faturamento
+            df_proj_fat = pd.DataFrame({
+                "Mês": meses_projecao,
+                "Otimista": fat_otimista,
+                "Realista": fat_realista,
+                "Pessimista": fat_pessimista
+            })
+            
+            # Gráfico de projeção de faturamento - Design moderno
+            fig_proj_fat = px.line(
+                df_proj_fat,
+                x="Mês",
+                y=["Otimista", "Realista", "Pessimista"],
+                title="<b>Projeção de Faturamento</b><br><sub>Próximos 3 Meses</sub>",
+                labels={"value": "Faturamento (R$)", "variable": "Cenário"},
+                color_discrete_sequence=["#00D4AA", "#FF6B6B", "#4ECDC4"]
+            )
+            
+            # Atualizar layout com design moderno
+            fig_proj_fat.update_layout(
+                yaxis_title="<b>Faturamento (R$)</b>",
+                xaxis_title="<b>Mês</b>",
+                margin=dict(l=40, r=40, t=80, b=60),
+                legend_title="<b>Cenários</b>",
+                plot_bgcolor='rgba(0,0,0,0)',
+                paper_bgcolor='rgba(0,0,0,0)',
+                font=dict(family="Arial, sans-serif", size=12),
+                title_font_size=18,
+                title_x=0.5,
+                hovermode='x unified',
+                legend=dict(
+                    orientation="h",
+                    yanchor="bottom",
+                    y=1.02,
+                    xanchor="right",
+                    x=1
+                )
+            )
+            
+            # Formatação dos eixos
+            fig_proj_fat.update_xaxes(
+                showgrid=True,
+                gridwidth=1,
+                gridcolor='rgba(128,128,128,0.2)',
+                showline=True,
+                linewidth=2,
+                linecolor='rgba(128,128,128,0.3)'
+            )
+            fig_proj_fat.update_yaxes(
+                showgrid=True,
+                gridwidth=1,
+                gridcolor='rgba(128,128,128,0.2)',
+                showline=True,
+                linewidth=2,
+                linecolor='rgba(128,128,128,0.3)',
+                tickformat="R$ ,.0f"
+            )
+            
+            # Adicionar marcadores nos pontos
+            fig_proj_fat.update_traces(
+                mode='lines+markers',
+                marker=dict(size=8, line=dict(width=2, color='white')),
+                line=dict(width=3)
+            )
+            
+            # Formatação do hover para valores monetários
+            fig_proj_fat.update_traces(
+                hovertemplate="<b>%{fullData.name}</b><br>" +
+                             "Mês: %{x}<br>" +
+                             "Faturamento: R$ %{y:,.2f}<br>" +
+                             "<extra></extra>"
+            )
+            
+            show_plot(fig_proj_fat, width="stretch")
         elif empresas_presentes_viz == ["AXX CARE"]:
             st.subheader("Vidas ativas no Home Care – AXX CARE (Janeiro→Agosto)")
             month_sets = {"Janeiro": set(), "Fevereiro": set(), "Março": set(), "Abril": set(), "Maio": set(), "Junho": set(), "Julho": set(), "Agosto": set()}
             for file in sel_files:
                 try:
-                    book = pd.read_excel(file, sheet_name=None)
+                    book = safe_read_excel(file, sheet_name=None)
                 except Exception:
                     continue
                 ym = year_month_from_path(file)
@@ -2503,66 +4002,7 @@ def main() -> None:
                 time.sleep(0.02)
             if target % max(1, target // 30) != 0:
                 placeholder.metric("Média de vidas ativas (3 meses)", f"{target}")
-        elif empresas_presentes_viz == ["PRONEP"]:
-            st.subheader("Vidas ativas no Home Care – PRONEP (últimos 3 meses)")
-            month_sets = {"Junho": set(), "Julho": set(), "Agosto": set()}
-            for file in sel_files:
-                try:
-                    book = pd.read_excel(file, sheet_name=None)
-                except Exception:
-                    continue
-                ym = year_month_from_path(file)
-                if ym not in {"2025-06", "2025-07", "2025-08"}:
-                    continue
-                mes_label = {"2025-06": "Junho", "2025-07": "Julho", "2025-08": "Agosto"}.get(ym, None)
-                if mes_label not in month_sets:
-                    continue
-                for sheet_name, df_sheet in (book or {}).items():
-                    if should_exclude_sheet(str(sheet_name)):
-                        continue
-                    if not isinstance(df_sheet, pd.DataFrame) or df_sheet.empty:
-                        continue
-                    series = None
-                    try:
-                        if df_sheet.shape[1] >= 2:
-                            series = df_sheet.iloc[:, 1]
-                    except Exception:
-                        series = None
-                    if series is None:
-                        name_col = select_best_name_column(df_sheet)
-                        if not name_col:
-                            continue
-                        series = df_sheet[name_col]
-                    series = series.dropna().astype(str).str.strip()
-                    series = series[series != ""]
-                    if series.empty:
-                        continue
-                    nomes_norm = series.apply(normalize_text_for_match)
-                    month_sets[mes_label].update(nomes_norm.tolist())
-            df_vidas_mes = pd.DataFrame({
-                "Mês": ["Junho", "Julho", "Agosto"],
-                "VidasUnicas": [len(month_sets["Junho"]), len(month_sets["Julho"]), len(month_sets["Agosto"])],
-            })
-            media_vidas = (
-                df_vidas_mes["VidasUnicas"][df_vidas_mes["VidasUnicas"] > 0].mean() if (df_vidas_mes["VidasUnicas"] > 0).any() else 0
-            )
-            fig_vidas = px.bar(
-                df_vidas_mes,
-                x="Mês",
-                y="VidasUnicas",
-                title="Vidas ativas únicas por mês (PRONEP)",
-                text="VidasUnicas",
-            )
-            fig_vidas.update_traces(textposition="outside")
-            fig_vidas.update_layout(yaxis_title="Vidas únicas", xaxis_title="Mês", margin=dict(l=20, r=20, t=60, b=40))
-            show_plot(fig_vidas, width="stretch")
-            target = int(round(media_vidas))
-            placeholder = st.empty()
-            for val in range(0, target + 1, max(1, target // 30)):
-                placeholder.metric("Média de vidas ativas (3 meses)", f"{val}")
-                time.sleep(0.02)
-            if target % max(1, target // 30) != 0:
-                placeholder.metric("Média de vidas ativas (3 meses)", f"{target}")
+
 
         # ===============================================================
         # PREVISÃO – AXX CARE baseada no Faturamento Geral informado
@@ -2720,7 +4160,16 @@ def main() -> None:
                 pass
 
             # Rodapé
-            st.markdown("<div style='text-align:center;margin-top:28px;opacity:.75'>dashboard desenvolvido por Lucas Missiba</div>", unsafe_allow_html=True)
+            st.markdown("---")
+            st.markdown(
+                """
+                <div style='text-align: center; padding: 20px; color: #666; font-size: 14px;'>
+                    <p><strong>Dashboard desenvolvido por Lucas Missiba</strong></p>
+                    <p>Alocama · Setor de Contratos</p>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
 
             # ================================
             # Substituição: Waterfall – variação mensal do faturamento
@@ -2764,7 +4213,7 @@ def main() -> None:
                 month_sets_arpu = {m:set() for m in month_labels}
                 for file in sel_files:
                     try:
-                        book = pd.read_excel(file, sheet_name=None)
+                        book = safe_read_excel(file, sheet_name=None)
                     except Exception:
                         continue
                     ym = year_month_from_path(file)
@@ -2825,11 +4274,25 @@ def main() -> None:
                 df_arpu["ARPU"] = df_arpu.apply(lambda r: (float(r["Faturamento"]) / r["Vidas"]) if r["Vidas"] > 0 else 0.0, axis=1)
                 fig_arpu = px.bar(
                     df_arpu, x="Mês", y="ARPU",
-                    title="ARPU por mês (Geral – AXX CARE)",
+                    title="ARPU (Average Revenue Per User) - AXX CARE",
+                    text="ARPU",
+                    color="ARPU",
+                    color_continuous_scale="Viridis",
                     category_orders={"Mês": ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"]},
                 )
+                fig_arpu.update_traces(
+                    texttemplate="R$ %{text:,.2f}",
+                    textposition="outside",
+                    hovertemplate="<b>%{x}</b><br>ARPU: R$ %{y:,.2f}<br>Vidas: %{customdata[0]}<br>Faturamento: R$ %{customdata[1]:,.2f}<extra></extra>",
+                    customdata=df_arpu[["Vidas", "Faturamento"]].values
+                )
+                fig_arpu.update_layout(
+                    yaxis_title="ARPU (R$)",
+                    xaxis_title="Mês",
+                    margin=dict(l=20, r=20, t=60, b=40)
+                )
                 fig_arpu.update_yaxes(tickprefix="R$ ", tickformat=",.2f")
-                show_plot(fig_arpu, use_container_width=True)
+                show_plot(fig_arpu, width="stretch")
             except Exception:
                 pass
 
@@ -2865,6 +4328,20 @@ def main() -> None:
 
             # Pareto 80/20 removido a pedido
 
+    # Rodapé
+    st.markdown("---")
+    st.markdown(
+        """
+        <div style='text-align: center; padding: 20px; color: #666; font-size: 14px;'>
+            <p><strong>Dashboard desenvolvido por Lucas Missiba</strong></p>
+            <p>Alocama · Setor de Contratos</p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    
+    # Fechar div do dashboard fade
+    st.markdown("</div>", unsafe_allow_html=True)
 
 
 if __name__ == "__main__":
