@@ -682,6 +682,7 @@ def render_top3_pies(df_by_file: pd.DataFrame, group_names: Optional[List[str]] 
         if top3.empty:
             continue
         fig = px.pie(top3, names="Item", values="Quantidade", title=f"Top 3 - {group}", hole=0.3)
+        fig.update_layout(width=300, height=300)
         cols[col_idx % len(cols)].plotly_chart(fig, use_container_width=True)
         col_idx += 1
 
@@ -2639,6 +2640,7 @@ def main() -> None:
                     hover_data={"Faturamento": ":.2f"},
                     labels={"ItemCanonical": "Item"},
                 )
+                fig_gs.update_layout(width=1200, height=600)
                 fig_gs.update_layout(yaxis_title="Faturamento (R$)", legend_title_text="Item",
                                      legend_orientation="h", legend_y=-0.2, separators=".,",
                                      margin=dict(l=20, r=20, t=60, b=80))
@@ -2660,6 +2662,7 @@ def main() -> None:
                     title="Faturamento geral por mês (valores fornecidos)",
                     category_orders={"Mês": ["Janeiro","Fevereiro","Março","Abril","Maio","Junho", "Julho", "Agosto"]},
                 )
+                fig_total_gs.update_layout(width=1000, height=500)
                 fig_total_gs.update_traces(texttemplate="R$ %{y:,.2f}", textposition="outside")
                 ymax_gs = float(df_total_gs["Faturamento"].max())
                 fig_total_gs.update_yaxes(tickprefix="R$ ", tickformat=",.2f", range=[0, ymax_gs * 1.15])
@@ -2727,6 +2730,7 @@ def main() -> None:
                         title="ARPU por mês (Geral – Grupo Solar)",
                         category_orders={"Mês": ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"]},
                     )
+                    fig_arpu_gs.update_layout(width=800, height=400)
                     fig_arpu_gs.update_yaxes(tickprefix="R$ ", tickformat=",.2f")
                     show_plot(fig_arpu_gs, use_container_width=True)
                 except Exception:
@@ -2806,6 +2810,7 @@ def main() -> None:
                         color="Ticket Médio",
                         color_continuous_scale="Viridis"
                     )
+                    fig_ticket.update_layout(width=800, height=400)
                     fig_ticket.update_traces(
                         hovertemplate="<b>%{x}</b><br>" +
                         "Ticket Médio: R$ %{y:,.2f}<br>" +
@@ -2873,6 +2878,7 @@ def main() -> None:
                         hole=0.3,
                         color_discrete_sequence=px.colors.qualitative.Set3
                     )
+                    fig_pizza_gs.update_layout(width=600, height=500)
                     # Preparar customdata para o gráfico do Grupo Solar
                     customdata_gs = []
                     for _, row in faturamento_por_empresa.iterrows():
@@ -3003,6 +3009,7 @@ def main() -> None:
                             color="ARPU",
                             color_continuous_scale="Viridis"
                         )
+                        fig_arpu_consolidado.update_layout(width=800, height=400)
                         fig_arpu_consolidado.update_yaxes(tickprefix="R$ ", tickformat=",.2f")
                         fig_arpu_consolidado.update_traces(
                             hovertemplate="<b>%{x}</b><br>" +
@@ -4035,6 +4042,7 @@ def main() -> None:
             df_bar_proj = pd.DataFrame({"Mês": proximos_meses, "Faturamento": proj_realista, "Tipo": "Projetado (Realista)"})
             df_bar = pd.concat([df_bar_hist[["Mês","Faturamento","Tipo"]], df_bar_proj], ignore_index=True)
             fig_b = px.bar(df_bar, x="Mês", y="Faturamento", color="Tipo", barmode="group", title="Últimos 3 meses vs próximos 3 (Realista – Geral)")
+            fig_b.update_layout(width=800, height=400)
             fig_b.update_yaxes(tickprefix="R$ ", tickformat=",.2f")
             show_plot(fig_b, use_container_width=True)
 
