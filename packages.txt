@@ -1,2 +1,0 @@
-# Dependências do sistema para Streamlit Cloud
-libgomp1
