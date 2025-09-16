@@ -1794,7 +1794,9 @@ def main() -> None:
             xaxis_title="Itens (Janeiro / Fevereiro / Março / Abril / Maio / Junho / Julho / Agosto)",
             yaxis_title="Quantidade",
             showlegend=False,
-            margin=dict(l=10, r=10, t=48, b=110),
+            height=600,  # Aumentar altura do gráfico
+            margin=dict(l=10, r=10, t=60, b=120),
+            font=dict(size=12),
         )
         fig.update_xaxes(tickangle=-60)
         show_plot(fig, width="stretch")
@@ -1819,7 +1821,7 @@ def main() -> None:
             )
             df_consol_limpo.index = range(1, len(df_consol_limpo) + 1)
             df_consol_limpo.index.name = "Posição"
-            st.dataframe(df_consol_limpo, width="stretch")
+            st.dataframe(df_consol_limpo, use_container_width=True)
         df_peak_item = (
             df_result.sort_values(["Item", "Quantidade"], ascending=[True, False])
             .drop_duplicates(["Item"], keep="first")
@@ -1831,7 +1833,7 @@ def main() -> None:
             df_peak_item_display = df_peak_item.copy()
             df_peak_item_display.index = range(1, len(df_peak_item_display) + 1)
             df_peak_item_display.index.name = "Posição"
-            st.dataframe(df_peak_item_display, width="stretch")
+            st.dataframe(df_peak_item_display, use_container_width=True)
 
         # Detalhamento por categoria (com limpeza de prefixo (COMPL.))
         def _strip_compl_prefix(text: str) -> str:
@@ -1924,7 +1926,7 @@ def main() -> None:
 
                     tabela.index = range(1, len(tabela) + 1)
                     tabela.index.name = "Posição"
-                    st.dataframe(tabela, width="stretch")
+                    st.dataframe(tabela, use_container_width=True)
 
         st.subheader("Top 3 itens por empresa (Janeiro/Fevereiro/Março/Abril/Maio/Junho/Julho/Agosto)")
         empresas_presentes = sorted(df_top3_empresa["Empresa"].unique().tolist())
