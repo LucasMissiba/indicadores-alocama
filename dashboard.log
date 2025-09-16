@@ -1,0 +1,2470 @@
+2025-09-16 14:28:48,246 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 14:28:48,290 - INFO - Lendo arquivo: AXX CARE - setembro.xlsx
+2025-09-16 14:28:48,323 - INFO - Lendo arquivo: AXX CARE - outubro.xlsx
+2025-09-16 14:28:48,349 - INFO - Lendo arquivo: AXX - novembro.xlsx
+2025-09-16 14:28:48,377 - INFO - Lendo arquivo: AXX CARE - dezembro.xlsx
+2025-09-16 14:28:48,399 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 14:28:48,424 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 14:28:48,446 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 14:28:48,477 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 14:28:48,507 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 14:28:48,545 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 14:28:48,578 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 14:28:48,604 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 14:29:41,818 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 14:29:42,066 - INFO - Lendo arquivo: AXX CARE - setembro.xlsx
+2025-09-16 14:29:42,094 - INFO - Lendo arquivo: AXX CARE - outubro.xlsx
+2025-09-16 14:29:42,131 - INFO - Lendo arquivo: AXX - novembro.xlsx
+2025-09-16 14:29:42,165 - INFO - Lendo arquivo: AXX CARE - dezembro.xlsx
+2025-09-16 14:29:42,193 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 14:29:42,221 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 14:29:42,258 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 14:29:42,294 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 14:29:42,335 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 14:29:42,369 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 14:29:42,402 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 14:29:42,437 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 14:29:44,602 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:29:44,611 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:29:44,621 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:29:44,632 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:29:44,645 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:29:44,657 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:29:44,672 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:29:44,682 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:29:44,695 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:29:44,735 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:29:44,766 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:29:44,787 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:29:44,805 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:29:44,828 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:29:44,856 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:29:44,882 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:29:44,904 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:29:44,923 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:29:44,945 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:29:44,976 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:29:46,395 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:29:46,410 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:29:46,420 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:29:46,430 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:29:46,439 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:29:46,450 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:29:46,460 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:29:46,467 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:29:46,474 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:29:46,502 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:29:46,536 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:29:46,569 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:29:46,615 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:29:46,654 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:29:46,695 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:29:46,735 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:29:46,766 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:29:46,803 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:29:46,840 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:29:46,859 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:29:46,879 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:29:46,929 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:29:46,952 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:29:46,975 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:29:46,998 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:29:47,024 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:29:47,051 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:29:47,071 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:29:47,090 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:29:47,308 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:29:47,471 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:29:47,634 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:29:47,792 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:29:47,938 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:29:48,085 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:29:48,231 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:29:48,357 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:29:48,488 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:29:48,629 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:29:48,811 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:29:48,992 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 14:29:49,139 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:29:49,327 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:29:49,514 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 14:29:50,620 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:29:50,650 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:29:50,761 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:29:50,786 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:29:50,801 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:29:50,826 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:29:50,853 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:29:50,870 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:29:50,913 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:29:50,945 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:29:50,987 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:29:51,201 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:29:51,432 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:29:51,597 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:29:51,767 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:29:51,888 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:29:52,019 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:29:52,212 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:29:52,361 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:29:52,472 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:29:52,622 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:29:52,828 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:29:53,064 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 14:29:53,209 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:29:53,360 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:29:53,619 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 14:29:54,069 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:29:54,083 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:29:54,103 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:29:54,121 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:29:54,131 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:29:54,151 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:29:54,163 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:29:54,179 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:29:54,195 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:29:54,396 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:29:54,557 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:29:54,733 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:29:54,891 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:29:55,002 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:29:55,106 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:29:55,229 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:29:55,327 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:29:55,437 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:29:55,558 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:29:55,685 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:29:55,804 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 14:29:55,991 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:29:56,128 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:29:56,283 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 14:32:02,466 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 14:32:02,710 - INFO - Lendo arquivo: AXX CARE - setembro.xlsx
+2025-09-16 14:32:02,739 - INFO - Lendo arquivo: AXX CARE - outubro.xlsx
+2025-09-16 14:32:02,760 - INFO - Lendo arquivo: AXX - novembro.xlsx
+2025-09-16 14:32:02,784 - INFO - Lendo arquivo: AXX CARE - dezembro.xlsx
+2025-09-16 14:32:02,806 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 14:32:02,832 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 14:32:02,852 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 14:32:02,880 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 14:32:02,902 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 14:32:02,927 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 14:32:02,947 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 14:32:02,974 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 14:32:04,249 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:32:04,260 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:32:04,268 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:32:04,277 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:32:04,287 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:32:04,305 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:32:04,321 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:32:04,333 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:32:04,342 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:32:04,376 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:32:04,411 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:32:04,458 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:32:04,480 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:32:04,500 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:32:04,523 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:32:04,551 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:32:04,573 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:32:04,589 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:32:04,614 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:32:04,643 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:32:05,336 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:32:05,343 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:32:05,356 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:32:05,368 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:32:05,377 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:32:05,387 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:32:05,394 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:32:05,403 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:32:05,411 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:32:05,434 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:32:05,456 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:32:05,475 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:32:05,496 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:32:05,511 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:32:05,528 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:32:05,545 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:32:05,580 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:32:05,596 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:32:05,611 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:32:05,629 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:32:05,646 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:32:05,682 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:32:05,695 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:32:05,710 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:32:05,727 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:32:05,746 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:32:05,760 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:32:05,773 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:32:05,785 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:32:05,957 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:32:06,110 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:32:06,274 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:32:06,428 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:32:06,549 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:32:06,678 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:32:06,813 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:32:06,933 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:32:07,070 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:32:07,233 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:32:07,410 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:32:07,580 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 14:32:07,761 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:32:07,930 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:32:08,101 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 14:32:09,197 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:32:09,213 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:32:09,308 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:32:09,323 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:32:09,353 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:32:09,371 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:32:09,396 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:32:09,410 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:32:09,449 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:32:09,485 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:32:09,516 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:32:09,749 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:32:09,971 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:32:10,107 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:32:10,231 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:32:10,343 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:32:10,467 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:32:10,638 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:32:10,800 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:32:10,904 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:32:11,046 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:32:11,239 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:32:11,481 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 14:32:11,623 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:32:11,782 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:32:12,002 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 14:32:12,466 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:32:12,481 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:32:12,501 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:32:12,519 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:32:12,534 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:32:12,554 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:32:12,568 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:32:12,583 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:32:12,599 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:32:12,794 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:32:12,963 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:32:13,103 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:32:13,224 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:32:13,353 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:32:13,492 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:32:13,606 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:32:13,717 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:32:13,811 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:32:13,940 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:32:14,077 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:32:14,237 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 14:32:14,414 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:32:14,550 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:32:14,705 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 14:33:36,508 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 14:33:36,593 - INFO - Lendo arquivo: AXX CARE - setembro.xlsx
+2025-09-16 14:33:36,727 - INFO - Lendo arquivo: AXX CARE - outubro.xlsx
+2025-09-16 14:33:36,815 - INFO - Lendo arquivo: AXX - novembro.xlsx
+2025-09-16 14:33:36,981 - INFO - Lendo arquivo: AXX CARE - dezembro.xlsx
+2025-09-16 14:33:37,032 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 14:33:37,072 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 14:33:37,167 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 14:33:37,209 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 14:33:37,248 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 14:33:37,281 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 14:33:37,316 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 14:33:37,349 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 14:33:38,500 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:33:38,516 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:33:38,528 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:33:38,538 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:33:38,553 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:33:38,589 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:33:38,603 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:33:38,617 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:33:38,628 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:33:38,660 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:33:38,691 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:33:38,720 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:33:38,751 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:33:38,789 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:33:38,813 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:33:38,834 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:33:38,863 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:33:38,885 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:33:38,908 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:33:38,935 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:33:39,705 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:33:39,720 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:33:39,730 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:33:39,739 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:33:39,749 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:33:39,762 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:33:39,772 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:33:39,777 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:33:39,784 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:33:39,805 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:33:39,827 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:33:39,852 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:33:39,877 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:33:39,904 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:33:39,926 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:33:39,940 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:33:39,970 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:33:39,991 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:33:40,008 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:33:40,031 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:33:40,063 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:33:40,080 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:33:40,102 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:33:40,123 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:33:40,137 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:33:40,150 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:33:40,163 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:33:40,175 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:33:40,187 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:33:40,418 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:33:40,582 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:33:40,751 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:33:40,923 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:33:41,082 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:33:41,219 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:33:41,364 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:33:41,484 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:33:41,620 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:33:41,796 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:33:42,021 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:33:42,190 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 14:33:42,360 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:33:42,539 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:33:42,733 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 14:33:43,854 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:33:43,871 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:33:43,969 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:33:43,988 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:33:44,009 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:33:44,030 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:33:44,046 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:33:44,064 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:33:44,136 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:33:44,187 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:33:44,224 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:33:44,490 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:33:44,679 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:33:44,915 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:33:45,093 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:33:45,254 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:33:45,379 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:33:45,565 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:33:45,745 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:33:45,867 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:33:46,043 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:33:46,281 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:33:46,516 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 14:33:46,716 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:33:46,892 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:33:47,199 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 14:33:47,651 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:33:47,772 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:33:47,787 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:33:47,810 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:33:47,826 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:33:47,846 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:33:47,863 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:33:47,876 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:33:47,887 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:33:48,119 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:33:48,300 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:33:48,457 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:33:48,643 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:33:48,785 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:33:48,933 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:33:49,064 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:33:49,207 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:33:49,357 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:33:49,526 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:33:49,681 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:33:49,833 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 14:33:49,981 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:33:50,231 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:33:50,409 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 14:36:16,189 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 14:36:16,221 - INFO - Lendo arquivo: AXX CARE - setembro.xlsx
+2025-09-16 14:36:16,256 - INFO - Lendo arquivo: AXX CARE - outubro.xlsx
+2025-09-16 14:36:16,284 - INFO - Lendo arquivo: AXX - novembro.xlsx
+2025-09-16 14:36:16,307 - INFO - Lendo arquivo: AXX CARE - dezembro.xlsx
+2025-09-16 14:36:16,352 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 14:36:16,385 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 14:36:16,421 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 14:36:16,457 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 14:36:16,497 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 14:36:16,530 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 14:36:16,576 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 14:36:16,611 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 14:36:20,084 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:36:20,100 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:36:20,111 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:36:20,126 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:36:20,138 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:36:20,149 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:36:20,159 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:36:20,169 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:36:20,178 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:36:20,207 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:36:20,244 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:36:20,280 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:36:20,312 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:36:20,342 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:36:20,372 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:36:20,397 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:36:20,426 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:36:20,455 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:36:20,482 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:36:20,504 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:36:20,533 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:36:20,557 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:36:20,579 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:36:20,601 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:36:20,617 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:36:20,636 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:36:20,652 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:36:20,672 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:36:20,685 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:36:20,995 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:36:32,618 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 14:36:32,894 - INFO - Lendo arquivo: AXX CARE - setembro.xlsx
+2025-09-16 14:36:32,928 - INFO - Lendo arquivo: AXX CARE - outubro.xlsx
+2025-09-16 14:36:32,949 - INFO - Lendo arquivo: AXX - novembro.xlsx
+2025-09-16 14:36:32,979 - INFO - Lendo arquivo: AXX CARE - dezembro.xlsx
+2025-09-16 14:36:33,000 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 14:36:33,027 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 14:36:33,051 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 14:36:33,085 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 14:36:33,113 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 14:36:33,143 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 14:36:33,168 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 14:36:33,194 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 14:36:36,316 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:36:36,329 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:36:36,343 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:36:36,353 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:36:36,363 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:36:36,375 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:36:36,383 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:36:36,391 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:36:36,396 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:36:36,422 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:36:36,443 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:36:36,466 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:36:36,486 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:36:36,504 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:36:36,529 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:36:36,555 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:36:36,573 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:36:36,593 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:36:36,620 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:36:36,642 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:36:36,667 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:36:36,689 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:36:36,706 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:36:36,724 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:36:36,738 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:36:36,757 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:36:36,770 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:36:36,785 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:36:36,795 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:36:37,032 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:36:37,178 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:36:37,331 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:36:37,493 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:36:37,625 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:36:37,762 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:36:37,876 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:36:37,998 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:36:38,126 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:36:38,300 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:36:38,490 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:36:38,645 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 14:36:38,807 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:36:38,977 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:36:39,165 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 14:36:40,301 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:36:40,319 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:36:40,432 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:36:40,457 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:36:40,469 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:36:40,492 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:36:40,517 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:36:40,532 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:36:40,572 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:36:40,606 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:36:40,634 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:36:40,863 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:36:41,196 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:36:41,441 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:36:41,777 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:36:42,007 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:36:42,208 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:36:42,511 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:36:42,733 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:36:42,873 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:36:43,020 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:36:43,217 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:36:43,405 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 14:36:43,570 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:36:43,754 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:36:43,999 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 14:36:44,445 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:36:44,464 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:36:44,480 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:36:44,501 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:36:44,514 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:36:44,533 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:36:44,546 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:36:44,559 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:36:44,575 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:36:44,786 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:36:44,947 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:36:45,096 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:36:45,236 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:36:45,365 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:36:45,488 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:36:45,609 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:36:45,756 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:36:45,864 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:36:45,985 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:36:46,127 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:36:46,270 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 14:36:46,458 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:36:46,609 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:36:46,764 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 14:40:11,613 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 14:40:11,809 - INFO - Lendo arquivo: AXX CARE - setembro.xlsx
+2025-09-16 14:40:11,831 - INFO - Lendo arquivo: AXX CARE - outubro.xlsx
+2025-09-16 14:40:11,851 - INFO - Lendo arquivo: AXX - novembro.xlsx
+2025-09-16 14:40:11,873 - INFO - Lendo arquivo: AXX CARE - dezembro.xlsx
+2025-09-16 14:40:11,892 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 14:40:11,934 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 14:40:11,998 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 14:40:12,065 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 14:40:12,111 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 14:40:12,145 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 14:40:12,166 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 14:40:12,197 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 14:40:14,600 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:40:14,623 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:40:14,640 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:40:14,654 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:40:14,663 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:40:14,675 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:40:14,685 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:40:14,693 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:40:14,701 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:40:14,730 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:40:14,759 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:40:14,778 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:40:14,810 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:40:14,855 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:40:14,877 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:40:14,906 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:40:14,928 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:40:14,952 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:40:14,979 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:40:14,999 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:40:15,674 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:40:15,682 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:40:15,695 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:40:15,706 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:40:15,715 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:40:15,724 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:40:15,731 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:40:15,740 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:40:15,748 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:40:15,775 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:40:15,799 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:40:15,825 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:40:15,841 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:40:15,856 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:40:15,877 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:40:15,902 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:40:15,923 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:40:15,940 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:40:15,961 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:40:15,980 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:40:16,003 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:40:16,051 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:40:16,065 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:40:16,083 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:40:16,105 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:40:16,116 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:40:16,133 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:40:16,152 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:40:16,166 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:40:16,358 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:40:16,529 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:40:16,661 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:40:16,816 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:40:16,983 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:40:17,105 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:40:17,227 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:40:17,355 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:40:17,479 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:40:17,603 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:40:17,776 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:40:17,922 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 14:40:18,076 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:40:18,263 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:40:18,437 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 14:40:19,613 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:40:19,630 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:40:19,739 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:40:19,758 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:40:19,775 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:40:19,789 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:40:19,803 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:40:19,816 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:40:19,860 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:40:19,895 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:40:19,924 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:40:20,158 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:40:20,402 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:40:20,567 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:40:20,755 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:40:20,893 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:40:21,043 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:40:21,233 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:40:21,442 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:40:21,576 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:40:21,702 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:40:21,921 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:40:22,131 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 14:40:22,264 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:40:22,421 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:40:22,681 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 14:40:23,135 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:40:23,157 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:40:23,176 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:40:23,197 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:40:23,219 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:40:23,237 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:40:23,254 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:40:23,268 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:40:23,280 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:40:23,493 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:40:23,658 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:40:23,805 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:40:23,969 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:40:24,190 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:40:24,311 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:40:24,449 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:40:24,574 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:40:24,691 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:40:24,822 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:40:24,944 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:40:25,133 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 14:40:25,355 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:40:25,499 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:40:25,666 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 14:44:02,097 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 14:44:02,303 - INFO - Lendo arquivo: AXX CARE - setembro.xlsx
+2025-09-16 14:44:02,329 - INFO - Lendo arquivo: AXX CARE - outubro.xlsx
+2025-09-16 14:44:02,350 - INFO - Lendo arquivo: AXX - novembro.xlsx
+2025-09-16 14:44:02,378 - INFO - Lendo arquivo: AXX CARE - dezembro.xlsx
+2025-09-16 14:44:02,400 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 14:44:02,423 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 14:44:02,445 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 14:44:02,465 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 14:44:02,502 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 14:44:02,522 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 14:44:02,550 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 14:44:02,571 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 14:44:04,867 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:44:04,881 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:44:04,890 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:44:04,910 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:44:04,921 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:44:04,934 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:44:04,947 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:44:04,960 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:44:04,970 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:44:05,013 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:44:05,062 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:44:05,087 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:44:05,112 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:44:05,134 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:44:05,153 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:44:05,179 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:44:05,198 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:44:05,219 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:44:05,252 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:44:05,272 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:44:05,935 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:44:05,942 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:44:05,958 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:44:05,972 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:44:05,983 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:44:05,991 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:44:06,000 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:44:06,006 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:44:06,014 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:44:06,039 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:44:06,059 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:44:06,082 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:44:06,102 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:44:06,121 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:44:06,136 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:44:06,154 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:44:06,176 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:44:06,192 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:44:06,211 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:44:06,230 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:44:06,251 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:44:06,287 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:44:06,299 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:44:06,319 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:44:06,334 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:44:06,360 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:44:06,372 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:44:06,385 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:44:06,397 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:44:06,613 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:44:06,781 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:44:06,964 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:44:07,117 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:44:07,234 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:44:07,354 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:44:07,474 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:44:07,577 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:44:07,696 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:44:07,844 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:44:08,020 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:44:08,170 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 14:44:08,323 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:44:08,489 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:44:08,693 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 14:44:09,928 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:44:09,944 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:44:10,045 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:44:10,069 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:44:10,088 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:44:10,104 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:44:10,124 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:44:10,139 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:44:10,172 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:44:10,205 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:44:10,234 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:44:10,462 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:44:10,676 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:44:10,843 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:44:10,988 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:44:11,112 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:44:11,256 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:44:11,421 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:44:11,570 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:44:11,672 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:44:11,787 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:44:12,032 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:44:12,242 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 14:44:12,375 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:44:12,566 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:44:12,803 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 14:44:13,332 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:44:13,350 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:44:13,375 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:44:13,395 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:44:13,414 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:44:13,433 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:44:13,447 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:44:13,466 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:44:13,481 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:44:13,700 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:44:13,857 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:44:13,981 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:44:14,107 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:44:14,239 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:44:14,345 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:44:14,454 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:44:14,572 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:44:14,700 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:44:14,824 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:44:14,956 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:44:15,082 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 14:44:15,301 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:44:15,465 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:44:15,621 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 14:49:09,729 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 14:49:09,980 - INFO - Lendo arquivo: AXX CARE - setembro.xlsx
+2025-09-16 14:49:10,008 - INFO - Lendo arquivo: AXX CARE - outubro.xlsx
+2025-09-16 14:49:10,042 - INFO - Lendo arquivo: AXX - novembro.xlsx
+2025-09-16 14:49:10,068 - INFO - Lendo arquivo: AXX CARE - dezembro.xlsx
+2025-09-16 14:49:10,103 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 14:49:10,132 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 14:49:10,162 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 14:49:10,192 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 14:49:10,221 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 14:49:10,244 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 14:49:10,274 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 14:49:10,303 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 14:49:11,699 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:49:11,714 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:49:11,757 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:49:11,768 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:49:11,781 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:49:11,792 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:49:11,800 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:49:11,811 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:49:11,819 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:49:11,849 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:49:11,879 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:49:11,900 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:49:11,925 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:49:11,948 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:49:11,976 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:49:12,001 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:49:12,026 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:49:12,046 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:49:12,067 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:49:12,093 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:49:12,778 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:49:12,785 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:49:12,797 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:49:12,814 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:49:12,821 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:49:12,832 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:49:12,838 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:49:12,846 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:49:12,856 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:49:12,882 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:49:12,906 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:49:12,930 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:49:12,946 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:49:12,966 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:49:12,986 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:49:13,001 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:49:13,018 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:49:13,036 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:49:13,059 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:49:13,077 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:49:13,100 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:49:13,142 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:49:13,158 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:49:13,176 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:49:13,200 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:49:13,216 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:49:13,229 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:49:13,240 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:49:13,249 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:49:13,448 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:49:13,587 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:49:13,751 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:49:13,916 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:49:14,054 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:49:14,178 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:49:14,289 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:49:14,405 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:49:14,543 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:49:14,696 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:49:14,914 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:49:15,044 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 14:49:15,224 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:49:15,384 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:49:15,559 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 14:49:16,784 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:49:16,799 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:49:16,888 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:49:16,909 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:49:16,928 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:49:16,944 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:49:16,961 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:49:16,977 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:49:17,012 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:49:17,045 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:49:17,094 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:49:17,312 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:49:17,565 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:49:17,742 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:49:17,923 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:49:18,092 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:49:18,204 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:49:18,449 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:49:18,601 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:49:18,715 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:49:18,871 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:49:19,120 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:49:19,344 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 14:49:19,488 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:49:19,654 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:49:19,911 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 14:49:20,347 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 14:49:20,369 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 14:49:20,386 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 14:49:20,405 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 14:49:20,419 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 14:49:20,442 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:49:20,462 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 14:49:20,475 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 14:49:20,486 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 14:49:20,724 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 14:49:20,883 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 14:49:21,032 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 14:49:21,154 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 14:49:21,267 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 14:49:21,392 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:49:21,506 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 14:49:21,619 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 14:49:21,741 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 14:49:21,872 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 14:49:22,003 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 14:49:22,127 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 14:49:22,314 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 14:49:22,461 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 14:49:22,622 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:06:50,509 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 15:06:50,768 - INFO - Lendo arquivo: AXX CARE - setembro.xlsx
+2025-09-16 15:06:50,793 - INFO - Lendo arquivo: AXX CARE - outubro.xlsx
+2025-09-16 15:06:50,812 - INFO - Lendo arquivo: AXX - novembro.xlsx
+2025-09-16 15:06:50,833 - INFO - Lendo arquivo: AXX CARE - dezembro.xlsx
+2025-09-16 15:06:50,858 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 15:06:50,879 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 15:06:50,906 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 15:06:50,933 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 15:06:50,955 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 15:06:50,982 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 15:06:51,010 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 15:06:51,035 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 15:06:52,475 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:06:52,491 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:06:52,500 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:06:52,508 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:06:52,523 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:06:52,536 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:06:52,556 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:06:52,582 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:06:52,606 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:06:52,693 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:06:52,820 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:06:52,875 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:06:52,915 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:06:52,955 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:06:53,006 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:06:53,030 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:06:53,054 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:06:53,076 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:06:53,098 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:06:53,121 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:06:53,818 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:06:53,825 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:06:53,833 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:06:53,848 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:06:53,857 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:06:53,866 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:06:53,874 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:06:53,880 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:06:53,886 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:06:53,909 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:06:53,934 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:06:53,958 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:06:53,975 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:06:53,992 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:06:54,015 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:06:54,032 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:06:54,056 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:06:54,074 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:06:54,093 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:06:54,110 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:06:54,129 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:06:54,166 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:06:54,180 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:06:54,204 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:06:54,222 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:06:54,234 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:06:54,247 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:06:54,259 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:06:54,271 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:06:54,459 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:06:54,607 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:06:54,746 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:06:54,903 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:06:55,057 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:06:55,184 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:06:55,307 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:06:55,433 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:06:55,588 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:06:55,727 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:06:55,935 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:06:56,079 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:06:56,218 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:06:56,385 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:06:56,588 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:06:57,809 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:06:57,827 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:06:57,918 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:06:57,936 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:06:57,960 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:06:57,989 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:06:58,008 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:06:58,026 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:06:58,064 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:06:58,094 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:06:58,124 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:06:58,370 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:06:58,580 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:06:58,735 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:06:58,895 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:06:59,024 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:06:59,136 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:06:59,304 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:06:59,481 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:06:59,602 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:06:59,739 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:06:59,933 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:07:00,170 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:07:00,294 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:07:00,440 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:07:00,703 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:07:01,157 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:07:01,170 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:07:01,192 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:07:01,204 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:07:01,230 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:07:01,245 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:07:01,262 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:07:01,275 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:07:01,287 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:07:01,484 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:07:01,653 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:07:01,786 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:07:01,900 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:07:02,024 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:07:02,155 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:07:02,256 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:07:02,349 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:07:02,474 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:07:02,610 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:07:02,759 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:07:02,891 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:07:03,096 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:07:03,228 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:07:03,375 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:15:48,217 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 15:15:48,424 - INFO - Lendo arquivo: AXX CARE - setembro.xlsx
+2025-09-16 15:15:48,449 - INFO - Lendo arquivo: AXX CARE - outubro.xlsx
+2025-09-16 15:15:48,470 - INFO - Lendo arquivo: AXX - novembro.xlsx
+2025-09-16 15:15:48,493 - INFO - Lendo arquivo: AXX CARE - dezembro.xlsx
+2025-09-16 15:15:48,517 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 15:15:48,536 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 15:15:48,558 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 15:15:48,576 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 15:15:48,605 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 15:15:48,623 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 15:15:48,647 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 15:15:48,701 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 15:16:21,049 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 15:16:21,077 - INFO - Lendo arquivo: AXX CARE - setembro.xlsx
+2025-09-16 15:16:21,099 - INFO - Lendo arquivo: AXX CARE - outubro.xlsx
+2025-09-16 15:16:21,117 - INFO - Lendo arquivo: AXX - novembro.xlsx
+2025-09-16 15:16:21,135 - INFO - Lendo arquivo: AXX CARE - dezembro.xlsx
+2025-09-16 15:16:21,157 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 15:16:21,177 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 15:16:21,194 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 15:16:21,217 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 15:16:21,233 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 15:16:21,253 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 15:16:21,271 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 15:16:21,293 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 15:16:23,159 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:16:23,171 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:16:23,181 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:16:23,194 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:16:23,206 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:16:23,216 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:16:23,225 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:16:23,232 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:16:23,241 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:16:23,265 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:16:23,291 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:16:23,314 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:16:23,334 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:16:23,356 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:16:23,382 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:16:23,402 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:16:23,424 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:16:23,446 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:16:23,468 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:16:23,487 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:16:24,259 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:16:24,267 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:16:24,282 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:16:24,294 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:16:24,302 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:16:24,315 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:16:24,322 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:16:24,330 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:16:24,337 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:16:24,361 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:16:24,387 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:16:24,409 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:16:24,430 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:16:24,454 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:16:24,474 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:16:24,494 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:16:24,520 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:16:24,536 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:16:24,561 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:16:24,580 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:16:24,604 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:16:24,640 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:16:24,654 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:16:24,672 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:16:24,689 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:16:24,704 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:16:24,722 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:16:24,735 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:16:24,752 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:16:24,931 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:16:25,071 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:16:25,208 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:16:25,354 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:16:25,488 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:16:25,606 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:16:25,727 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:16:25,836 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:16:25,948 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:16:26,077 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:16:26,253 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:16:26,384 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:16:26,527 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:16:26,678 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:16:26,835 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:16:28,022 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:16:28,041 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:16:28,125 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:16:28,142 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:16:28,159 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:16:28,178 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:16:28,201 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:16:28,223 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:16:28,317 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:16:28,434 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:16:28,544 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:16:28,839 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:16:29,078 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:16:29,215 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:16:29,353 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:16:29,479 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:16:29,599 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:16:29,759 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:16:29,927 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:16:30,041 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:16:30,172 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:16:30,372 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:16:30,575 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:16:30,714 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:16:30,850 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:16:31,188 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:16:32,031 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:16:32,117 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:16:32,135 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:16:32,156 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:16:32,183 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:16:32,207 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:16:32,224 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:16:32,242 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:16:32,258 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:16:32,589 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:16:32,744 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:16:32,872 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:16:32,981 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:16:33,123 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:16:33,241 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:16:33,346 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:16:33,451 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:16:33,566 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:16:33,678 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:16:33,805 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:16:33,927 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:16:34,112 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:16:34,256 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:16:34,400 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:18:41,362 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 15:18:41,563 - INFO - Lendo arquivo: AXX CARE - setembro.xlsx
+2025-09-16 15:18:41,587 - INFO - Lendo arquivo: AXX CARE - outubro.xlsx
+2025-09-16 15:18:41,608 - INFO - Lendo arquivo: AXX - novembro.xlsx
+2025-09-16 15:18:41,626 - INFO - Lendo arquivo: AXX CARE - dezembro.xlsx
+2025-09-16 15:18:41,647 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 15:18:41,665 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 15:18:41,687 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 15:18:41,707 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 15:18:41,730 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 15:18:41,751 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 15:18:41,771 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 15:18:41,794 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 15:18:44,789 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:18:44,804 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:18:44,815 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:18:44,827 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:18:44,836 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:18:44,844 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:18:44,854 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:18:44,863 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:18:44,870 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:18:44,895 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:18:44,920 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:18:44,942 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:18:44,963 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:18:44,985 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:18:45,003 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:18:45,021 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:18:45,044 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:18:45,064 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:18:45,085 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:18:45,103 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:18:45,126 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:18:45,156 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:18:45,170 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:18:45,185 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:18:45,202 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:18:45,213 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:18:45,230 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:18:45,240 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:18:45,253 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:18:45,465 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:18:45,627 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:18:45,801 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:18:45,958 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:18:46,150 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:18:46,308 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:18:46,475 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:18:46,637 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:18:46,784 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:18:46,939 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:18:47,181 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:18:47,336 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:18:47,499 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:18:47,712 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:18:47,982 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:18:49,640 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:18:49,669 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:18:49,744 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:18:49,767 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:18:49,783 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:18:49,802 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:18:49,820 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:18:49,839 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:18:49,883 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:18:49,922 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:18:49,958 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:18:50,263 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:18:50,548 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:18:50,728 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:18:50,910 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:18:51,089 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:18:51,252 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:18:51,493 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:18:51,705 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:18:51,846 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:18:52,009 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:18:52,253 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:18:52,509 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:18:52,675 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:18:52,881 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:18:53,194 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:18:53,849 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:18:53,878 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:18:53,898 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:18:53,911 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:18:53,927 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:18:53,946 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:18:53,966 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:18:53,981 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:18:53,990 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:18:54,281 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:18:54,466 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:18:54,633 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:18:54,758 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:18:54,903 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:18:55,068 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:18:55,207 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:18:55,344 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:18:55,470 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:18:55,618 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:18:55,764 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:18:55,921 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:18:56,135 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:18:56,310 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:18:56,479 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:19:33,338 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 15:19:33,533 - INFO - Lendo arquivo: AXX CARE - setembro.xlsx
+2025-09-16 15:19:33,563 - INFO - Lendo arquivo: AXX CARE - outubro.xlsx
+2025-09-16 15:19:33,588 - INFO - Lendo arquivo: AXX - novembro.xlsx
+2025-09-16 15:19:33,608 - INFO - Lendo arquivo: AXX CARE - dezembro.xlsx
+2025-09-16 15:19:33,630 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 15:19:33,654 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 15:19:33,675 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 15:19:33,696 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 15:19:33,722 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 15:19:33,742 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 15:19:33,762 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 15:19:33,787 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 15:19:35,755 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:19:35,769 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:19:35,783 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:19:35,795 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:19:35,802 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:19:35,811 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:19:35,817 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:19:35,823 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:19:35,830 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:19:35,862 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:19:35,887 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:19:35,907 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:19:35,932 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:19:35,955 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:19:35,972 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:19:35,987 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:19:36,004 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:19:36,021 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:19:36,040 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:19:36,058 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:19:36,078 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:19:36,103 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:19:36,128 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:19:36,147 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:19:36,164 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:19:36,176 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:19:36,188 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:19:36,199 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:19:36,210 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:19:36,401 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:19:36,548 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:19:36,698 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:19:36,840 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:19:36,972 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:19:37,109 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:19:37,254 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:19:37,381 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:19:37,569 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:19:37,801 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:19:38,239 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:19:38,507 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:19:38,774 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:19:39,016 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:19:39,269 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:19:40,621 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:19:40,710 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:19:40,941 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:19:40,960 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:19:40,982 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:19:41,007 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:19:41,044 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:19:41,065 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:19:41,097 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:19:41,127 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:19:41,162 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:19:41,445 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:19:41,716 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:19:41,880 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:19:42,058 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:19:42,204 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:19:42,313 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:19:42,481 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:19:42,658 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:19:42,787 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:19:42,927 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:19:43,170 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:19:43,382 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:19:43,531 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:19:43,727 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:19:44,043 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:19:44,558 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:19:44,575 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:19:44,589 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:19:44,600 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:19:44,612 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:19:44,627 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:19:44,648 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:19:44,661 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:19:44,673 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:19:44,864 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:19:45,011 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:19:45,168 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:19:45,300 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:19:45,434 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:19:45,583 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:19:45,709 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:19:45,824 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:19:45,925 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:19:46,072 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:19:46,247 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:19:46,386 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:19:46,622 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:19:46,787 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:19:46,983 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:20:34,307 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 15:20:34,467 - INFO - Lendo arquivo: AXX CARE - setembro.xlsx
+2025-09-16 15:20:34,489 - INFO - Lendo arquivo: AXX CARE - outubro.xlsx
+2025-09-16 15:20:34,507 - INFO - Lendo arquivo: AXX - novembro.xlsx
+2025-09-16 15:20:34,527 - INFO - Lendo arquivo: AXX CARE - dezembro.xlsx
+2025-09-16 15:20:34,551 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 15:20:34,569 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 15:20:34,596 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 15:20:34,626 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 15:20:34,652 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 15:20:34,679 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 15:20:34,707 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 15:20:34,728 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 15:20:36,846 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:20:36,853 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:20:36,864 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:20:36,873 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:20:36,880 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:20:36,888 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:20:36,894 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:20:36,899 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:20:36,905 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:20:36,926 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:20:36,949 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:20:36,966 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:20:36,984 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:20:37,009 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:20:37,030 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:20:37,054 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:20:37,071 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:20:37,088 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:20:37,122 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:20:37,137 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:20:37,155 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:20:37,173 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:20:37,186 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:20:37,200 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:20:37,214 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:20:37,226 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:20:37,236 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:20:37,252 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:20:37,261 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:20:37,448 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:20:37,582 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:20:37,725 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:20:37,857 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:20:37,970 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:20:38,080 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:20:38,226 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:20:38,339 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:20:38,474 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:20:38,634 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:20:38,837 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:20:39,011 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:20:39,187 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:20:39,402 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:20:39,670 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:20:41,442 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:20:41,463 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:20:41,550 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:20:41,572 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:20:41,590 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:20:41,603 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:20:41,620 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:20:41,632 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:20:41,678 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:20:41,716 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:20:41,746 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:20:42,005 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:20:42,252 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:20:42,418 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:20:42,548 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:20:42,677 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:20:42,803 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:20:42,971 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:20:43,134 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:20:43,233 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:20:43,358 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:20:43,636 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:20:43,877 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:20:44,013 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:20:44,164 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:20:44,417 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:20:44,841 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:20:44,856 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:20:44,875 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:20:44,889 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:20:44,900 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:20:44,911 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:20:44,923 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:20:44,933 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:20:44,942 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:20:45,144 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:20:45,293 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:20:45,422 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:20:45,595 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:20:45,735 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:20:45,838 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:20:45,944 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:20:46,055 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:20:46,169 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:20:46,287 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:20:46,402 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:20:46,536 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:20:46,727 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:20:46,895 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:20:47,047 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:22:18,225 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 15:22:18,410 - INFO - Lendo arquivo: AXX CARE - setembro.xlsx
+2025-09-16 15:22:18,432 - INFO - Lendo arquivo: AXX CARE - outubro.xlsx
+2025-09-16 15:22:18,449 - INFO - Lendo arquivo: AXX - novembro.xlsx
+2025-09-16 15:22:18,467 - INFO - Lendo arquivo: AXX CARE - dezembro.xlsx
+2025-09-16 15:22:18,484 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 15:22:18,503 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 15:22:18,520 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 15:22:18,540 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 15:22:18,560 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 15:22:18,576 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 15:22:18,594 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 15:22:18,614 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 15:22:20,729 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:22:20,740 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:22:20,750 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:22:20,759 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:22:20,767 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:22:20,776 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:22:20,786 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:22:20,794 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:22:20,802 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:22:20,824 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:22:20,850 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:22:20,869 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:22:20,896 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:22:20,917 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:22:20,935 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:22:20,952 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:22:20,970 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:22:20,996 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:22:21,016 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:22:21,033 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:22:21,057 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:22:21,076 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:22:21,091 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:22:21,102 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:22:21,113 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:22:21,130 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:22:21,142 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:22:21,151 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:22:21,161 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:22:21,343 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:22:21,494 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:22:21,636 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:22:21,770 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:22:21,887 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:22:21,994 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:22:22,123 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:22:22,261 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:22:22,417 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:22:22,597 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:22:22,831 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:22:23,002 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:22:23,174 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:22:23,365 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:22:23,581 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:22:24,846 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:22:24,862 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:22:24,934 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:22:24,950 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:22:24,968 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:22:24,984 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:22:25,005 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:22:25,017 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:22:25,047 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:22:25,077 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:22:25,106 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:22:25,313 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:22:25,540 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:22:25,689 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:22:25,835 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:22:25,954 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:22:26,078 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:22:26,317 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:22:26,498 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:22:26,606 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:22:26,746 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:22:26,928 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:22:27,115 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:22:27,258 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:22:27,431 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:22:27,672 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:22:28,130 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:22:28,155 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:22:28,168 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:22:28,188 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:22:28,199 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:22:28,218 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:22:28,234 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:22:28,245 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:22:28,255 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:22:28,432 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:22:28,561 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:22:28,694 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:22:28,814 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:22:28,916 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:22:29,010 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:22:29,117 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:22:29,207 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:22:29,310 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:22:29,416 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:22:29,526 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:22:29,654 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:22:29,840 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:22:29,981 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:22:30,128 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:23:29,703 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 15:23:29,734 - INFO - Lendo arquivo: AXX CARE - setembro.xlsx
+2025-09-16 15:23:29,752 - INFO - Lendo arquivo: AXX CARE - outubro.xlsx
+2025-09-16 15:23:29,768 - INFO - Lendo arquivo: AXX - novembro.xlsx
+2025-09-16 15:23:29,784 - INFO - Lendo arquivo: AXX CARE - dezembro.xlsx
+2025-09-16 15:23:29,802 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 15:23:29,829 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 15:23:29,848 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 15:23:29,876 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 15:23:29,897 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 15:23:29,915 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 15:23:29,936 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 15:23:29,958 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 15:23:31,478 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:23:31,487 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:23:31,495 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:23:31,503 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:23:31,511 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:23:31,518 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:23:31,525 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:23:31,532 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:23:31,543 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:23:31,592 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:23:31,616 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:23:31,642 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:23:31,660 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:23:31,680 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:23:31,699 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:23:31,718 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:23:31,742 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:23:31,765 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:23:31,786 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:23:31,809 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:23:32,437 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:23:32,446 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:23:32,452 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:23:32,466 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:23:32,474 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:23:32,481 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:23:32,486 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:23:32,491 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:23:32,496 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:23:32,514 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:23:32,532 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:23:32,552 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:23:32,569 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:23:32,584 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:23:32,601 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:23:32,614 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:23:32,633 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:23:32,648 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:23:32,666 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:23:32,682 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:23:32,698 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:23:32,716 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:23:32,727 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:23:32,739 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:23:32,749 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:23:32,760 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:23:32,769 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:23:32,779 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:23:32,787 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:23:33,009 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:23:33,139 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:23:33,282 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:23:33,412 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:23:33,538 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:23:33,651 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:23:33,758 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:23:33,872 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:23:33,984 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:23:34,126 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:23:34,318 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:23:34,450 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:23:34,589 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:23:34,735 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:23:34,895 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:23:35,896 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:23:35,912 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:23:35,977 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:23:35,995 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:23:36,008 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:23:36,029 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:23:36,041 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:23:36,051 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:23:36,088 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:23:36,119 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:23:36,152 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:23:36,367 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:23:36,530 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:23:36,722 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:23:36,886 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:23:37,004 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:23:37,127 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:23:37,316 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:23:37,470 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:23:37,588 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:23:37,724 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:23:37,940 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:23:38,144 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:23:38,287 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:23:38,450 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:23:38,691 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:23:39,106 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:23:39,182 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:23:39,195 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:23:39,206 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:23:39,221 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:23:39,234 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:23:39,244 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:23:39,256 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:23:39,271 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:23:39,450 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:23:39,601 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:23:39,776 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:23:39,912 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:23:40,030 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:23:40,154 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:23:40,263 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:23:40,374 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:23:40,497 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:23:40,624 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:23:40,749 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:23:40,909 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:23:41,064 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:23:41,247 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:23:41,379 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:26:51,753 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 15:26:51,954 - INFO - Lendo arquivo: AXX CARE - setembro.xlsx
+2025-09-16 15:26:51,987 - INFO - Lendo arquivo: AXX CARE - outubro.xlsx
+2025-09-16 15:26:52,005 - INFO - Lendo arquivo: AXX - novembro.xlsx
+2025-09-16 15:26:52,027 - INFO - Lendo arquivo: AXX CARE - dezembro.xlsx
+2025-09-16 15:26:52,045 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 15:26:52,061 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 15:26:52,086 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 15:26:52,111 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 15:26:52,131 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 15:26:52,148 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 15:26:52,174 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 15:26:52,201 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 15:28:05,757 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:28:05,769 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:28:05,779 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:28:05,787 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:28:05,794 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:28:05,801 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:28:05,807 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:28:05,815 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:28:05,820 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:28:05,841 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:28:05,866 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:28:05,896 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:28:05,918 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:28:05,937 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:28:05,952 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:28:05,969 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:28:05,988 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:28:06,008 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:28:06,035 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:28:06,052 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:28:06,071 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:28:06,105 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:28:06,122 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:28:06,136 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:28:06,149 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:28:06,160 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:28:06,173 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:28:06,182 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:28:06,203 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:28:06,378 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:28:06,511 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:28:06,688 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:28:06,861 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:28:06,991 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:28:07,125 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:28:07,247 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:28:07,353 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:28:07,492 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:28:07,624 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:28:07,787 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:28:07,922 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:28:08,062 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:28:08,202 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:28:08,355 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:28:09,545 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:28:09,560 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:28:09,783 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:28:09,801 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:28:09,814 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:28:09,831 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:28:09,847 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:28:09,859 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:28:09,889 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:28:09,918 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:28:09,944 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:28:10,132 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:28:10,341 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:28:10,499 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:28:10,632 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:28:10,758 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:28:10,878 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:28:11,048 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:28:11,203 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:28:11,327 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:28:11,458 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:28:11,642 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:28:11,847 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:28:11,982 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:28:12,139 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:28:12,384 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:28:12,813 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:28:12,831 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:28:12,847 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:28:12,861 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:28:12,882 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:28:12,899 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:28:12,909 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:28:12,921 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:28:12,933 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:28:13,137 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:28:13,275 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:28:13,411 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:28:13,535 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:28:13,665 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:28:13,771 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:28:13,876 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:28:13,974 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:28:14,085 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:28:14,213 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:28:14,318 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:28:14,435 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:28:14,557 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:28:14,770 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:28:14,918 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:34:08,824 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 15:34:09,014 - INFO - Lendo arquivo: AXX CARE - setembro.xlsx
+2025-09-16 15:34:09,040 - INFO - Lendo arquivo: AXX CARE - outubro.xlsx
+2025-09-16 15:34:09,065 - INFO - Lendo arquivo: AXX - novembro.xlsx
+2025-09-16 15:34:09,101 - INFO - Lendo arquivo: AXX CARE - dezembro.xlsx
+2025-09-16 15:34:09,154 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 15:34:09,186 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 15:34:09,218 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 15:34:09,249 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 15:34:09,285 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 15:34:09,319 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 15:34:09,348 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 15:34:09,376 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 15:34:10,774 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:34:10,811 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:34:10,824 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:34:10,833 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:34:10,849 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:34:10,864 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:34:10,876 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:34:10,883 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:34:10,892 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:34:10,920 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:34:10,948 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:34:10,981 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:34:11,013 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:34:11,049 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:34:11,080 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:34:11,102 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:34:11,123 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:34:11,145 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:34:11,170 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:34:11,192 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:34:12,070 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:34:12,088 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:34:12,098 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:34:12,106 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:34:12,115 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:34:12,124 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:34:12,134 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:34:12,141 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:34:12,152 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:34:12,171 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:34:12,195 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:34:12,214 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:34:12,231 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:34:12,249 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:34:12,265 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:34:12,282 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:34:12,297 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:34:12,314 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:34:12,333 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:34:12,354 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:34:12,374 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:34:12,417 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:34:12,431 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:34:12,451 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:34:12,465 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:34:12,476 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:34:12,487 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:34:12,498 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:34:12,512 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:34:12,729 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:34:12,890 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:34:13,058 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:34:13,375 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:34:13,772 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:34:14,105 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:34:14,285 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:34:14,505 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:34:14,699 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:34:14,955 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:34:15,222 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:34:15,428 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:34:15,664 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:34:15,885 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:34:16,131 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:34:17,668 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:34:17,691 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:34:17,803 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:34:17,831 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:34:17,848 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:34:17,870 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:34:17,886 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:34:17,903 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:34:17,938 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:34:17,972 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:34:18,005 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:34:18,250 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:34:18,524 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:34:18,736 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:34:18,931 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:34:19,105 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:34:19,252 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:34:19,460 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:34:19,665 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:34:19,821 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:34:20,160 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:34:20,649 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:34:21,021 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:34:21,261 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:34:21,489 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:34:21,891 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:34:22,839 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:34:22,870 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:34:22,890 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:34:22,917 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:34:22,954 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:34:22,982 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:34:22,998 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:34:23,010 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:34:23,028 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:34:23,289 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:34:23,532 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:34:23,736 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:34:23,887 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:34:24,007 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:34:24,117 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:34:24,220 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:34:24,336 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:34:24,472 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:34:24,682 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:34:24,878 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:34:25,120 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:34:25,647 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:34:25,900 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:34:26,263 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:34:39,242 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 15:34:39,367 - INFO - Lendo arquivo: AXX CARE - setembro.xlsx
+2025-09-16 15:34:39,387 - INFO - Lendo arquivo: AXX CARE - outubro.xlsx
+2025-09-16 15:34:39,402 - INFO - Lendo arquivo: AXX - novembro.xlsx
+2025-09-16 15:34:39,417 - INFO - Lendo arquivo: AXX CARE - dezembro.xlsx
+2025-09-16 15:34:39,434 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 15:34:39,454 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 15:34:39,470 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 15:34:39,487 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 15:34:39,506 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 15:34:39,524 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 15:34:39,540 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 15:34:39,556 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 15:34:49,599 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:34:49,610 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:34:49,618 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:34:49,627 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:34:49,634 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:34:49,643 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:34:49,650 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:34:49,657 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:34:49,661 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:34:49,685 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:34:49,708 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:34:49,728 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:34:49,749 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:34:49,768 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:34:49,786 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:34:49,802 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:34:49,820 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:34:49,837 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:34:49,859 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:34:49,876 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:34:49,898 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:34:49,920 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:34:49,933 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:34:49,948 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:34:49,960 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:34:49,970 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:34:49,982 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:34:49,993 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:34:50,004 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:34:50,187 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:34:50,337 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:34:50,491 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:34:50,696 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:34:50,869 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:34:51,063 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:34:51,220 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:34:51,366 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:34:51,517 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:34:51,718 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:34:52,025 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:34:52,243 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:34:52,439 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:34:52,637 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:34:52,830 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:34:54,748 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:34:54,793 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:34:55,004 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:34:55,031 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:34:55,050 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:34:55,095 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:34:55,132 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:34:55,192 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:34:55,240 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:34:55,287 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:34:55,322 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:34:55,497 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:34:55,683 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:34:55,837 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:34:55,988 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:34:56,138 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:34:56,252 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:34:56,415 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:34:56,557 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:34:56,657 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:34:56,764 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:34:56,933 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:34:57,149 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:34:57,267 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:34:57,396 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:34:57,606 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:34:58,062 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:34:58,078 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:34:58,094 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:34:58,111 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:34:58,129 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:34:58,143 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:34:58,156 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:34:58,171 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:34:58,181 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:34:58,682 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:34:58,941 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:34:59,116 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:34:59,313 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:34:59,729 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:34:59,979 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:35:00,122 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:35:00,282 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:35:00,407 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:35:00,598 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:35:00,786 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:35:01,026 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:35:01,241 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:35:01,552 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:35:01,905 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:39:46,232 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 15:39:46,609 - INFO - Lendo arquivo: AXX CARE - setembro.xlsx
+2025-09-16 15:39:46,644 - INFO - Lendo arquivo: AXX CARE - outubro.xlsx
+2025-09-16 15:39:46,672 - INFO - Lendo arquivo: AXX - novembro.xlsx
+2025-09-16 15:39:46,697 - INFO - Lendo arquivo: AXX CARE - dezembro.xlsx
+2025-09-16 15:39:46,728 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 15:39:46,757 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 15:39:46,780 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 15:39:46,813 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 15:39:46,844 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 15:39:46,879 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 15:39:46,962 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 15:39:46,998 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 15:39:47,870 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:39:47,881 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:39:47,891 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:39:47,901 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:39:47,910 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:39:47,918 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:39:47,926 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:39:47,932 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:39:47,939 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:39:47,961 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:39:47,984 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:39:48,007 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:39:48,030 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:39:48,054 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:39:48,074 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:39:48,095 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:39:48,114 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:39:48,137 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:39:48,156 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:39:48,175 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:39:51,250 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:39:51,258 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:39:51,266 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:39:51,278 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:39:51,289 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:39:51,296 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:39:51,303 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:39:51,308 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:39:51,313 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:39:51,337 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:39:51,360 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:39:51,379 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:39:51,396 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:39:51,418 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:39:51,437 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:39:51,458 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:39:51,478 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:39:51,493 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:39:51,511 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:39:51,535 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:39:54,140 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:39:54,150 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:39:54,165 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:39:54,180 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:39:54,198 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:39:54,217 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:39:54,235 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:39:54,253 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:39:54,271 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:39:54,318 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:39:54,365 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:39:54,411 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:39:54,439 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:39:54,464 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:39:54,502 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:39:54,532 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:39:54,551 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:39:54,567 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:39:54,584 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:39:54,600 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:39:54,618 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:39:54,665 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:39:54,683 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:39:54,700 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:39:54,713 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:39:54,724 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:39:54,744 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:39:54,756 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:39:54,776 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:39:54,982 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:39:55,176 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:39:55,313 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:39:55,461 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:39:55,601 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:39:55,725 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:39:55,847 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:39:55,942 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:39:56,074 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:39:56,225 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:39:56,479 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:39:56,636 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:39:56,775 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:39:56,936 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:39:57,104 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:39:58,333 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:39:58,352 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:39:58,430 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:39:58,449 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:39:58,468 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:39:58,481 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:39:58,496 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:39:58,512 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:39:58,544 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:39:58,573 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:39:58,601 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:39:58,820 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:39:59,062 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:39:59,195 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:39:59,323 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:39:59,431 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:39:59,534 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:39:59,740 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:39:59,892 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:40:00,009 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:40:00,137 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:40:00,354 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:40:00,561 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:40:00,736 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:40:00,880 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:40:01,140 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:40:01,597 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:40:01,615 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:40:01,631 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:40:01,644 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:40:01,657 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:40:01,667 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:40:01,690 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:40:01,704 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:40:01,713 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:40:01,893 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:40:02,016 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:40:02,169 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:40:02,298 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:40:02,406 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:40:02,526 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:40:02,642 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:40:02,740 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:40:02,846 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:40:02,965 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:40:03,101 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:40:03,233 - INFO - Lendo arquivo: SOLAR 05 DE 2025 EXCEL.xlsx
+2025-09-16 15:40:03,400 - INFO - Lendo arquivo: SOLAR 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:40:03,545 - INFO - Lendo arquivo: SOLAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:40:03,686 - INFO - Lendo arquivo: SOLAR EXCELL 08 DE 2025.xlsx
+2025-09-16 15:43:25,920 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 15:43:26,111 - INFO - Lendo arquivo: AXX CARE - setembro.xlsx
+2025-09-16 15:43:26,131 - INFO - Lendo arquivo: AXX CARE - outubro.xlsx
+2025-09-16 15:43:26,148 - INFO - Lendo arquivo: AXX - novembro.xlsx
+2025-09-16 15:43:26,165 - INFO - Lendo arquivo: AXX CARE - dezembro.xlsx
+2025-09-16 15:43:26,185 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 15:43:26,203 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 15:43:26,221 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 15:43:26,237 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 15:43:26,259 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 15:43:26,276 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 15:43:26,292 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 15:43:26,310 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 15:43:54,134 - INFO - Lendo arquivo: PRONEP 1.xlsx
+2025-09-16 15:43:54,157 - INFO - Lendo arquivo: PRONEP 2.xlsx
+2025-09-16 15:43:54,180 - INFO - Lendo arquivo: PRONEP 3.xlsx
+2025-09-16 15:43:54,199 - INFO - Lendo arquivo: pronep 4.xlsx
+2025-09-16 15:43:54,221 - INFO - Lendo arquivo: PRONEP 5.xlsx
+2025-09-16 15:43:54,240 - INFO - Lendo arquivo: PRONEP RIO EXCELL 06 DE 2025.xlsx
+2025-09-16 15:43:54,260 - INFO - Lendo arquivo: PRONEP rRIO EXCELL 07 DE 2025.xlsx
+2025-09-16 15:43:54,281 - INFO - Lendo arquivo: pronep excell 08 de 2025.xlsx
+2025-09-16 15:43:56,366 - INFO - Lendo arquivo: PRONEP 1.xlsx
+2025-09-16 15:43:56,388 - INFO - Lendo arquivo: PRONEP 2.xlsx
+2025-09-16 15:43:56,401 - INFO - Lendo arquivo: PRONEP 3.xlsx
+2025-09-16 15:43:56,414 - INFO - Lendo arquivo: pronep 4.xlsx
+2025-09-16 15:43:56,429 - INFO - Lendo arquivo: PRONEP 5.xlsx
+2025-09-16 15:43:56,440 - INFO - Lendo arquivo: PRONEP RIO EXCELL 06 DE 2025.xlsx
+2025-09-16 15:43:56,459 - INFO - Lendo arquivo: PRONEP rRIO EXCELL 07 DE 2025.xlsx
+2025-09-16 15:43:56,480 - INFO - Lendo arquivo: pronep excell 08 de 2025.xlsx
+2025-09-16 15:44:01,416 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 15:44:01,447 - INFO - Lendo arquivo: AXX CARE - setembro.xlsx
+2025-09-16 15:44:01,474 - INFO - Lendo arquivo: AXX CARE - outubro.xlsx
+2025-09-16 15:44:01,501 - INFO - Lendo arquivo: AXX - novembro.xlsx
+2025-09-16 15:44:01,524 - INFO - Lendo arquivo: AXX CARE - dezembro.xlsx
+2025-09-16 15:44:01,550 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 15:44:01,579 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 15:44:01,606 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 15:44:01,640 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 15:44:01,659 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 15:44:01,688 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 15:44:01,713 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 15:44:01,733 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 15:45:04,623 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 15:45:04,806 - INFO - Lendo arquivo: AXX CARE - setembro.xlsx
+2025-09-16 15:45:04,831 - INFO - Lendo arquivo: AXX CARE - outubro.xlsx
+2025-09-16 15:45:04,849 - INFO - Lendo arquivo: AXX - novembro.xlsx
+2025-09-16 15:45:04,865 - INFO - Lendo arquivo: AXX CARE - dezembro.xlsx
+2025-09-16 15:45:04,898 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 15:45:04,915 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 15:45:04,943 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 15:45:04,960 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 15:45:04,977 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 15:45:04,996 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 15:45:05,021 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 15:45:05,046 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 15:45:19,662 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 15:45:19,686 - INFO - Lendo arquivo: AXX CARE - setembro.xlsx
+2025-09-16 15:45:19,723 - INFO - Lendo arquivo: AXX CARE - outubro.xlsx
+2025-09-16 15:45:19,743 - INFO - Lendo arquivo: AXX - novembro.xlsx
+2025-09-16 15:45:19,768 - INFO - Lendo arquivo: AXX CARE - dezembro.xlsx
+2025-09-16 15:45:19,795 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 15:45:19,824 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 15:45:19,850 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 15:45:19,890 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 15:45:19,924 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 15:45:19,963 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 15:45:19,984 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 15:45:20,025 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 15:45:20,056 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 15:45:20,325 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 15:45:20,456 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 15:45:20,878 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 15:45:21,096 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 15:45:21,218 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 15:45:21,336 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 15:45:21,448 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 15:45:21,555 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 15:45:22,257 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 15:45:22,386 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 15:45:22,585 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 15:45:22,759 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 15:45:22,949 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 15:45:23,089 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 15:45:23,212 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 15:45:23,335 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 15:45:23,478 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 15:45:24,386 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 15:45:24,513 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 15:45:24,723 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 15:45:24,952 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 15:45:25,141 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 15:45:25,283 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 15:45:25,414 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 15:45:25,512 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 15:45:25,611 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 15:48:31,222 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 15:48:31,432 - INFO - Lendo arquivo: AXX CARE - setembro.xlsx
+2025-09-16 15:48:31,456 - INFO - Lendo arquivo: AXX CARE - outubro.xlsx
+2025-09-16 15:48:31,486 - INFO - Lendo arquivo: AXX - novembro.xlsx
+2025-09-16 15:48:31,503 - INFO - Lendo arquivo: AXX CARE - dezembro.xlsx
+2025-09-16 15:48:31,525 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 15:48:31,545 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 15:48:31,566 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 15:48:31,585 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 15:48:31,608 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 15:48:31,630 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 15:48:31,649 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 15:48:31,672 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 15:49:06,252 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:49:06,266 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:49:06,278 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:49:06,287 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:49:06,295 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:49:06,306 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:49:06,312 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:49:06,320 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:49:06,334 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:49:06,358 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:49:06,388 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:49:06,413 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:49:06,438 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:49:06,471 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:49:06,503 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:49:06,534 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:49:06,569 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:49:06,606 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:49:06,637 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:49:06,670 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:49:08,969 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:49:08,988 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:49:08,998 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:49:09,005 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:49:09,016 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:49:09,028 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:49:09,038 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:49:09,049 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:49:09,056 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:49:09,082 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:49:09,113 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:49:09,131 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:49:09,149 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:49:09,169 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:49:09,190 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:49:09,212 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:49:09,231 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:49:09,255 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:49:09,276 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:49:09,296 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:49:11,219 - INFO - Lendo arquivo: PRONEP 1.xlsx
+2025-09-16 15:49:11,231 - INFO - Lendo arquivo: PRONEP 2.xlsx
+2025-09-16 15:49:11,246 - INFO - Lendo arquivo: PRONEP 3.xlsx
+2025-09-16 15:49:11,261 - INFO - Lendo arquivo: pronep 4.xlsx
+2025-09-16 15:49:11,276 - INFO - Lendo arquivo: PRONEP 5.xlsx
+2025-09-16 15:49:11,290 - INFO - Lendo arquivo: PRONEP RIO EXCELL 06 DE 2025.xlsx
+2025-09-16 15:49:11,303 - INFO - Lendo arquivo: PRONEP rRIO EXCELL 07 DE 2025.xlsx
+2025-09-16 15:49:11,314 - INFO - Lendo arquivo: pronep excell 08 de 2025.xlsx
+2025-09-16 15:51:33,100 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 15:51:33,302 - INFO - Lendo arquivo: AXX CARE - setembro.xlsx
+2025-09-16 15:51:33,322 - INFO - Lendo arquivo: AXX CARE - outubro.xlsx
+2025-09-16 15:51:33,339 - INFO - Lendo arquivo: AXX - novembro.xlsx
+2025-09-16 15:51:33,355 - INFO - Lendo arquivo: AXX CARE - dezembro.xlsx
+2025-09-16 15:51:33,375 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 15:51:33,392 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 15:51:33,409 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 15:51:33,427 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 15:51:33,444 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 15:51:33,463 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 15:51:33,482 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 15:51:33,498 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 15:53:11,383 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 15:53:11,566 - INFO - Lendo arquivo: AXX CARE - setembro.xlsx
+2025-09-16 15:53:11,588 - INFO - Lendo arquivo: AXX CARE - outubro.xlsx
+2025-09-16 15:53:11,605 - INFO - Lendo arquivo: AXX - novembro.xlsx
+2025-09-16 15:53:11,621 - INFO - Lendo arquivo: AXX CARE - dezembro.xlsx
+2025-09-16 15:53:11,643 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 15:53:11,660 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 15:53:11,675 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 15:53:11,695 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 15:53:11,722 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 15:53:11,746 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 15:53:11,766 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 15:53:11,783 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 15:56:05,485 - INFO - Lendo arquivo: axx care - agosto.xlsx
+2025-09-16 15:56:05,668 - INFO - Lendo arquivo: AXX CARE - setembro.xlsx
+2025-09-16 15:56:05,695 - INFO - Lendo arquivo: AXX CARE - outubro.xlsx
+2025-09-16 15:56:05,718 - INFO - Lendo arquivo: AXX - novembro.xlsx
+2025-09-16 15:56:05,742 - INFO - Lendo arquivo: AXX CARE - dezembro.xlsx
+2025-09-16 15:56:05,760 - INFO - Lendo arquivo: AXX CARE - janeiro.xlsx
+2025-09-16 15:56:05,778 - INFO - Lendo arquivo: AXX CARE - fevereiro.xlsx
+2025-09-16 15:56:05,794 - INFO - Lendo arquivo: AXX CARE - marco.xlsx
+2025-09-16 15:56:05,814 - INFO - Lendo arquivo: AXXCARE - ABRIL.xlsx
+2025-09-16 15:56:05,837 - INFO - Lendo arquivo: AXX CARE 05-2025.xlsx
+2025-09-16 15:56:05,853 - INFO - Lendo arquivo: AXX CARE EXCELL 06 DE 2025.xlsx
+2025-09-16 15:56:05,873 - INFO - Lendo arquivo: axx care excell 07 de 2025.xlsx
+2025-09-16 15:56:05,891 - INFO - Lendo arquivo: AXX CARE 08 DE EXCELL.xlsx
+2025-09-16 15:56:48,638 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:56:48,649 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:56:48,662 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:56:48,669 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:56:48,679 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:56:48,685 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:56:48,693 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:56:48,699 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:56:48,704 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:56:48,732 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:56:48,754 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:56:48,774 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:56:48,804 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:56:48,825 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:56:48,849 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:56:48,867 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:56:48,884 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:56:48,914 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:56:48,946 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:56:48,964 - INFO - Lendo arquivo: SOLAR 4.xlsx
+2025-09-16 15:56:52,697 - INFO - Lendo arquivo: DOMUS 1.xlsx
+2025-09-16 15:56:52,705 - INFO - Lendo arquivo: DOMUS 2.xlsx
+2025-09-16 15:56:52,716 - INFO - Lendo arquivo: DOMUS 3.xlsx
+2025-09-16 15:56:52,727 - INFO - Lendo arquivo: DOMUS EXCELL 04 DE 2025.xlsx
+2025-09-16 15:56:52,733 - INFO - Lendo arquivo: DOMUS 5.xlsx
+2025-09-16 15:56:52,741 - INFO - Lendo arquivo: DOMUS 06 DE 2025 EXCEL.xlsx
+2025-09-16 15:56:52,747 - INFO - Lendo arquivo: DOMUS EXCELL 07 DE 2025.xlsx
+2025-09-16 15:56:52,751 - INFO - Lendo arquivo: DOMUS 08 DE 2025 EXCELL.xlsx
+2025-09-16 15:56:52,767 - INFO - Lendo arquivo: HOSPITALAR 1.xlsx
+2025-09-16 15:56:52,793 - INFO - Lendo arquivo: HOSPITALAR 2.xlsx
+2025-09-16 15:56:52,819 - INFO - Lendo arquivo: HOSPITALAR 03.xlsx
+2025-09-16 15:56:52,842 - INFO - Lendo arquivo: HOSPITALAR 04.xlsx
+2025-09-16 15:56:52,861 - INFO - Lendo arquivo: HOSPITALAR 05.xlsx
+2025-09-16 15:56:52,881 - INFO - Lendo arquivo: HOSPITAL LAR INTERLINK 06 de 2025 EXCEL.xlsx
+2025-09-16 15:56:52,899 - INFO - Lendo arquivo: HOSPITALAR EXCELL 07 DE 2025.xlsx
+2025-09-16 15:56:52,926 - INFO - Lendo arquivo: hospitalar excell 08 de 2025.xlsx
+2025-09-16 15:56:52,948 - INFO - Lendo arquivo: SOLAR 01.xlsx
+2025-09-16 15:56:52,976 - INFO - Lendo arquivo: SOLAR 2.xlsx
+2025-09-16 15:56:52,995 - INFO - Lendo arquivo: SOLAR 3.xlsx
+2025-09-16 15:56:53,016 - INFO - Lendo arquivo: SOLAR 4.xlsx
