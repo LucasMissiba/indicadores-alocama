@@ -682,7 +682,7 @@ def render_top3_pies(df_by_file: pd.DataFrame, group_names: Optional[List[str]] 
         if top3.empty:
             continue
         fig = px.pie(top3, names="Item", values="Quantidade", title=f"Top 3 - {group}", hole=0.3)
-        cols[col_idx % len(cols)].plotly_chart(fig, width="stretch")
+        cols[col_idx % len(cols)].plotly_chart(fig, use_container_width=True)
         col_idx += 1
 
 
@@ -1109,7 +1109,7 @@ def render_bar_chart(df: pd.DataFrame, item_order: List[str]) -> None:
         margin=dict(l=20, r=20, t=60, b=20),
     )
     fig.update_xaxes(tickangle=-45)
-    show_plot(fig, width="stretch")
+    show_plot(fig, use_container_width=True)
 
 
 def render_bar_chart_consolidated(df_totals: pd.DataFrame, item_order: List[str]) -> None:
@@ -1128,7 +1128,7 @@ def render_bar_chart_consolidated(df_totals: pd.DataFrame, item_order: List[str]
         margin=dict(l=20, r=20, t=60, b=20),
     )
     fig.update_xaxes(tickangle=-45)
-    show_plot(fig, width="stretch")
+    show_plot(fig, use_container_width=True)
 
 
 def main() -> None:
@@ -1618,7 +1618,7 @@ def main() -> None:
                 fig_t1 = px.bar(top_last, x="Item", y="Quantidade", title=f"Top Itens – {mes_ultimo}")
                 fig_t1.update_layout(height=220, margin=dict(l=10, r=10, t=38, b=60))
                 fig_t1.update_xaxes(tickangle=-45)
-                show_plot(fig_t1, width="stretch")
+                show_plot(fig_t1, use_container_width=True)
             with g2:
                 df_sum_last = (
                     df_e_last.groupby("Item", as_index=False, observed=True)["Quantidade"].sum()
@@ -1631,7 +1631,7 @@ def main() -> None:
                     pie_df = pd.concat([pie_df, pd.DataFrame([{ "Item": "Outros", "Quantidade": outros }])])
                 fig_p = px.pie(pie_df, names="Item", values="Quantidade", hole=0.55, title=f"Participação Top 3 – {mes_ultimo}")
                 fig_p.update_layout(height=220, margin=dict(l=10, r=10, t=38, b=10))
-                show_plot(fig_p, width="stretch")
+                show_plot(fig_p, use_container_width=True)
             with g3:
                 df_cat = df_e_last.copy()
                 df_cat["Categoria"] = df_cat["Item"].map(categorize_item_name)
@@ -1641,7 +1641,7 @@ def main() -> None:
                 fig_cat = px.bar(df_cat_sum, x="Categoria", y="Quantidade", title=f"Resumo por categoria – {mes_ultimo}")
                 fig_cat.update_layout(height=220, margin=dict(l=10, r=10, t=38, b=60))
                 fig_cat.update_xaxes(tickangle=-30)
-                show_plot(fig_cat, width="stretch")
+                show_plot(fig_cat, use_container_width=True)
 
             # Linha 2 de gráficos
             st.markdown("<div style='height:10px'></div>", unsafe_allow_html=True)
@@ -1657,7 +1657,7 @@ def main() -> None:
                 df_camas = grid.merge(df_camas, on=["Mês","Item"], how="left").fillna({"Quantidade":0})
                 fig_line = px.line(df_camas, x="Mês", y="Quantidade", color="Item", markers=True, title="Camas por mês")
                 fig_line.update_layout(height=220, margin=dict(l=10, r=10, t=38, b=10))
-                show_plot(fig_line, width="stretch")
+                show_plot(fig_line, use_container_width=True)
             with g5:
                 # Faturamento estimado por mês
                 pmap = _price_map_for_company(empresa_atual_hdr)
@@ -1674,7 +1674,7 @@ def main() -> None:
                     fig_fat = px.bar(df_rev_mes, x="Mês", y="Faturamento", title="Faturamento estimado por mês")
                     fig_fat.update_yaxes(tickprefix="R$ ", tickformat=",.2f")
                     fig_fat.update_layout(height=220, margin=dict(l=10, r=10, t=38, b=10))
-                    show_plot(fig_fat, width="stretch")
+                    show_plot(fig_fat, use_container_width=True)
                 else:
                     st.info("Sem mapa de preços para estimar faturamento deste grupo.")
             with g6:
@@ -1743,7 +1743,7 @@ def main() -> None:
                     fig_arpu = px.bar(arpu_df, x="Mês", y="ARPU", title="ARPU (Faturamento geral / Vidas)")
                     fig_arpu.update_yaxes(tickprefix="R$ ", tickformat=",.2f")
                     fig_arpu.update_layout(height=220, margin=dict(l=10, r=10, t=38, b=10))
-                    show_plot(fig_arpu, width="stretch")
+                    show_plot(fig_arpu, use_container_width=True)
                 except Exception:
                     st.info("ARPU não pôde ser calculado.")
         month_map = {"1":"Janeiro","2":"Fevereiro","3":"Março","4":"Abril","5":"Maio", "6": "Junho", "7": "Julho", "8": "Agosto"}
@@ -1799,7 +1799,7 @@ def main() -> None:
             font=dict(size=12),
         )
         fig.update_xaxes(tickangle=-60)
-        show_plot(fig, width="stretch")
+        show_plot(fig, use_container_width=True)
         st.markdown('</div>', unsafe_allow_html=True)
 
 
@@ -1951,7 +1951,7 @@ def main() -> None:
                 show = show.rename(columns={"ItemCanon": "Item"})
                 # Corrige 'None' exibindo '-' para itens cujo mês não tenha sido detectado
                 show["Mês"] = show["Mês"].fillna("-")
-                col.dataframe(show.set_index("Posição"), width="stretch")
+                col.dataframe(show.set_index("Posição"), use_container_width=True)
 
 
         df_emp_viz = df_result_sorted.copy()
@@ -2038,7 +2038,7 @@ def main() -> None:
                     margin=dict(l=20, r=60, t=60, b=20),
                 )
                 st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
-                show_plot(fig_pie, width="stretch")
+                show_plot(fig_pie, use_container_width=True)
                 st.markdown('</div>', unsafe_allow_html=True)
 
                 # Novo: Impacto dos Top 3 no orçamento (faturamento estimado) – pizza
@@ -2097,7 +2097,7 @@ def main() -> None:
                         hovertemplate="Item: %{label}<br>R$ %{value:,.2f} (%{percent})<extra></extra>",
                     )
                     fig_pie_fat.update_layout(margin=dict(l=20, r=60, t=60, b=20))
-                    show_plot(fig_pie_fat, width="stretch")
+                    show_plot(fig_pie_fat, use_container_width=True)
         elif empresas_presentes_viz == ["PRONEP"]:
             st.subheader("Evolução PRONEP (Junho/Julho/Agosto)")
             df_pn = df_emp_viz[df_emp_viz["Empresa"] == "PRONEP"]
@@ -2124,7 +2124,7 @@ def main() -> None:
                     title="Evolução mensal – PRONEP",
                 )
                 fig_pn_line.update_layout(yaxis_title="Quantidade", xaxis_title="Mês")
-                show_plot(fig_pn_line, width="stretch")
+                show_plot(fig_pn_line, use_container_width=True)
                 st.markdown('</div>', unsafe_allow_html=True)
 
                 # Resumo por categorias – PRONEP
@@ -2198,7 +2198,7 @@ def main() -> None:
                     margin=dict(l=20, r=60, t=60, b=20),
                 )
                 st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
-                show_plot(fig_pie_pn, width="stretch")
+                show_plot(fig_pie_pn, use_container_width=True)
                 st.markdown('</div>', unsafe_allow_html=True)
 
                 
@@ -2262,7 +2262,7 @@ def main() -> None:
                     margin=dict(l=20, r=60, t=60, b=20),
                 )
                 st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
-                show_plot(fig_pie_gs, width="stretch")
+                show_plot(fig_pie_gs, use_container_width=True)
                 st.markdown('</div>', unsafe_allow_html=True)
                 # Resumo por categorias – Grupo Solar (apenas último mês)
                 meses_ordem = {"Janeiro": 1, "Fevereiro": 2, "Março": 3, "Abril": 4, "Maio": 5, "Junho": 6, "Julho": 7, "Agosto": 8}
@@ -2462,7 +2462,7 @@ def main() -> None:
                         )
                         fig_e_bar.update_xaxes(tickangle=-60)
                         st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
-                        show_plot(fig_e_bar, width="stretch")
+                        show_plot(fig_e_bar, use_container_width=True)
                         st.markdown('</div>', unsafe_allow_html=True)
 
                         # Auditoria removida a pedido
@@ -2486,7 +2486,7 @@ def main() -> None:
                             margin=dict(l=20, r=20, t=60, b=60)
                         )
                         st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
-                        show_plot(fig_e_line, width="stretch")
+                        show_plot(fig_e_line, use_container_width=True)
                         st.markdown('</div>', unsafe_allow_html=True)
 
         empresas_presentes_fat = sorted(df_emp_viz["Empresa"].unique().tolist())
@@ -2553,7 +2553,7 @@ def main() -> None:
                 )
                 fig_rev.update_yaxes(tickprefix="R$ ", tickformat=".2f")
                 st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
-                show_plot(fig_rev, width="stretch")
+                show_plot(fig_rev, use_container_width=True)
                 st.markdown('</div>', unsafe_allow_html=True)
 
                 # Faturamento geral (AXX CARE) – valores informados
@@ -2631,7 +2631,7 @@ def main() -> None:
                                      margin=dict(l=20, r=20, t=60, b=80))
                 fig_gs.update_yaxes(tickprefix="R$ ", tickformat=".2f")
                 st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
-                show_plot(fig_gs, width="stretch")
+                show_plot(fig_gs, use_container_width=True)
                 st.markdown('</div>', unsafe_allow_html=True)
                 # Faturamento geral (Grupo Solar) – valores informados
                 st.subheader("Faturamento geral (Grupo Solar) – Janeiro→Agosto")
@@ -3043,7 +3043,7 @@ def main() -> None:
                         )
                         fig_e.update_yaxes(tickprefix="R$ ", tickformat=".2f")
                         st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
-                        show_plot(fig_e, width="stretch")
+                        show_plot(fig_e, use_container_width=True)
                         st.markdown('</div>', unsafe_allow_html=True)
 
         if empresas_presentes_fat == ["PRONEP"]:
@@ -3159,7 +3159,7 @@ def main() -> None:
                         )
                     )
                     
-                    show_plot(fig_pizza_agosto, width="stretch")
+                    show_plot(fig_pizza_agosto, use_container_width=True)
                     
                     # Mostrar resumo
                     st.write("**Resumo do Faturamento - Agosto 2025:**")
@@ -3194,7 +3194,7 @@ def main() -> None:
                 )
                 fig_pn_rev.update_yaxes(tickprefix="R$ ", tickformat=".2f")
                 st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
-                show_plot(fig_pn_rev, width="stretch")
+                show_plot(fig_pn_rev, use_container_width=True)
                 st.markdown('</div>', unsafe_allow_html=True)
 
                 # Faturamento geral (valores informados)
@@ -3288,7 +3288,7 @@ def main() -> None:
                 )
                 fig_vidas.update_traces(textposition="outside")
                 fig_vidas.update_layout(yaxis_title="Vidas únicas", xaxis_title="Mês", margin=dict(l=20, r=20, t=60, b=40))
-                show_plot(fig_vidas, width="stretch")
+                show_plot(fig_vidas, use_container_width=True)
                 target = int(round(media_vidas))
                 placeholder = st.empty()
                 for val in range(0, target + 1, max(1, target // 30)):
@@ -3416,7 +3416,7 @@ def main() -> None:
                             margin=dict(l=20, r=20, t=60, b=40)
                         )
                         fig_arpu_pronep.update_yaxes(tickprefix="R$ ", tickformat=".2f")
-                        show_plot(fig_arpu_pronep, width="stretch")
+                        show_plot(fig_arpu_pronep, use_container_width=True)
                         
                         # Métricas do ARPU
                         col1, col2, col3 = st.columns(3)
@@ -3525,7 +3525,7 @@ def main() -> None:
                     line=dict(width=3)
                 )
                 
-                show_plot(fig_proj_vidas_pronep, width="stretch")
+                show_plot(fig_proj_vidas_pronep, use_container_width=True)
                 
                 # Projeção de Faturamento
                 st.subheader("Projeção de Faturamento")
@@ -3618,7 +3618,7 @@ def main() -> None:
                                  "<extra></extra>"
                 )
                 
-                show_plot(fig_proj_fat_pronep, width="stretch")
+                show_plot(fig_proj_fat_pronep, use_container_width=True)
 
         if empresas_presentes_viz and all(e in {"HOSPITALAR", "SOLAR", "DOMMUS"} for e in empresas_presentes_viz):
             st.subheader("Vidas ativas no Home Care – Grupo Solar (Janeiro→Agosto)")
@@ -3685,7 +3685,7 @@ def main() -> None:
             )
             fig_vidas.update_traces(textposition="outside")
             fig_vidas.update_layout(yaxis_title="Vidas únicas", xaxis_title="Mês", margin=dict(l=20, r=20, t=60, b=40))
-            show_plot(fig_vidas, width="stretch")
+            show_plot(fig_vidas, use_container_width=True)
             target = int(round(media_vidas))
             placeholder = st.empty()
             for val in range(0, target + 1, max(1, target // 30)):
@@ -3797,7 +3797,7 @@ def main() -> None:
                 line=dict(width=3)
             )
             
-            show_plot(fig_proj_vidas, width="stretch")
+            show_plot(fig_proj_vidas, use_container_width=True)
             
             # Projeção de Faturamento
             st.subheader("Projeção de Faturamento")
@@ -3890,7 +3890,7 @@ def main() -> None:
                              "<extra></extra>"
             )
             
-            show_plot(fig_proj_fat, width="stretch")
+            show_plot(fig_proj_fat, use_container_width=True)
         elif empresas_presentes_viz == ["AXX CARE"]:
             st.subheader("Vidas ativas no Home Care – AXX CARE (Janeiro→Agosto)")
             month_sets = {"Janeiro": set(), "Fevereiro": set(), "Março": set(), "Abril": set(), "Maio": set(), "Junho": set(), "Julho": set(), "Agosto": set()}
@@ -3959,7 +3959,7 @@ def main() -> None:
             )
             fig_vidas.update_traces(textposition="outside")
             fig_vidas.update_layout(yaxis_title="Vidas únicas", xaxis_title="Mês", margin=dict(l=20, r=20, t=60, b=40))
-            show_plot(fig_vidas, width="stretch")
+            show_plot(fig_vidas, use_container_width=True)
             target = int(round(media_vidas))
             placeholder = st.empty()
             for val in range(0, target + 1, max(1, target // 30)):
@@ -4014,7 +4014,7 @@ def main() -> None:
             fig_l.add_trace(go.Scatter(x=proximos_meses, y=proj_otimista, name="Otimista", mode="lines+markers", line=dict(color="#10b981", dash="dot")))
             fig_l.update_layout(title="Tendência histórica + Projeção (AXX CARE – Geral)", yaxis_title="Faturamento (R$)")
             fig_l.update_yaxes(tickprefix="R$ ", tickformat=",.2f")
-            show_plot(fig_l, width="stretch")
+            show_plot(fig_l, use_container_width=True)
 
             # Barras – últimos 3 meses vs próximos 3 (realista)
             df_bar_hist = df_total_axx_hist.tail(3).copy()
@@ -4023,7 +4023,7 @@ def main() -> None:
             df_bar = pd.concat([df_bar_hist[["Mês","Faturamento","Tipo"]], df_bar_proj], ignore_index=True)
             fig_b = px.bar(df_bar, x="Mês", y="Faturamento", color="Tipo", barmode="group", title="Últimos 3 meses vs próximos 3 (Realista – Geral)")
             fig_b.update_yaxes(tickprefix="R$ ", tickformat=",.2f")
-            show_plot(fig_b, width="stretch")
+            show_plot(fig_b, use_container_width=True)
 
             # KPIs de projeção
             k1, k2, k3 = st.columns(3)
@@ -4257,7 +4257,7 @@ def main() -> None:
                     margin=dict(l=20, r=20, t=60, b=40)
                 )
                 fig_arpu.update_yaxes(tickprefix="R$ ", tickformat=",.2f")
-                show_plot(fig_arpu, width="stretch")
+                show_plot(fig_arpu, use_container_width=True)
             except Exception:
                 pass
 
