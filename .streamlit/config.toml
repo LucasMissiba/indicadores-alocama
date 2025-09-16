@@ -4,9 +4,3 @@ port = 8501
 
 [browser]
 gatherUsageStats = false
-
-[theme]
-primaryColor = "#2563eb"
-backgroundColor = "#000000"
-secondaryBackgroundColor = "#1a1a2e"
-textColor = "#e5e7eb"

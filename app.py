@@ -14,15 +14,8 @@ import plotly.graph_objects as go
 import plotly.express as px
 import streamlit as st
 
-# Configuração de logging para segurança
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('dashboard.log'),
-        logging.StreamHandler()
-    ]
-)
+# Configuração de logging simplificada para Streamlit Cloud
+logging.basicConfig(level=logging.INFO)
 
 # Configuração da página
 st.set_page_config(
@@ -32,9 +25,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Configurações de segurança
-os.environ['STREAMLIT_SERVER_HEADLESS'] = 'true'
-os.environ['STREAMLIT_SERVER_ENABLE_CORS'] = 'false'
+# Configurações de segurança removidas para compatibilidade com Streamlit Cloud
 
 
 # Statsmodels (opcional): previsão Holt-Winters
@@ -1141,7 +1132,6 @@ def render_bar_chart_consolidated(df_totals: pd.DataFrame, item_order: List[str]
 
 
 def main() -> None:
-    st.set_page_config(page_title=APP_TITLE, layout="wide")
     
     # Tela de carregamento moderna
     if "loading_complete" not in st.session_state:
