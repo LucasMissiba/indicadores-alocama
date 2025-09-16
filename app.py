@@ -1145,14 +1145,7 @@ def main() -> None:
     
     # Loading screen removido - dashboard carrega diretamente
     
-    # Dashboard principal
-    # Fade in suave para o dashboard
-    st.markdown("""
-    <div id="dashboard-fade" style="
-        opacity: 0;
-        transition: opacity 2s ease-in-out;
-    ">
-    """, unsafe_allow_html=True)
+    # Dashboard principal - carregamento direto
     
     # Se solicitado, rolar automaticamente para uma âncora específica após o rerun
     if st.session_state.get("__scroll_hash"):
@@ -1192,17 +1185,7 @@ def main() -> None:
         unsafe_allow_html=True,
     )
     
-    # Ativar fade in do dashboard
-    st.markdown("""
-    <script>
-        setTimeout(function() {
-            const element = document.getElementById('dashboard-fade');
-            if (element) {
-                element.style.opacity = '1';
-            }
-        }, 100);
-    </script>
-    """, unsafe_allow_html=True)
+    # Fade removido - dashboard carrega diretamente
     # fundo será embutido no bloco acima
     # CSS mínimo: ajustar padding superior para não cortar o título e exibir menu nativo
     st.markdown(
@@ -4192,8 +4175,7 @@ def main() -> None:
         unsafe_allow_html=True
     )
     
-    # Fechar div do dashboard fade
-    st.markdown("</div>", unsafe_allow_html=True)
+    # Fade removido - não precisa fechar div
 
 
 if __name__ == "__main__":
