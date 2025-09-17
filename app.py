@@ -1616,7 +1616,7 @@ def main() -> None:
                     .sort_values("Quantidade", ascending=False).head(6)
                 )
                 fig_t1 = px.bar(top_last, x="Item", y="Quantidade", title=f"Top Itens – {mes_ultimo}")
-                fig_t1.update_layout(height=280, margin=dict(l=10, r=10, t=38, b=60))
+                fig_t1.update_layout(height=350, margin=dict(l=10, r=10, t=38, b=60))
                 fig_t1.update_xaxes(tickangle=-45)
                 show_plot(fig_t1, use_container_width=True)
             with g2:
@@ -1630,7 +1630,7 @@ def main() -> None:
                 if outros > 0:
                     pie_df = pd.concat([pie_df, pd.DataFrame([{ "Item": "Outros", "Quantidade": outros }])])
                 fig_p = px.pie(pie_df, names="Item", values="Quantidade", hole=0.55, title=f"Participação Top 3 – {mes_ultimo}")
-                fig_p.update_layout(height=280, margin=dict(l=10, r=10, t=38, b=10))
+                fig_p.update_layout(height=350, margin=dict(l=10, r=10, t=38, b=10))
                 show_plot(fig_p, use_container_width=True)
             with g3:
                 df_cat = df_e_last.copy()
@@ -1639,7 +1639,7 @@ def main() -> None:
                     df_cat.groupby("Categoria", as_index=False, observed=True)["Quantidade"].sum().sort_values("Quantidade", ascending=False)
                 )
                 fig_cat = px.bar(df_cat_sum, x="Categoria", y="Quantidade", title=f"Resumo por categoria – {mes_ultimo}")
-                fig_cat.update_layout(height=280, margin=dict(l=10, r=10, t=38, b=60))
+                fig_cat.update_layout(height=350, margin=dict(l=10, r=10, t=38, b=60))
                 fig_cat.update_xaxes(tickangle=-30)
                 show_plot(fig_cat, use_container_width=True)
 
@@ -1656,7 +1656,7 @@ def main() -> None:
                 grid = pd.MultiIndex.from_product([list(meses_ordem.keys()), camas_principais], names=["Mês","Item"]).to_frame(index=False)
                 df_camas = grid.merge(df_camas, on=["Mês","Item"], how="left").fillna({"Quantidade":0})
                 fig_line = px.line(df_camas, x="Mês", y="Quantidade", color="Item", markers=True, title="Camas por mês")
-                fig_line.update_layout(height=280, margin=dict(l=10, r=10, t=38, b=10))
+                fig_line.update_layout(height=350, margin=dict(l=10, r=10, t=38, b=10))
                 show_plot(fig_line, use_container_width=True)
             with g5:
                 # Faturamento estimado por mês
@@ -1673,7 +1673,7 @@ def main() -> None:
                     df_rev_mes = df_rev_mes.sort_values("Mês")
                     fig_fat = px.bar(df_rev_mes, x="Mês", y="Faturamento", title="Faturamento estimado por mês")
                     fig_fat.update_yaxes(tickprefix="R$ ", tickformat=",.2f")
-                    fig_fat.update_layout(height=280, margin=dict(l=10, r=10, t=38, b=10))
+                    fig_fat.update_layout(height=350, margin=dict(l=10, r=10, t=38, b=10))
                     show_plot(fig_fat, use_container_width=True)
                 else:
                     st.info("Sem mapa de preços para estimar faturamento deste grupo.")
@@ -1742,7 +1742,7 @@ def main() -> None:
                     arpu_df["ARPU"] = arpu_df.apply(lambda r: (r["Faturamento"] / r["Vidas"]) if pd.notna(r["Vidas"]) and r["Vidas"]>0 else None, axis=1)
                     fig_arpu = px.bar(arpu_df, x="Mês", y="ARPU", title="ARPU (Faturamento geral / Vidas)")
                     fig_arpu.update_yaxes(tickprefix="R$ ", tickformat=",.2f")
-                    fig_arpu.update_layout(height=280, margin=dict(l=10, r=10, t=38, b=10))
+                    fig_arpu.update_layout(height=350, margin=dict(l=10, r=10, t=38, b=10))
                     show_plot(fig_arpu, use_container_width=True)
                 except Exception:
                     st.info("ARPU não pôde ser calculado.")
@@ -1794,7 +1794,7 @@ def main() -> None:
             xaxis_title="Itens (Janeiro / Fevereiro / Março / Abril / Maio / Junho / Julho / Agosto)",
             yaxis_title="Quantidade",
             showlegend=False,
-            height=500,  # Altura padrão
+            height=600,  # Altura aumentada
             margin=dict(l=10, r=10, t=60, b=120),
             font=dict(size=12),
         )
@@ -1989,7 +1989,7 @@ def main() -> None:
                     y="Quantidade",
                     title=f"Quantidade por categoria (Camas, Cadeira Higiene, Cadeira de Rodas, Suporte de Soro) – {mes_ult_label}",
                 )
-                fig_cat.update_layout(height=400, margin=dict(l=20, r=20, t=60, b=80))
+                fig_cat.update_layout(height=500, margin=dict(l=20, r=20, t=60, b=80))
                 show_plot(fig_cat, use_container_width=True)
 
                 # Determina último mês disponível para os gráficos subsequentes
@@ -2024,7 +2024,7 @@ def main() -> None:
                     category_orders={"Item": pie_order},
                     title=f"Top 3 itens (quantidade) + Outros – AXX CARE ({mes_label})",
                 )
-                fig_pie.update_layout(height=500, margin=dict(l=20, r=60, t=60, b=20))
+                fig_pie.update_layout(height=600, margin=dict(l=20, r=60, t=60, b=20))
                 fig_pie.update_traces(
                     sort=False,
                     textposition="inside",
@@ -2090,7 +2090,7 @@ def main() -> None:
                         color_discrete_map=color_map,
                         title=f"Impacto no orçamento – Top 3 + Outros (R$) – {mes_label}",
                     )
-                    fig_pie_fat.update_layout(height=500, margin=dict(l=20, r=60, t=60, b=20))
+                    fig_pie_fat.update_layout(height=600, margin=dict(l=20, r=60, t=60, b=20))
                     fig_pie_fat.update_traces(
                         sort=False,
                         textposition="inside",
@@ -2123,7 +2123,7 @@ def main() -> None:
                     markers=True,
                     title="Evolução mensal – PRONEP",
                 )
-                fig_pn_line.update_layout(height=400, yaxis_title="Quantidade", xaxis_title="Mês")
+                fig_pn_line.update_layout(height=500, yaxis_title="Quantidade", xaxis_title="Mês")
                 show_plot(fig_pn_line, use_container_width=True)
                 st.markdown('</div>', unsafe_allow_html=True)
 
@@ -2144,7 +2144,7 @@ def main() -> None:
                         y="Quantidade",
                         title="Quantidade por categoria (Camas, Cadeira Higiene, Cadeira de Rodas, Suporte de Soro)",
                     )
-                    fig_cat_pn.update_layout(height=400, margin=dict(l=20, r=20, t=60, b=80))
+                    fig_cat_pn.update_layout(height=500, margin=dict(l=20, r=20, t=60, b=80))
                     show_plot(fig_cat_pn, use_container_width=True)
 
                 meses_ordem = {"Junho": 6, "Julho": 7, "Agosto": 8}
@@ -2184,7 +2184,7 @@ def main() -> None:
                     category_orders={"Item": pie_order_pn},
                     title=f"Top 3 itens (quantidade) + Outros – PRONEP ({mes_label})",
                 )
-                fig_pie_pn.update_layout(height=500, margin=dict(l=20, r=60, t=60, b=20))
+                fig_pie_pn.update_layout(height=600, margin=dict(l=20, r=60, t=60, b=20))
                 fig_pie_pn.update_traces(
                     sort=False,
                     textposition="inside",
@@ -2248,7 +2248,7 @@ def main() -> None:
                     category_orders={"Item": pie_order_gs},
                     title=f"Top 3 itens (quantidade) + Outros – Grupo Solar ({mes_label})",
                 )
-                fig_pie_gs.update_layout(height=500, margin=dict(l=20, r=60, t=60, b=20))
+                fig_pie_gs.update_layout(height=600, margin=dict(l=20, r=60, t=60, b=20))
                 fig_pie_gs.update_traces(
                     sort=False,
                     textposition="inside",
@@ -2287,7 +2287,7 @@ def main() -> None:
                         y="Quantidade",
                         title=f"Quantidade por categoria (Camas, Cadeira Higiene, Cadeira de Rodas, Suporte de Soro) - {mes_label}",
                     )
-                    fig_cat_gs.update_layout(height=400, margin=dict(l=20, r=20, t=60, b=80))
+                    fig_cat_gs.update_layout(height=500, margin=dict(l=20, r=20, t=60, b=80))
                     show_plot(fig_cat_gs, use_container_width=True)
                     
                     
@@ -2456,7 +2456,7 @@ def main() -> None:
                         fig_e_bar.update_layout(
                             xaxis_title="Itens (Junho / Julho / Agosto)",
                             yaxis_title="Quantidade",
-                            height=400,  # Altura padrão
+                            height=500,  # Altura aumentada
                             margin=dict(l=20, r=20, t=60, b=150),
                             showlegend=False,
                         )
@@ -2479,7 +2479,7 @@ def main() -> None:
                             title=f"Evolução mensal – {empresa}",
                         )
                         fig_e_line.update_layout(
-                            height=400,
+                            height=500,
                             yaxis_title="Quantidade", 
                             xaxis_title="Mês",
                             margin=dict(l=20, r=20, t=60, b=60)
@@ -2546,7 +2546,7 @@ def main() -> None:
                     labels={"ItemCanonical": "Item"},
                 )
                 fig_rev.update_layout(
-                    height=600,
+                    height=700,
                     yaxis_title="Faturamento (R$)", legend_title_text="Item",
                     legend_orientation="h", legend_y=-0.2, separators=".,",
                     margin=dict(l=20, r=20, t=60, b=80),
@@ -2570,7 +2570,7 @@ def main() -> None:
                     title="Faturamento geral por mês (valores fornecidos)",
                     category_orders={"Mês": ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"]},
                 )
-                fig_total_axx.update_layout(height=500)
+                fig_total_axx.update_layout(height=600)
                 fig_total_axx.update_traces(texttemplate="R$ %{y:,.2f}", textposition="outside")
                 ymax_axx = float(df_total_axx["Faturamento"].max())
                 fig_total_axx.update_yaxes(tickprefix="R$ ", tickformat=",.2f", range=[0, ymax_axx * 1.15])
@@ -2628,7 +2628,7 @@ def main() -> None:
                     labels={"ItemCanonical": "Item"},
                 )
                 fig_gs.update_layout(
-                    height=600,
+                    height=700,
                     yaxis_title="Faturamento (R$)", legend_title_text="Item",
                     legend_orientation="h", legend_y=-0.2, separators=".,",
                     margin=dict(l=20, r=20, t=60, b=80)
@@ -2651,7 +2651,7 @@ def main() -> None:
                     title="Faturamento geral por mês (valores fornecidos)",
                     category_orders={"Mês": ["Janeiro","Fevereiro","Março","Abril","Maio","Junho", "Julho", "Agosto"]},
                 )
-                fig_total_gs.update_layout(height=500)
+                fig_total_gs.update_layout(height=600)
                 fig_total_gs.update_traces(texttemplate="R$ %{y:,.2f}", textposition="outside")
                 ymax_gs = float(df_total_gs["Faturamento"].max())
                 fig_total_gs.update_yaxes(tickprefix="R$ ", tickformat=",.2f", range=[0, ymax_gs * 1.15])
@@ -2719,7 +2719,7 @@ def main() -> None:
                         title="ARPU por mês (Geral – Grupo Solar)",
                         category_orders={"Mês": ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"]},
                     )
-                    fig_arpu_gs.update_layout(height=400)
+                    fig_arpu_gs.update_layout(height=500)
                     fig_arpu_gs.update_yaxes(tickprefix="R$ ", tickformat=",.2f")
                     show_plot(fig_arpu_gs, use_container_width=True)
                 except Exception:
@@ -2799,7 +2799,7 @@ def main() -> None:
                         color="Ticket Médio",
                         color_continuous_scale="Viridis"
                     )
-                    fig_ticket.update_layout(height=400)
+                    fig_ticket.update_layout(height=500)
                     fig_ticket.update_traces(
                         hovertemplate="<b>%{x}</b><br>" +
                         "Ticket Médio: R$ %{y:,.2f}<br>" +
@@ -2867,7 +2867,7 @@ def main() -> None:
                         hole=0.3,
                         color_discrete_sequence=px.colors.qualitative.Set3
                     )
-                    fig_pizza_gs.update_layout(height=500)
+                    fig_pizza_gs.update_layout(height=600)
                     # Preparar customdata para o gráfico do Grupo Solar
                     customdata_gs = []
                     for _, row in faturamento_por_empresa.iterrows():
@@ -2998,7 +2998,7 @@ def main() -> None:
                             color="ARPU",
                             color_continuous_scale="Viridis"
                         )
-                        fig_arpu_consolidado.update_layout(height=400)
+                        fig_arpu_consolidado.update_layout(height=500)
                         fig_arpu_consolidado.update_yaxes(tickprefix="R$ ", tickformat=",.2f")
                         fig_arpu_consolidado.update_traces(
                             hovertemplate="<b>%{x}</b><br>" +
@@ -4031,7 +4031,7 @@ def main() -> None:
             df_bar_proj = pd.DataFrame({"Mês": proximos_meses, "Faturamento": proj_realista, "Tipo": "Projetado (Realista)"})
             df_bar = pd.concat([df_bar_hist[["Mês","Faturamento","Tipo"]], df_bar_proj], ignore_index=True)
             fig_b = px.bar(df_bar, x="Mês", y="Faturamento", color="Tipo", barmode="group", title="Últimos 3 meses vs próximos 3 (Realista – Geral)")
-            fig_b.update_layout(height=400)
+            fig_b.update_layout(height=500)
             fig_b.update_yaxes(tickprefix="R$ ", tickformat=",.2f")
             show_plot(fig_b, use_container_width=True)
 
