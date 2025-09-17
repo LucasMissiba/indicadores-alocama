@@ -2223,19 +2223,6 @@ def main() -> None:
                 st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
                 show_plot(fig_pie_pn, use_container_width=True)
                 st.markdown('</div>', unsafe_allow_html=True)
-
-                
-                # Rodapé
-                st.markdown("---")
-                st.markdown(
-                    """
-                    <div style='text-align: center; padding: 20px; color: #666; font-size: 14px;'>
-                        <p><strong>Dashboard desenvolvido por Lucas Missiba</strong></p>
-                        <p>Alocama · Setor de Contratos</p>
-                    </div>
-                    """,
-                    unsafe_allow_html=True
-                )
         else:
             if empresas_presentes_viz and all(e in {"HOSPITALAR", "SOLAR", "DOMMUS"} for e in empresas_presentes_viz):
                 meses_ordem = {"Janeiro": 1, "Fevereiro": 2, "Março": 3, "Abril": 4, "Maio": 5, "Junho": 6, "Julho": 7, "Agosto": 8}
