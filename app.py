@@ -3756,8 +3756,8 @@ def main() -> None:
             for i in range(3):
                 # Otimista: crescimento de 3% ao mês
                 vidas_otimista.append(int(ultima_vida * (1.03 ** (i+1))))
-                # Realista: tendência atual + pequeno crescimento
-                vidas_realista.append(int(ultima_vida + tendencia * (i+1) + 5))
+                # Realista: crescimento moderado de 1.5% ao mês
+                vidas_realista.append(int(ultima_vida * (1.015 ** (i+1))))
                 # Pessimista: manutenção ou pequena queda
                 vidas_pessimista.append(max(int(ultima_vida - 2 * (i+1)), int(ultima_vida * 0.95)))
             
