@@ -2485,7 +2485,7 @@ def main() -> None:
                         )
                         fig_e_bar.update_xaxes(tickangle=-60)
                         st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
-                        st.plotly_chart(fig_e_bar, use_container_width=True, config={'displayModeBar': False})
+                        show_plot(fig_e_bar, use_container_width=True, config={'displayModeBar': False})
                         st.markdown('</div>', unsafe_allow_html=True)
                         
                         # Espaçamento entre gráficos
@@ -2513,7 +2513,7 @@ def main() -> None:
                             width=None,
                         )
                         st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
-                        st.plotly_chart(fig_e_line, use_container_width=True, config={'displayModeBar': False})
+                        show_plot(fig_e_line, use_container_width=True, config={'displayModeBar': False})
                         st.markdown('</div>', unsafe_allow_html=True)
 
         empresas_presentes_fat = sorted(df_emp_viz["Empresa"].unique().tolist())
@@ -2926,7 +2926,7 @@ def main() -> None:
                             x=1.01
                         )
                     )
-                    st.plotly_chart(fig_pizza_gs, use_container_width=True)
+                    show_plot(fig_pizza_gs, use_container_width=True)
                     
                 except Exception as e:
                     st.error(f"❌ **Erro na seção do Grupo Solar**: {str(e)}")
