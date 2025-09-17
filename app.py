@@ -3496,10 +3496,10 @@ def main() -> None:
                 for i in range(3):
                     # Otimista: crescimento de 3% ao mês
                     vidas_otimista_pronep.append(int(ultima_vida_pronep * (1.03 ** (i+1))))
-                    # Realista: manutenção ou pequena queda (era pessimista)
-                    vidas_realista_pronep.append(max(int(ultima_vida_pronep - 2 * (i+1)), int(ultima_vida_pronep * 0.95)))
-                    # Pessimista: tendência atual + pequeno crescimento (era realista)
-                    vidas_pessimista_pronep.append(int(ultima_vida_pronep + tendencia_vidas * (i+1) + 5))
+                    # Realista: tendência atual + pequeno crescimento
+                    vidas_realista_pronep.append(int(ultima_vida_pronep + tendencia_vidas * (i+1) + 5))
+                    # Pessimista: manutenção ou pequena queda
+                    vidas_pessimista_pronep.append(max(int(ultima_vida_pronep - 2 * (i+1)), int(ultima_vida_pronep * 0.95)))
                 
                 # Criar DataFrame para projeção de vidas
                 df_proj_vidas_pronep = pd.DataFrame({
@@ -3581,10 +3581,10 @@ def main() -> None:
                 for i in range(3):
                     # Otimista: crescimento de 5% ao mês
                     fat_otimista_pronep.append(round(ultimo_fat_pronep * (1.05 ** (i+1)), 2))
-                    # Realista: pequena queda de 1% ao mês (era pessimista)
-                    fat_realista_pronep.append(round(ultimo_fat_pronep * (0.99 ** (i+1)), 2))
-                    # Pessimista: manutenção com pequeno crescimento de 2% ao mês (era realista)
-                    fat_pessimista_pronep.append(round(ultimo_fat_pronep * (1.02 ** (i+1)), 2))
+                    # Realista: manutenção com pequeno crescimento de 2% ao mês
+                    fat_realista_pronep.append(round(ultimo_fat_pronep * (1.02 ** (i+1)), 2))
+                    # Pessimista: pequena queda de 1% ao mês
+                    fat_pessimista_pronep.append(round(ultimo_fat_pronep * (0.99 ** (i+1)), 2))
                 
                 # Criar DataFrame para projeção de faturamento
                 df_proj_fat_pronep = pd.DataFrame({
