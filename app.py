@@ -2467,9 +2467,11 @@ def main() -> None:
                         fig_e_bar.update_layout(
                             xaxis_title="Itens (Junho / Julho / Agosto)",
                             yaxis_title="Quantidade",
-                            height=400,  # Altura reduzida para não cortar
+                            height=600,  # Altura padrão como outros gráficos
                             margin=dict(l=20, r=20, t=60, b=150),
                             showlegend=False,
+                            autosize=True,
+                            width=None,
                         )
                         fig_e_bar.update_xaxes(tickangle=-60)
                         st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
@@ -2493,7 +2495,7 @@ def main() -> None:
                             title=f"Evolução mensal – {empresa}",
                         )
                         fig_e_line.update_layout(
-                            height=400,
+                            height=600,  # Altura padrão como outros gráficos
                             yaxis_title="Quantidade", 
                             xaxis_title="Mês",
                             margin=dict(l=20, r=20, t=60, b=60),
