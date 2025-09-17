@@ -2456,7 +2456,7 @@ def main() -> None:
                         fig_e_bar.update_layout(
                             xaxis_title="Itens (Junho / Julho / Agosto)",
                             yaxis_title="Quantidade",
-                            height=500,  # Altura aumentada
+                            height=400,  # Altura reduzida para não cortar
                             margin=dict(l=20, r=20, t=60, b=150),
                             showlegend=False,
                         )
@@ -2464,6 +2464,9 @@ def main() -> None:
                         st.markdown('<div class="fade-in-on-scroll">', unsafe_allow_html=True)
                         show_plot(fig_e_bar, use_container_width=True)
                         st.markdown('</div>', unsafe_allow_html=True)
+                        
+                        # Espaçamento entre gráficos
+                        st.markdown("<div style='height:20px'></div>", unsafe_allow_html=True)
 
                         # Auditoria removida a pedido
 
@@ -2479,7 +2482,7 @@ def main() -> None:
                             title=f"Evolução mensal – {empresa}",
                         )
                         fig_e_line.update_layout(
-                            height=500,
+                            height=400,
                             yaxis_title="Quantidade", 
                             xaxis_title="Mês",
                             margin=dict(l=20, r=20, t=60, b=60)
