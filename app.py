@@ -2150,22 +2150,23 @@ def main() -> None:
                 show_plot(fig_pn_line, use_container_width=True)
                 st.markdown('</div>', unsafe_allow_html=True)
 
-                # Resumo por categorias – PRONEP
+                # Resumo por categorias – PRONEP (APENAS AGOSTO)
                 df_pn_cat = df_pn.copy()
                 if not df_pn_cat.empty:
                     df_pn_cat["Categoria"] = df_pn_cat["Item"].map(categorize_item_name)
                     alvo_cat_pn = ["CAMA", "CADEIRA HIGIÊNICA", "CADEIRA DE RODAS", "SUPORTE DE SORO"]
+                    # FILTRAR APENAS AGOSTO
                     df_cat_pn = (
-                        df_pn_cat[df_pn_cat["Categoria"].isin(alvo_cat_pn)]
+                        df_pn_cat[(df_pn_cat["Categoria"].isin(alvo_cat_pn)) & (df_pn_cat["Mês"] == "Agosto")]
                         .groupby(["Categoria"], as_index=False)["Quantidade"].sum()
                         .sort_values("Quantidade", ascending=False)
                     )
-                    st.subheader("Resumo por categorias – PRONEP")
+                    st.subheader("Resumo por categorias – PRONEP (Agosto)")
                     fig_cat_pn = px.bar(
                         df_cat_pn,
                         x="Categoria",
                         y="Quantidade",
-                        title="Quantidade por categoria (Camas, Cadeira Higiene, Cadeira de Rodas, Suporte de Soro)",
+                        title="Quantidade por categoria (Camas, Cadeira Higiene, Cadeira de Rodas, Suporte de Soro) - AGOSTO",
                     )
                     fig_cat_pn.update_layout(height=500, margin=dict(l=20, r=20, t=60, b=80), autosize=True, width=None)
                     show_plot(fig_cat_pn, use_container_width=True)
